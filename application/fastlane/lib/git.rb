@@ -12,5 +12,5 @@ end
 
 # Returns the last known git tag
 def getLastGitTag()
-  return `git describe --tags $(git rev-list --tags --max-count=1) | tr -d '\n'`
+  return `git describe --tags | tr -d '\n'`
 end
