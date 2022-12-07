@@ -35,7 +35,7 @@ jobs:
           build_offset=${{ inputs.VERSION_CODE_OFFSET }}
           version_code=$(( $RUN_NUMBER + build_offset ))
           echo "Build version code is $version_code"
-          echo  "::set-output name=version_code::$version_code"
+          echo "{version_code}={$version_code}" >> $GITHUB_OUTPUT
 
       - name: 📦 Activate cache for last commited code
         id: cached-commit
