@@ -39,7 +39,7 @@ jobs:
     name: 🏗 Prepare code
     uses: ./.github/workflows/prepare_build_code.yaml
     with:
-      VERSION_CODE_OFFSET: 220
+      VERSION_CODE_OFFSET: 250
 
   build_ios_internal:
     name: 🍏 Build ios Internal
