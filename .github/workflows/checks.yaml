@@ -3,16 +3,15 @@ name: Code Quality
 on:
   pull_request:
     branches:
-      - dev
-    paths:
-      - 'application/**'
+      - '*'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref }}
+  group: ${{ github.workflow }}-${{  github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 env:
   FASTLANE_SKIP_UPDATE_CHECK: '1'
+
 
 jobs:
   prepare_code:
