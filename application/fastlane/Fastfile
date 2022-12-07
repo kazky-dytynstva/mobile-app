@@ -1,0 +1,477 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+import("lib/utils.rb")
+import("lib/git.rb")
+import("lib/config.rb")
+import("../ios/fastlane/Fastfile")
+import("../android/fastlane/Fastfile")
+
+Options = Config::Options
+Keys = Config::Keys
+DfKeys = Config::DfKeys
+IosBuildConfigKeys = Config::IosBuildConfigKeys
+Platforms = Config::Platforms
+Stagings = Config::Stagings
+AndroidOutputs = Config::AndroidOutputs
+
+# Common checks before running a lane
+before_all do |lane, options|
+  allowedOptions = Options.constants.map { |c| Options.const_get(c) }
+  options.each do |k, v|
+    UI.user_error!("Unknown Option ''#{k}'\nAllowed options:\n#{Options::all_variables}") unless allowedOptions.include?(k)
+  end
+  setIfNotSet = lambda { |key, value|
+    options[key] = options.key?(key) ? options[key] : value
+  }
+
+  # set default variables
+  setIfNotSet.call(Options::CLEAN, true)
+  setIfNotSet.call(Options::PLATFORM, Platforms::ANDROID)
+  setIfNotSet.call(Options::ANDROID_OUTPUT, AndroidOutputs::APK)
+  setIfNotSet.call(Options::STAGING, Stagings::DEV)
+  setIfNotSet.call(Options::COVERAGE, false)
+  setIfNotSet.call(Options::UPLOAD_TO_STORE, false)
+  setIfNotSet.call(Options::VERSION_NAME, getLastGitTag())
+  setIfNotSet.call(Options::VERSION_CODE, 1)
+
+  UI.important "Initial params:\n#{JSON.pretty_generate(options)}"
+end
+
+error do |lane, exception, options|
+  cleanup_platform_files(options)
+end
+
+
+
+
+
+################################################################################
+############################## PUBLIC LANES ####################################
+################################################################################
+##### can also be used via tab completion: `fastlane enable_auto_complete` #####
+################################################################################
+
+desc "Execute flutter build runner cmd\n" \
+     "Available options:\n" \
+     "   - #{Options::WATCH}: [true, false]"
+lane :build_runner do |options|
+  maybe_pub_get(options)
+
+  mode = options[Options::WATCH] ? "watch" : "build"
+  command = "pub run build_runner #{mode} --delete-conflicting-outputs"
+  flutter(command)
+end
+
+desc "Execute flutter pub get cmd"
+lane :pub_get do |options|
+  flutter("pub get")
+end
+
+desc "Watch changes for rerunning the build_runner"
+lane :watch do |options|
+  options[Options::WATCH] = true
+  build_runner(options)
+end
+
+desc "Execute flutter clean cmd"
+lane :clean do |options|
+  flutter("clean")
+end
+
+desc "Run sanity checks: analyzer, formatter, tests"
+lane :check do |options|
+  maybe_pub_get(options)
+  flutter("analyze lib test")
+  if is_ci
+    flutter("format ./ --set-exit-if-changed")
+  else
+    flutter("format ./")
+  end
+  if options[Options::COVERAGE] == true
+    flutter("test --coverage")
+    shell("genhtml coverage/lcov.info -o coverage/html")
+    shell("open coverage/html/index.html")
+  else
+    flutter("test")
+  end
+end
+
+desc "Create build output\n" \
+     "Available options:\n" \
+     "   - #{Options::PLATFORM}: #{Platforms.all_variables}\n" \
+     "   - #{Options::STAGING}: #{Stagings.all_variables}\n" \
+     "   - #{Options::ANDROID_OUTPUT}: #{AndroidOutputs.all_variables}\n" \
+     "   - #{Options::CLEAN}: [true, false]"
+lane :build do |options|
+  prepare_platform_files(options)
+
+  flutter_build(options)
+
+  if options[Options::UPLOAD_TO_STORE]
+    uploadToStore(options)
+  end
+
+  if is_ci
+      create_build_report(options)
+  end
+
+  cleanup_platform_files(options)
+end
+
+desc "Update launcher icons"
+lane :updateIcons do |options|
+  pub_get(options)
+  flutter("pub run flutter_launcher_icons:main")
+end
+
+desc "Check for outdated dependencies"
+lane :dependenciesCheck do |options|
+  flutter("pub outdated")
+end
+
+desc "Update outdated dependencies"
+lane :dependenciesUpdate do |options|
+  flutter("pub upgrade")
+end
+
+
+########################################################################################
+#################### PRIVATE LANES AND HELPER METHODS BELOW ############################
+###################### that we only call internally ####################################
+########################################################################################
+
+FASTLANE_KEYCHAIN_NAME = "fastlane_tmp_keychain-db"
+ANDROID_RELEASE_STORE_FILE = "release.keystore"
+GOOGLE_CREDENTIALS_FILE_NAME="google_credentials.json"
+
+desc "Execute flutter build cmd"
+private_lane :flutter_build do |options|
+  if options[Options::CLEAN]
+    clean(options)
+    build_runner(options)
+  end
+
+  dartDefines = getDefines(options).map { |k, v| " --dart-define=#{k}=\"#{v}\"" }.reduce("", :+)
+
+  versionName = options[Options::VERSION_NAME]
+  versionCode = options[Options::VERSION_CODE]
+  platform = options[Options::PLATFORM]
+  stagingConfigs = Config::STAGING_CONFIGS[options[Options::STAGING]]
+  type = isStagingDev(options) ? "--debug" : "--release"
+  plistExport = isAndroid(options) ? "" : "--export-options-plist=ios/Runner/exportOptions.plist"
+  target = isIos(options) ? "ipa" : options[Options::ANDROID_OUTPUT]
+
+  flutter("build #{target} #{type} #{plistExport} --build-number=#{versionCode} --build-name=#{versionName} #{dartDefines}")
+end
+
+desc "Prepare platform extra files"
+private_lane :prepare_platform_files do |options|
+  if isAndroid(options)
+    prepare_android_files(options)
+  else
+    prepare_ios_files(options)
+  end
+end
+
+desc "Prepare ios extra files"
+private_lane :prepare_ios_files do |options|
+  staging = options[Options::STAGING]
+  iosConfigs = Config::IOS_BUILD_CONFIG[staging]
+
+  setProperties("../ios/Flutter/CustomDefine.xcconfig", getDefines(options))
+
+  infoPlistFilePath = "./ios/firebase_config/dev/GoogleService-Info.plist"
+
+  if isStagingProd(options)
+    SERV_KEY = "GOOGLE_SERVICES_PLIST_PROD"
+    UI.user_error!("#{SERV_KEY} variable is required") unless ENV.key?(SERV_KEY)
+    infoPlistFilePath = "./ios/firebase_config/prod/GoogleService-Info.plist"
+    shell("echo $#{SERV_KEY} | base64 --decode > #{infoPlistFilePath}")
+  elsif is_ci
+    SERV_KEY = "GOOGLE_SERVICES_PLIST_INTERNAL"
+    UI.user_error!("#{SERV_KEY} variable is required") unless ENV.key?(SERV_KEY)
+    shell("echo $#{SERV_KEY} | base64 --decode > #{infoPlistFilePath}")
+  end
+
+  fixedPlistFilePath = ".#{infoPlistFilePath}"
+  UI.user_error! "GoogleService-Info.plist not provided" unless File.file?(fixedPlistFilePath)
+  FileUtils.cp(fixedPlistFilePath, "../ios/Runner/")
+  UI.important "GoogleService-Info.plist was copied 😉"
+
+  # set keychain
+  password="IOS_PROVISIONING_PASSWORD"
+  UI.user_error!("No #{password} provided!") unless ENV.key?(password)
+
+  begin
+    delete_keychain(name: FASTLANE_KEYCHAIN_NAME)
+  rescue Exception
+  end
+  create_keychain(
+    name: FASTLANE_KEYCHAIN_NAME,
+    default_keychain: is_ci ? true : false,
+    unlock: true,
+    timeout: 0,
+    lock_when_sleeps: false,
+    password: "",
+  )
+
+  # prepare certificate and profiles
+  PROFILES_VAR="IOS_PROFILES"
+  UI.user_error!("#{PROFILES_VAR} variable is required") unless ENV.key?(PROFILES_VAR)
+
+  profilesArchive="profiles.tar.gz"
+  shell("echo #{ENV[PROFILES_VAR]} | base64 -d > #{profilesArchive}")
+  shell("tar -xzvf #{profilesArchive} -C ios/")
+  shell("rm -rf #{profilesArchive}")
+
+  import_certificate(
+    certificate_path: "ios/profiles/distribution_certificate.p12",
+    certificate_password: ENV[password],
+    keychain_name: FASTLANE_KEYCHAIN_NAME,
+    keychain_password: "",
+  )
+  provisioningProfilePath = iosConfigs[IosBuildConfigKeys::PROVISIONING_PROFILE_PATH]
+  install_provisioning_profile(path: provisioningProfilePath)
+
+  create_export_options_plist(options)
+
+  UI.important "IOS platform files prepared 💪"
+end
+
+desc "Creates and exportOptions.plist file, that required for creating .ipa file"
+private_lane :create_export_options_plist do |options|
+  defines = getDefines(options)
+
+  # can be also 'ad-hoc'
+  buildMethod = "app-store"
+  team = defines[DfKeys::DEVELOPMENT_TEAM]
+  appId = defines[DfKeys::APP_ID]
+  provisioningProfile = defines[DfKeys::PROVISIONING_PROFILE]
+
+  exportOptions = StringIO.new()
+  exportOptions.write("<?xml version='1.0' encoding='UTF-8'?>\n")
+  exportOptions.write("<!DOCTYPE plist PUBLIC '-//Apple//DTD PLIST 1.0//EN' 'http://www.apple.com/DTDs/PropertyList-1.0.dtd'>\n")
+  exportOptions.write("<plist version='1.0'>\n")
+  exportOptions.write("  <dict>\n")
+  exportOptions.write("    <key>method</key>\n")
+  exportOptions.write("    <string>#{buildMethod}</string>\n")
+  exportOptions.write("    <key>teamID</key>\n")
+  exportOptions.write("    <string>#{team}</string>\n")
+  exportOptions.write("    <key>provisioningProfiles</key>\n")
+  exportOptions.write("    <dict>\n")
+  exportOptions.write("      <key>#{appId}</key>\n")
+  exportOptions.write("      <string>#{provisioningProfile}</string>\n")
+  exportOptions.write("    </dict>\n")
+  exportOptions.write("  </dict>\n")
+  exportOptions.write("</plist>")
+
+
+  file = File.new("../ios/Runner/exportOptions.plist", "w")
+  file.write(exportOptions.string)
+  file.close
+
+  UI.important "exportOptions.plist created"
+end
+
+desc "Prepare android extra files"
+private_lane :prepare_android_files do |options|
+  keyAlias = "androiddebugkey"
+  keyPass = "android"
+  storePass = "android"
+  storeFileName = "debug_key.jks"
+
+  isProd = isStagingProd(options)
+  if isProd
+    KEY_ALIAS = "ANDROID_KEY_ALIAS"
+    UI.user_error!("#{KEY_ALIAS} variable is required") unless ENV.key?(KEY_ALIAS)
+    keyAlias = ENV[KEY_ALIAS]
+
+    KEY_PASS = "ANDROID_KEY_PASSWORD"
+    UI.user_error!("#{KEY_PASS} variable is required") unless ENV.key?(KEY_PASS)
+    keyPass = ENV[KEY_PASS]
+
+    STORE_PASS = "ANDROID_STORE_PASSWORD"
+    UI.user_error!("#{STORE_PASS} variable is required") unless ENV.key?(STORE_PASS)
+    storePass = ENV[STORE_PASS]
+
+    storeFileName = ANDROID_RELEASE_STORE_FILE
+  end
+
+  androidConfigs = {
+    Keys::ANDROID_KEY_ALIAS => keyAlias,
+    Keys::ANDROID_KEY_PASS => keyPass,
+    Keys::ANDROID_STORE_PASS => storePass,
+    Keys::ANDROID_STORE_FILE_NAME => storeFileName,
+  }
+  setProperties("../android/key.properties", androidConfigs)
+
+  if isStagingDev(options)
+    shell("mkdir -p ./android/app/src/debug/")
+  else
+    shell("mkdir -p ./android/app/src/release/")
+  end
+
+  if isProd
+    SERV_KEY = "GOOGLE_SERVICES_JSON_PROD"
+    UI.user_error!("#{SERV_KEY} variable is required") unless ENV.key?(SERV_KEY)
+    shell("echo $#{SERV_KEY} | base64 --decode > ./android/app/src/release/google-services.json")
+  elsif isStagingInternal(options)
+    if is_ci
+      SERV_KEY = "GOOGLE_SERVICES_JSON_INTERNAL"
+      UI.user_error!("#{SERV_KEY} variable is required") unless ENV.key?(SERV_KEY)
+      shell("echo $#{SERV_KEY} | base64 --decode > ./android/app/src/release/google-services.json")
+    else
+      FileUtils.cp("../android/app/src/debug/google-services.json", "../android/app/src/release/")
+      UI.important "google-services.json was copied from debug to release folder 😉"
+    end
+  else
+    filePath = "../android/app/src/debug/google-services.json"
+    UI.user_error! "google-services.json for debug not provided" unless File.file?(filePath)
+  end
+
+  if isProd
+    KEYSTORE_FILE = "ANDROID_KEYSTORE_FILE"
+    UI.user_error!("#{KEYSTORE_FILE} variable is required") unless ENV.key?(KEYSTORE_FILE)
+    shell("echo $#{KEYSTORE_FILE} | base64 --decode > android/#{storeFileName}")
+  end
+
+  UI.important "Android platform files prepared 💪"
+end
+
+desc "Clean platform files after builds"
+private_lane :cleanup_platform_files do |options|
+    if isIos(options)
+      delete_keychain(name: FASTLANE_KEYCHAIN_NAME)
+      next
+    end
+
+    FileUtils.rm("../android/#{GOOGLE_CREDENTIALS_FILE_NAME}", :force=>true)
+
+    if !isStagingInternal(options)
+        next
+    end
+
+    FileUtils.rm("../android/app/src/release/google-services.json", :force=>true)
+end
+
+private_lane :create_build_report do |options|
+  version = options[Options::VERSION_NAME]
+  platform = options[Options::PLATFORM]
+  staging = options[Options::STAGING]
+  versionCode = options[Options::VERSION_CODE]
+  uploaded = options[Options::UPLOAD_TO_STORE]
+  icon = isIos(options) ? "🍏" : "🤖"
+
+  report = StringIO.new()
+  report.write("New build was created 🎉")
+  report.write("\n\n")
+  report.write("Version name:   *#{version}*\n")
+  report.write("Version code:   *#{versionCode}*\n")
+  report.write("Platform:       *#{platform} #{icon}*\n")
+  report.write("Staging:        *#{staging}*\n")
+  report.write("Uploaded:       *#{uploaded}*\n")
+  report.write("\n\n")
+  report.write("---- Short changelog: ----\n")
+  report.write(getOneLineChangelog())
+  file = File.new("../build_report.log", "w")
+  file.write(report.string.to_json)
+  file.close
+
+  UI.important "build_report.log was created 💪"
+end
+
+
+desc "Upload binaries to the appropriate store"
+private_lane :uploadToStore do |options|
+  UI.user_error! "Can not be performed with DEV staging!" unless !isStagingDev(options)
+
+  if isIos(options)
+    Dir.chdir("../ios/fastlane") do
+      uploadIosBinaries(options)
+    end
+  else
+    Dir.chdir("../android/fastlane") do
+       uploadAndroidBinaries(options)
+    end
+  end
+end
+
+####
+#### Private helper methods
+####
+
+def flutter(args)
+  Dir.chdir("..") do
+    sh "flutter #{args}"
+  end
+end
+
+def shell(args)
+  Dir.chdir("..") do
+    sh(args)
+  end
+end
+
+def maybe_pub_get(options)
+  lastPubLock = getLastModifiedForFile("../pubspec.lock")
+  lastPubYaml = getLastModifiedForFile("../pubspec.yaml")
+  lastPackageConfig = getLastModifiedForFile("../.dart_tool/package_config.json")
+
+  UI.user_error! "No pubspec.yaml file found!" unless (lastPubYaml != nil)
+
+  if lastPubLock == nil || lastPackageConfig == nil || lastPubLock < lastPubYaml
+    pub_get(options)
+  end
+end
+
+def isIos(options)
+    return options[Options::PLATFORM] == Platforms::IOS
+end
+
+def isAndroid(options)
+    return options[Options::PLATFORM] == Platforms::ANDROID
+end
+
+def isStagingDev(options)
+  staging = options[Options::STAGING]
+  return staging == Stagings::DEV
+end
+
+def isStagingInternal(options)
+  staging = options[Options::STAGING]
+  return staging == Stagings::INTERNAL
+end
+
+def isStagingProd(options)
+  staging = options[Options::STAGING]
+  return staging == Stagings::PROD
+end
+
+def getDefines(options)
+  staging = options[Options::STAGING]
+  stagingConfigs = Config::STAGING_CONFIGS[staging]
+  platform = options[Options::PLATFORM]
+  platformConfigs = stagingConfigs[platform]
+
+  appName = platformConfigs[Keys::APP_NAME]
+  appId = platformConfigs[Keys::APP_ID]
+
+  defines = {
+    DfKeys::APP_ID => appId,
+    DfKeys::APP_NAME => appName,
+    DfKeys::STAGE_NAME => staging,
+  }
+  if isIos(options)
+    iosConfigs = Config::IOS_BUILD_CONFIG[staging]
+    defines[DfKeys::PROVISIONING_PROFILE] = iosConfigs[IosBuildConfigKeys::PROVISIONING_PROFILE_NAME]
+    defines[DfKeys::CERTIFICATE] = iosConfigs[IosBuildConfigKeys::CERTIFICATE_NAME]
+    defines[DfKeys::DEVELOPMENT_TEAM] = iosConfigs[IosBuildConfigKeys::DEVELOPMENT_TEAM]
+  end
+  return defines
+end

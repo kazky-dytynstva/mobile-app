@@ -1,0 +1,53 @@
+include: package:flutter_lints/flutter.yaml
+linter:
+  rules:
+    depend_on_referenced_packages: false
+analyzer:
+  exclude: [
+      'lib/**.g.dart',
+      'lib/**.gr.dart',
+      'lib/**.mocks.dart',
+      'lib/**.freezed.dart',
+      'lib/**.config.dart'
+  ]
+  errors:
+    missing_required_param: error
+    parameter_assignments: error
+    missing_return: error
+    avoid_positional_boolean_parameters: error
+    avoid_returning_null_for_future: error
+    curly_braces_in_flow_control_structures: error
+    missing_enum_constant_in_switch: error
+    always_put_required_named_parameters_first: error
+    always_declare_return_types: error
+    prefer_final_in_for_each: error
+    prefer_final_locals: error
+    prefer_const_constructors: error
+    prefer_const_declarations: error
+    must_call_super: error
+    avoid_print: error
+    avoid_renaming_method_parameters: error
+    avoid_dynamic_calls: error
+    avoid_empty_else: error
+    avoid_relative_lib_imports: error
+    avoid_types_as_parameter_names: error
+    cancel_subscriptions: error
+    empty_statements: error
+    invariant_booleans: error
+    invalid_visibility_annotation: error
+    invalid_use_of_visible_for_overriding_member: error
+    empty_constructor_bodies: error
+    override_on_non_overriding_member: error
+    avoid_function_literals_in_foreach_calls: error
+    require_trailing_commas: error
+    body_might_complete_normally_nullable: error
+    iterable_contains_unrelated_type: error
+    deprecated_member_use: error
+    unused_element: error
+    unnecessary_non_null_assertion: error
+    sort_child_properties_last: error
+    library_private_types_in_public_api: error
+    prefer_interpolation_to_compose_strings: error
+    unnecessary_late: error
+    no_leading_underscores_for_local_identifiers: error
+    invalid_use_of_protected_member: error

@@ -1,0 +1,43 @@
+name: Code Quality
+
+on:
+  pull_request:
+    branches:
+      - dev
+    paths:
+      - 'application/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  FASTLANE_SKIP_UPDATE_CHECK: '1'
+
+jobs:
+  prepare_code:
+    name: 🏗 Prepare code
+    uses: ./.github/workflows/prepare_build_code.yaml
+
+  checks:
+    name: 🚑 Run sanity checks
+    runs-on: macos-latest
+    needs: prepare_code
+    steps:
+
+      - name: ⚙️ Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ needs.prepare_code.outputs.flutter_version }}
+          cache: true
+
+      - name: 📦 Activate cache for last commited code
+        id: cached-commit
+        uses: actions/cache@v3
+        with:
+          path: ./
+          key: ${{ github.sha }}
+
+      - name: ⛑ Run sanity checks
+        working-directory: ./application
+        run: fastlane check

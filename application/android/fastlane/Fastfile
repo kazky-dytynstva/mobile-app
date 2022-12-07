@@ -1,0 +1,39 @@
+require "../fastlane/lib/config.rb"
+
+private_lane :uploadAndroidBinaries do |options|
+    UI.user_error! "Can not be performed with DEV staging!" unless !isStagingDev(options)
+
+    isProd = isStagingProd(options)
+
+    GOOGLE_CRED_KEY = isProd ? "GOOGLE_APP_CREDENTIALS_JSON_PROD" : "GOOGLE_APP_CREDENTIALS_JSON_INTERNAL"
+    UI.user_error!("#{GOOGLE_CRED_KEY} variable is required") unless ENV.key?(GOOGLE_CRED_KEY)
+    shell("echo #{ENV[GOOGLE_CRED_KEY]} | base64 -d > #{GOOGLE_CREDENTIALS_FILE_NAME}")
+
+    isTypeApk = (options[Options::ANDROID_OUTPUT] == AndroidOutputs::APK)
+    binaryPath = isTypeApk ? "./../build/app/outputs/apk/release/app-release.apk": "./../build/app/outputs/bundle/release/app-release.aab"
+
+    googleServices = read_json(json_path: "app/src/release/google-services.json")
+    mobileSdkAppId = googleServices[:client][0][:client_info][:mobilesdk_app_id]
+
+    ENV["GOOGLE_APPLICATION_CREDENTIALS"] = GOOGLE_CREDENTIALS_FILE_NAME
+    firebase_app_distribution(
+      app: mobileSdkAppId,
+      groups: isProd ? "devs" : "devs",
+      release_notes: getOneLineChangelog(),
+      android_artifact_type: isTypeApk ? "APK" : "AAB",
+      android_artifact_path: binaryPath
+    )
+    ENV["GOOGLE_APPLICATION_CREDENTIALS"] = ""
+
+    if isProd
+      upload_to_play_store(
+        package_name: Config::STAGING_CONFIGS[Stagings::PROD][Platforms::ANDROID][Keys::APP_ID],
+        release_status: "draft",
+        json_key: GOOGLE_CREDENTIALS_FILE_NAME,
+        apk: isTypeApk ? binaryPath : nil,
+        aab: isTypeApk ? nil : binaryPath,
+        changes_not_sent_for_review: true,
+      )
+    end
+end
+

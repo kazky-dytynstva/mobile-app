@@ -1,0 +1,4 @@
+enum SortAndFilterOpenType {
+  filter,
+  sort,
+}

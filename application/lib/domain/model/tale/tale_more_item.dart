@@ -1,0 +1,4 @@
+enum TaleMoreType {
+  settings,
+  reportTale,
+}

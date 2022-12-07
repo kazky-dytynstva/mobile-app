@@ -1,0 +1,7 @@
+# dart generated files
+*.config.dart       linguist-generated=true
+*.freezed.dart      linguist-generated=true
+*.g.dart            linguist-generated=true
+*.gr.dart           linguist-generated=true
+*.mocks.dart        linguist-generated=true
+

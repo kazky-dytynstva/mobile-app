@@ -1,0 +1,51 @@
+on:
+  workflow_call:
+    inputs:
+      FLUTTER_VERSION:
+        required: false
+        type: string
+        default: "3.3.9"
+      VERSION_CODE_OFFSET:
+        required: false
+        type: number
+        default: 0
+    outputs:
+      build_version_code:
+        description: "App build version code"
+        value: ${{ jobs.main.outputs.version_code }}
+      flutter_version:
+        description: "Flutter version"
+        value: ${{ inputs.FLUTTER_VERSION }}
+
+jobs:
+  main:
+    runs-on: macos-latest
+    outputs:
+      version_code: ${{ steps.build_version_code.outputs.version_code }}
+      flutter_version: ${{ inputs.FLUTTER_VERSION }}
+    steps:
+      - name: Print CI run number
+        run: echo run number is ${{ github.run_number }}
+
+      - name: 🔢 Prepare build version code
+        id: build_version_code
+        env:
+          RUN_NUMBER: ${{ github.run_number }}
+        run: |
+          build_offset=${{ inputs.VERSION_CODE_OFFSET }}
+          version_code=$(( $RUN_NUMBER + build_offset ))
+          echo "Build version code is $version_code"
+          echo  "::set-output name=version_code::$version_code"
+
+      - name: 📦 Activate cache for last commited code
+        id: cached-commit
+        uses: actions/cache@v3
+        with:
+          path: ./
+          key: ${{ github.sha }}
+
+      - name: ⏬ Checkout repo last commit
+        if: steps.cached-commit.outputs.cache-hit != 'true'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0

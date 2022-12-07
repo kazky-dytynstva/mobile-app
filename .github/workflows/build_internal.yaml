@@ -1,0 +1,197 @@
+name: Build INTERNAL
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'application/**'
+
+  workflow_dispatch:
+    inputs:
+      android_internal:
+        description: '🤖 android INTERNAL'
+        required: false
+        default: false
+        type: boolean
+      ios_internal:
+        description: ' 🍏 ios INTERNAL'
+        required: false
+        default: false
+        type: boolean
+      store_artifacts:
+        description: 'Store builds to artifacts'
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: ${{ github.workflow }}-${{  github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+env:
+  FASTLANE_SKIP_UPDATE_CHECK: '1'
+  JAVA_VERSION: '11'
+
+jobs:
+
+  prepare_code:
+    name: 🏗 Prepare code
+    uses: ./.github/workflows/prepare_build_code.yaml
+    with:
+      VERSION_CODE_OFFSET: 220
+
+  build_ios_internal:
+    name: 🍏 Build ios Internal
+    needs: prepare_code
+    outputs:
+      message: ${{ env.SLACK_MESSAGE }}
+      status: ${{ env.SLACK_STATUS }}
+    if: (github.event_name == 'push' && !contains(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.ios_internal  == 'true')
+    runs-on: macos-latest
+
+    steps:
+      - name: ⚙️ Install Flutter
+        timeout-minutes: 2
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ needs.prepare_code.outputs.flutter_version }}
+          cache: true
+
+      - name: 📦 Activate cache for last commited code
+        id: cached-commit
+        uses: actions/cache@v3
+        with:
+          path: ./
+          key: ${{ github.sha }}
+
+      - name: 🔢 Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: 🍏 Build ios Internal
+        timeout-minutes: 20
+        working-directory: ./application
+        env:
+          IOS_PROVISIONING_PASSWORD: ${{ secrets.IOS_PROVISIONING_PASSWORD }}
+          APPSTORE_API_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
+          APPSTORE_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+          APPSTORE_API_PRIVATE_KEY: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+          IOS_PROFILES: ${{ secrets.IOS_PROFILES }}
+          GOOGLE_SERVICES_PLIST_INTERNAL: ${{ secrets.GOOGLE_SERVICES_PLIST_INTERNAL }}
+        run: fastlane build clean:false platform:ios staging:internal upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
+
+      - name: ⤵️ Archive artifacts
+        uses: actions/upload-artifact@v3
+        if: (github.event_name == 'workflow_dispatch' && github.event.inputs.store_artifacts  == 'true')
+        with:
+          name: ios_artifacts_${{ needs.prepare_code.outputs.build_version_code }}
+          path: application/build/ios/ipa/
+          if-no-files-found: error
+
+      - name: ✍️📝 Prepare report for Slack
+        if: always()
+        run: |
+          if ${{ job.status == 'success' }}; then
+            MESSAGE=$( cat application/build_report.log )
+            STATUS="success"
+          elif ${{ job.status == 'cancelled' }}; then
+            MESSAGE="\"iOs build job (${{ needs.prepare_code.outputs.build_version_code }}) cancelled 🤔\""
+            STATUS="canceled"
+          else
+            MESSAGE="\"iOs build job (${{ needs.prepare_code.outputs.build_version_code }}) failed 🙈\""
+            STATUS="failure"
+          fi
+
+          echo "SLACK_STATUS=$STATUS" >> $GITHUB_ENV
+          echo "SLACK_MESSAGE=$MESSAGE" >> $GITHUB_ENV
+
+
+  build_android_internal:
+    name: 🤖 Build Android Internal
+    outputs:
+      message: ${{ env.SLACK_MESSAGE }}
+      status: ${{ env.SLACK_STATUS }}
+    needs: prepare_code
+    if: (github.event_name == 'push' && !contains(github.ref, 'refs/tags/')) || (github.event_name == 'workflow_dispatch' && github.event.inputs.android_internal  == 'true')
+    runs-on: macos-latest
+    steps:
+
+      - name: ⚙️ Install Flutter
+        timeout-minutes: 2
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ needs.prepare_code.outputs.flutter_version }}
+          cache: true
+
+      - name: 📦 Activate cache for last commited code
+        id: cached-commit
+        uses: actions/cache@v3
+        with:
+          path: ./
+          key: ${{ github.sha }}
+
+      - name: ☕️ Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: 🏗🤖 Build an internal Android version
+        timeout-minutes: 15
+        working-directory: ./application
+        env:
+          GOOGLE_APP_CREDENTIALS_JSON_INTERNAL: ${{ secrets.GOOGLE_APP_CREDENTIALS_JSON_INTERNAL }}
+          GOOGLE_SERVICES_JSON_INTERNAL: ${{ secrets.GOOGLE_SERVICES_JSON_INTERNAL }}
+        run: fastlane build clean:false platform:android staging:internal upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
+
+      - name: ⤵️ Archive artifacts
+        uses: actions/upload-artifact@v3
+        if: (github.event_name == 'workflow_dispatch' && github.event.inputs.store_artifacts  == 'true')
+        with:
+          name: android_artifacts_${{ needs.prepare_code.outputs.build_version_code }}
+          path: application/build/app/outputs/
+          if-no-files-found: error
+
+      - name: ✍️📝 Prepare report for Slack
+        if: always()
+        run: |
+          if ${{ job.status == 'success' }}; then
+            MESSAGE=$( cat application/build_report.log )
+            STATUS="success"
+          elif ${{ job.status == 'cancelled' }}; then
+            MESSAGE="\"Android build job (${{ needs.prepare_code.outputs.build_version_code }}) cancelled 🤔\""
+            STATUS="canceled"
+          else
+            MESSAGE="\"Android build job (${{ needs.prepare_code.outputs.build_version_code }}) failed 🙈\""
+            STATUS="failure"
+          fi
+
+          echo "SLACK_STATUS=$STATUS" >> $GITHUB_ENV
+          echo "SLACK_MESSAGE=$MESSAGE" >> $GITHUB_ENV
+
+
+  ###### SLACK NOTIFICATIONS #######
+
+  slack_notification_ios_internal:
+    name: 🔔 Send 🍏 report to Slack
+    needs: build_ios_internal
+    if: always() && (needs.build_ios_internal.result != 'skipped')
+    uses: ./.github/workflows/slack_notification.yaml
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_BUILDS_INTERNAL }}
+    with:
+      message: ${{ needs.build_ios_internal.outputs.message }}
+      status: ${{ needs.build_ios_internal.outputs.status }}
+
+  slack_notification_android_internal:
+    name: 🔔 Send 🤖 report to Slack
+    needs: build_android_internal
+    if: always() && (needs.build_android_internal.result != 'skipped')
+    uses: ./.github/workflows/slack_notification.yaml
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_BUILDS_INTERNAL }}
+    with:
+      message: ${{ needs.build_android_internal.outputs.message }}
+      status: ${{ needs.build_android_internal.outputs.status }}

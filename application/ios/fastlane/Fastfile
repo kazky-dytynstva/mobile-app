@@ -1,0 +1,29 @@
+require "../fastlane/lib/config.rb"
+
+private_lane :uploadIosBinaries do |options|
+    KEY_ID = "APPSTORE_API_KEY_ID"
+    UI.user_error!("#{KEY_ID} variable is required") unless ENV.key?(KEY_ID)
+
+    ISSUER_ID = "APPSTORE_ISSUER_ID"
+    UI.user_error!("#{ISSUER_ID} variable is required") unless ENV.key?(ISSUER_ID)
+
+    PRIVATE_KEY = "APPSTORE_API_PRIVATE_KEY"
+    UI.user_error!("#{PRIVATE_KEY} variable is required") unless ENV.key?(PRIVATE_KEY)
+
+    api_key = app_store_connect_api_key(
+      key_id: ENV[KEY_ID],
+      issuer_id: ENV[ISSUER_ID],
+      key_content: ENV[PRIVATE_KEY],
+      is_key_content_base64: true,
+      in_house: false
+    )
+
+    pilot(
+      app_identifier: Config::STAGING_CONFIGS[options[Options::STAGING]][Keys::APP_ID],
+      api_key: api_key,
+      skip_waiting_for_build_processing: true,
+      skip_submission: false,
+      ipa: "./../build/ios/ipa/app.ipa"
+    )
+end
+
