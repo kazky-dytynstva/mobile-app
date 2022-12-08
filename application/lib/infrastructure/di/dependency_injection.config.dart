@@ -45,7 +45,7 @@ import 'package:mobile_app/domain/helper/share_helper.dart' as _i75;
 import 'package:mobile_app/domain/helper/tale_filter.dart' as _i81;
 import 'package:mobile_app/domain/helper/tale_sorter.dart' as _i87;
 import 'package:mobile_app/domain/mapper/mapper.dart' as _i17;
-import 'package:mobile_app/domain/model/app_theme/app_theme.dart' as _i61;
+import 'package:mobile_app/domain/model/app_theme/app_theme.dart' as _i57;
 import 'package:mobile_app/domain/model/app_version/app_version.dart' as _i41;
 import 'package:mobile_app/domain/model/changed_data/changed_data.dart'
     as _i123;
@@ -60,7 +60,7 @@ import 'package:mobile_app/domain/model/person/value_objects/person_id.dart'
     as _i120;
 import 'package:mobile_app/domain/model/player/loop_mode.dart' as _i21;
 import 'package:mobile_app/domain/model/player/playlist_data.dart' as _i129;
-import 'package:mobile_app/domain/model/rating/rating_data.dart' as _i57;
+import 'package:mobile_app/domain/model/rating/rating_data.dart' as _i61;
 import 'package:mobile_app/domain/model/rating/rating_type.dart' as _i55;
 import 'package:mobile_app/domain/model/settings/text_scale_factor.dart'
     as _i59;
@@ -173,7 +173,7 @@ import 'package:mobile_app/infrastructure/helper/url_creator/url_creator.dart'
 import 'package:mobile_app/infrastructure/helper/url_creator/url_creator_impl.dart'
     as _i92;
 import 'package:mobile_app/infrastructure/mapper/app_theme/app_theme_to_db_key_mapper.dart'
-    as _i62;
+    as _i58;
 import 'package:mobile_app/infrastructure/mapper/connectivity_type/connection_type_mapper.dart'
     as _i52;
 import 'package:mobile_app/infrastructure/mapper/filter_type/filter_type_to_string_mapper.dart'
@@ -199,7 +199,7 @@ import 'package:mobile_app/infrastructure/mapper/player/tale_audio_to_audio_sour
 import 'package:mobile_app/infrastructure/mapper/rating/rating_dto_to_entity_mapper.dart'
     as _i54;
 import 'package:mobile_app/infrastructure/mapper/rating/rating_entity_to_data_mapper.dart'
-    as _i58;
+    as _i62;
 import 'package:mobile_app/infrastructure/mapper/rating/rating_type_to_name_mapper.dart'
     as _i56;
 import 'package:mobile_app/infrastructure/mapper/sort_type/sort_type_to_string_mapper.dart'
@@ -265,9 +265,9 @@ import 'package:mobile_app/infrastructure/use_case/loop_mode/set_initial_loop_mo
 import 'package:mobile_app/infrastructure/use_case/menu/get_menu_dynamic_item_data_use_case.dart'
     as _i177;
 import 'package:mobile_app/infrastructure/use_case/menu/listen_show_dot_type_use_case.dart'
-    as _i144;
-import 'package:mobile_app/infrastructure/use_case/menu/listen_show_menu_dot_use_case.dart'
     as _i141;
+import 'package:mobile_app/infrastructure/use_case/menu/listen_show_menu_dot_use_case.dart'
+    as _i142;
 import 'package:mobile_app/infrastructure/use_case/menu/set_shot_doty_type_watched_use_case.dart'
     as _i140;
 import 'package:mobile_app/infrastructure/use_case/people/get_all_fav_people_use_case.dart'
@@ -313,7 +313,7 @@ import 'package:mobile_app/infrastructure/use_case/settings/user_data/set_tracki
 import 'package:mobile_app/infrastructure/use_case/share/share_app_use_case.dart'
     as _i160;
 import 'package:mobile_app/infrastructure/use_case/storage/check_app_version_changed_use_case.dart'
-    as _i142;
+    as _i143;
 import 'package:mobile_app/infrastructure/use_case/tale/change_tale_fav.dart'
     as _i163;
 import 'package:mobile_app/infrastructure/use_case/tale/get_random_tale_name_and_author_use_case.dart'
@@ -345,7 +345,7 @@ import 'package:mobile_app/infrastructure/use_case/tale_list/listen_all_tales_ch
 import 'package:mobile_app/infrastructure/use_case/tale_sort_and_filter/filter_and_sort_tales_use_case.dart'
     as _i98;
 import 'package:mobile_app/infrastructure/use_case/tale_sort_and_filter/get_sort_and_filter_items_use_case.dart'
-    as _i143;
+    as _i144;
 import 'package:mobile_app/infrastructure/use_case/tale_sort_and_filter/get_tale_sort_and_filter_type.dart'
     as _i182;
 import 'package:mobile_app/infrastructure/use_case/tale_sort_and_filter/listen_tale_filter_type_change.dart'
@@ -512,16 +512,16 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i54.RatingDtoToEntityMapper());
     gh.lazySingleton<_i17.Mapper<_i55.RatingType, String>>(
         () => _i56.RatingTypeToNameMapper());
-    gh.lazySingleton<_i17.Mapper<_i53.RatingEntity, _i57.RatingData>>(
-        () => _i58.RatingEntityToDataMapper());
+    gh.singleton<_i17.Mapper<String?, _i57.AppTheme>>(
+        _i58.DbKeyToAppThemeMapper());
     gh.singleton<_i17.Mapper<_i59.TextScaleFactor, String>>(
         _i60.TextScaleFactorToDbKeyMapper());
     gh.singleton<_i17.Mapper<String?, _i59.TextScaleFactor>>(
         _i60.DbKeyToTextScaleFactorMapper());
-    gh.singleton<_i17.Mapper<_i61.AppTheme, String>>(
-        _i62.AppThemeToDbKeyMapper());
-    gh.singleton<_i17.Mapper<String?, _i61.AppTheme>>(
-        _i62.DbKeyToAppThemeMapper());
+    gh.singleton<_i17.Mapper<_i57.AppTheme, String>>(
+        _i58.AppThemeToDbKeyMapper());
+    gh.lazySingleton<_i17.Mapper<_i53.RatingEntity, _i61.RatingData>>(
+        () => _i62.RatingEntityToDataMapper());
     gh.singleton<_i63.NetworkConnection>(_i64.NetworkConnectionImpl(
       gh<_i9.Connectivity>(),
       gh<_i17.Mapper<_i9.ConnectivityResult, _i51.ConnectionType>>(),
@@ -538,8 +538,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i72.ScreenContextKeeperImpl());
     gh.lazySingleton<_i73.SettingsStorage>(() => _i74.SettingsStorageImpl(
           gh<_i15.HiveInterface>(),
-          gh<_i17.Mapper<_i61.AppTheme, String>>(),
-          gh<_i17.Mapper<String?, _i61.AppTheme>>(),
+          gh<_i17.Mapper<_i57.AppTheme, String>>(),
+          gh<_i17.Mapper<String?, _i57.AppTheme>>(),
           gh<_i17.Mapper<String?, _i59.TextScaleFactor>>(),
           gh<_i17.Mapper<_i59.TextScaleFactor, String>>(),
         ));
@@ -588,7 +588,7 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i100.IsConnectionMobileUseCase(gh<_i63.NetworkConnection>()));
     gh.factory<_i93.UseCase<_i59.TextScaleFactor, _i93.Dry>>(
         () => _i101.SetTextScaleFactorUseCase(gh<_i73.SettingsStorage>()));
-    gh.factory<_i93.UseCase<_i61.AppTheme, _i93.Dry>>(
+    gh.factory<_i93.UseCase<_i57.AppTheme, _i93.Dry>>(
         () => _i102.SetAppThemeUseCase(gh<_i73.SettingsStorage>()));
     gh.lazySingleton<_i103.AudioCacheHelper>(() => _i104.AudioCacheHelperImpl(
         gh<_i12.FilePath>(instanceName: 'cacheDirPath')));
@@ -664,7 +664,7 @@ extension GetItInjectableX on _i1.GetIt {
               gh<
                   _i17.Mapper<_i108.TaleChapterEntityMapperInput,
                       _i109.TaleChapter>>(),
-              gh<_i17.Mapper<_i53.RatingEntity, _i57.RatingData>>(),
+              gh<_i17.Mapper<_i53.RatingEntity, _i61.RatingData>>(),
             ));
     gh.singleton<_i17.Mapper<_i19.TaleEntity, _i26.StringSingleLine>>(
         _i128.TaleEntityToAuthorMapper(gh<_i113.PeopleRepository>()));
@@ -712,7 +712,7 @@ extension GetItInjectableX on _i1.GetIt {
       gh<_i17.Mapper<_i19.TaleEntity, _i26.StringSingleLine>>(),
       gh<_i91.UrlCreator>(),
       gh<_i103.AudioCacheHelper>(),
-      gh<_i17.Mapper<_i53.RatingEntity, _i57.RatingData>>(),
+      gh<_i17.Mapper<_i53.RatingEntity, _i61.RatingData>>(),
     ));
     gh.factory<
         _i93.UseCase<_i139.GetPersonTabDataInput,
@@ -723,18 +723,20 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i93.UseCase<_i43.ShowDotType, _i93.Dry>>(
         () => _i140.SetShowDotTypeWatchedUseCase(gh<_i135.AppStateStorage>()));
-    gh.factory<_i93.UseCase<_i93.Dry, _i141.ListenShowMenuDotOutput>>(
-        () => _i141.ListenShowMenuDotUseCase(
+    gh.factory<_i93.UseCase<_i43.ShowDotType, bool>>(
+        () => _i141.ListenShowDotTypeUseCase(gh<_i135.AppStateStorage>()));
+    gh.factory<_i93.UseCase<_i93.Dry, _i142.ListenShowMenuDotOutput>>(
+        () => _i142.ListenShowMenuDotUseCase(
               gh<_i135.AppStateStorage>(),
               gh<_i105.FeatureFlagProvider>(),
             ));
-    gh.factory<_i93.UseCase<_i93.Dry, _i142.CheckAppVersionChangedOutput>>(
-        () => _i142.CheckAppVersionChangedUseCase(
+    gh.factory<_i93.UseCase<_i93.Dry, _i143.CheckAppVersionChangedOutput>>(
+        () => _i143.CheckAppVersionChangedUseCase(
               gh<_i135.AppStateStorage>(),
               gh<_i93.UseCase<_i93.Dry, _i41.AppVersion>>(),
             ));
-    gh.factory<_i93.UseCase<_i93.Dry, _i143.GetSortAndFilterItemsOutput>>(
-        () => _i143.GetSortAndFilterItemsUseCase(
+    gh.factory<_i93.UseCase<_i93.Dry, _i144.GetSortAndFilterItemsOutput>>(
+        () => _i144.GetSortAndFilterItemsUseCase(
               gh<_i17.Mapper<_i19.TaleEntity, _i99.TalesPageItemData>>(),
               gh<_i89.TaleStorage>(),
               gh<_i17.Mapper<_i37.TaleFilterType, _i26.StringSingleLine>>(),
@@ -742,8 +744,6 @@ extension GetItInjectableX on _i1.GetIt {
               gh<_i17.Mapper<_i37.TaleFilterType, _i39.SvgAssetGraphic>>(),
               gh<_i81.TaleFilter>(),
             ));
-    gh.factory<_i93.UseCase<_i43.ShowDotType, bool>>(
-        () => _i144.ListenShowDotTypeUseCase(gh<_i135.AppStateStorage>()));
     gh.factory<_i93.UseCase<_i93.Dry, _i145.GetCrashLoggingEnabledOutput>>(
         () => _i145.GetCrashLoggingEnabledUseCase(gh<_i135.AppStateStorage>()));
     gh.factory<_i93.UseCase<_i93.Dry, _i146.GetTrackingEnabledOutput>>(
@@ -919,7 +919,7 @@ extension GetItInjectableX on _i1.GetIt {
               gh<_i151.FirebaseAnalytics>(),
               gh<_i135.AppStateStorage>(),
             ));
-    gh.factory<_i93.UseCase<_i188.ListenAppThemeChangesInput, _i61.AppTheme>>(
+    gh.factory<_i93.UseCase<_i188.ListenAppThemeChangesInput, _i57.AppTheme>>(
         () => _i188.ListenAppThemeChangesUseCase(
               gh<_i73.SettingsStorage>(),
               gh<_i152.Logger>(),
@@ -977,7 +977,7 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i93.UseCase<_i93.Dry, _i49.IntPositive>>(),
           gh<_i93.UseCase<_i93.Dry, _i186.IncrementAppStartsCountOutput>>(),
           gh<_i93.UseCase<_i93.Dry, _i47.ForcedUpdateInfo?>>(),
-          gh<_i93.UseCase<_i93.Dry, _i142.CheckAppVersionChangedOutput>>(),
+          gh<_i93.UseCase<_i93.Dry, _i143.CheckAppVersionChangedOutput>>(),
         ));
     gh.factory<_i203.TaleCrewScreenManager>(() => _i203.TaleCrewScreenManager(
           gh<_i198.ScreenController>(),
@@ -994,7 +994,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i204.TaleSortAndFilterManager>(
         () => _i204.TaleSortAndFilterManager(
               gh<_i93.UseCase<_i97.SaveSortAndFilterInput, _i93.Dry>>(),
-              gh<_i93.UseCase<_i93.Dry, _i143.GetSortAndFilterItemsOutput>>(),
+              gh<_i93.UseCase<_i93.Dry, _i144.GetSortAndFilterItemsOutput>>(),
               gh<_i198.ScreenController>(),
               gh<_i201.Tracker>(),
             ));
@@ -1137,7 +1137,7 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i93.UseCase<_i93.Dry, _i176.Option<_i99.TalesPageItemData>>>(),
           gh<_i93.UseCase<_i93.Dry, _i212.StopPlayingOutput>>(),
           gh<_i93.UseCase<_i133.TaleId, _i134.GetTaleOutput>>(),
-          gh<_i93.UseCase<_i93.Dry, _i141.ListenShowMenuDotOutput>>(),
+          gh<_i93.UseCase<_i93.Dry, _i142.ListenShowMenuDotOutput>>(),
         ));
     gh.factory<_i221.ListenPageManager>(() => _i221.ListenPageManager(
           gh<_i192.AudioPlayer>(),
@@ -1233,8 +1233,8 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i196.DialogController>(),
           gh<_i77.SnackbarController>(),
           gh<_i157.RemoteConfigs>(),
-          gh<_i93.UseCase<_i61.AppTheme, _i93.Dry>>(),
-          gh<_i93.UseCase<_i188.ListenAppThemeChangesInput, _i61.AppTheme>>(),
+          gh<_i93.UseCase<_i57.AppTheme, _i93.Dry>>(),
+          gh<_i93.UseCase<_i188.ListenAppThemeChangesInput, _i57.AppTheme>>(),
           gh<_i93.UseCase<_i93.Dry, _i178.DeleteAllAudioTalesOutput>>(),
           gh<_i93.UseCase<_i93.Dry, _i118.GetCachedAudioInfoOutput>>(),
           gh<_i93.UseCase<_i93.Dry, _i227.CacheAllAudioOutput>>(),

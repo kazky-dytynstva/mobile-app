@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobile_app/domain/model/person/value_objects/person_id.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
@@ -15,14 +16,22 @@ const _devBranch = 'dev';
 
 @LazySingleton(as: UrlCreator)
 class UrlCreatorImpl implements UrlCreator {
+  UrlCreatorImpl() : isProd = EnvConfig.isProd;
+
+  @visibleForTesting
+  UrlCreatorImpl.test({required this.isProd});
+
+  @visibleForTesting
+  final bool isProd;
+
   @override
   String get baseUrl => 'https://raw.githubusercontent.com/';
 
   @override
-  UrlString get urlPathPeopleList => UrlString('$_peoplePath/list.json');
+  UrlString get urlPathPeopleList => UrlString('$peoplePath/list.json');
 
   @override
-  UrlString get urlPathTalesList => UrlString('$_talesPath/list.json');
+  UrlString get urlPathTalesList => UrlString('$talesPath/list.json');
 
   @override
   ImageUrl getTaleImageUrl(
@@ -30,7 +39,7 @@ class UrlCreatorImpl implements UrlCreator {
     required IntPositive chapterIndex,
     required IntPositive imageIndex,
   }) {
-    final path = '$_talesPath/'
+    final path = '$talesPath/'
         '${id.get().toString()}/'
         '${chapterIndex.get().toString()}/'
         'img/'
@@ -41,7 +50,7 @@ class UrlCreatorImpl implements UrlCreator {
 
   @override
   UrlString getTaleAudioUrl(TaleId taleId, IntPositive chapterIndex) {
-    final path = '$_talesPath/'
+    final path = '$talesPath/'
         '${taleId.get().toString()}/'
         '${chapterIndex.get().toString()}/'
         'audio.mp3';
@@ -51,21 +60,25 @@ class UrlCreatorImpl implements UrlCreator {
 
   @override
   ImageUrl getPersonPhotoUrl(PersonId id) {
-    final path = '$_peoplePath/'
+    final path = '$peoplePath/'
         'img/'
         '${id.get().toString()}.jpg';
     return ImageUrl(path);
   }
 
-  String get _dataPath => '$baseUrl'
+  @visibleForTesting
+  String get branch => isProd ? _prodBranch : _devBranch;
+
+  @visibleForTesting
+  String get dataPath => '$baseUrl'
       '$_contentPath/'
-      '$_branch/'
+      '$branch/'
       'data/'
       '$_contentVersion';
 
-  String get _branch => EnvConfig.isProd ? _prodBranch : _devBranch;
+  @visibleForTesting
+  String get peoplePath => '$dataPath/people';
 
-  String get _peoplePath => '$_dataPath/people';
-
-  String get _talesPath => '$_dataPath/tales';
+  @visibleForTesting
+  String get talesPath => '$dataPath/tales';
 }
