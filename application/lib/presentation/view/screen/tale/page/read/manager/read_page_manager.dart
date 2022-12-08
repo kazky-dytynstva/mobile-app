@@ -139,6 +139,7 @@ class ReadTalePageManager extends Cubit<ReadPageState>
     bool? showRateTale,
     TextScaleFactor? scaleFactor,
   }) {
+    if (state is! ReadPageStateReady) return;
     final updated = _stateReady.copyWith(
       showRateTale: showRateTale ?? _stateReady.showRateTale,
       textScaleFactor: scaleFactor ?? _stateReady.textScaleFactor,
