@@ -8,12 +8,8 @@ import 'package:mobile_app/infrastructure/env_config/env_config.dart';
 
 import 'url_creator.dart';
 
-const _anc0 = '%s0';
-const _anc1 = '%s1';
-const _anc2 = '%s2';
-
 const _contentVersion = 2;
-const _contentPath = 'kazky-dytynstva/content/';
+const _contentPath = 'kazky-dytynstva/content';
 const _prodBranch = 'main';
 const _devBranch = 'dev';
 
@@ -23,10 +19,10 @@ class UrlCreatorImpl implements UrlCreator {
   String get baseUrl => 'https://raw.githubusercontent.com/';
 
   @override
-  UrlString get urlPathPeopleList => UrlString('${_peoplePath}list.json');
+  UrlString get urlPathPeopleList => UrlString('$_peoplePath/list.json');
 
   @override
-  UrlString get urlPathTalesList => UrlString('${_talesPath}list.json');
+  UrlString get urlPathTalesList => UrlString('$_talesPath/list.json');
 
   @override
   ImageUrl getTaleImageUrl(
@@ -34,35 +30,42 @@ class UrlCreatorImpl implements UrlCreator {
     required IntPositive chapterIndex,
     required IntPositive imageIndex,
   }) {
-    final path = '$_talesPath$_anc0/$_anc1/img/$_anc2.jpg'
-        .replaceFirst(_anc0, id.get().toString())
-        .replaceFirst(_anc1, chapterIndex.get().toString())
-        .replaceFirst(_anc2, imageIndex.get().toString());
+    final path = '$_talesPath/'
+        '${id.get().toString()}/'
+        '${chapterIndex.get().toString()}/'
+        'img/'
+        '${imageIndex.get().toString()}.jpg';
 
     return ImageUrl(path);
   }
 
   @override
   UrlString getTaleAudioUrl(TaleId taleId, IntPositive chapterIndex) {
-    final path = '$_talesPath$_anc0/$_anc1/audio.mp3'
-        .replaceFirst(_anc0, taleId.get().toString())
-        .replaceFirst(_anc1, chapterIndex.get().toString());
+    final path = '$_talesPath/'
+        '${taleId.get().toString()}/'
+        '${chapterIndex.get().toString()}/'
+        'audio.mp3';
 
     return UrlString(path);
   }
 
   @override
   ImageUrl getPersonPhotoUrl(PersonId id) {
-    final path = '${_peoplePath}img/$_anc0.jpg';
+    final path = '$_peoplePath/'
+        'img/'
+        '${id.get().toString()}.jpg';
     return ImageUrl(path);
   }
 
-  String get _dataPath =>
-      '$baseUrl$_contentPath$_branch/data/$_contentVersion/';
+  String get _dataPath => '$baseUrl'
+      '$_contentPath/'
+      '$_branch/'
+      'data/'
+      '$_contentVersion';
 
   String get _branch => EnvConfig.isProd ? _prodBranch : _devBranch;
 
-  String get _peoplePath => '${_dataPath}people/';
+  String get _peoplePath => '$_dataPath/people';
 
-  String get _talesPath => '${_dataPath}tales/';
+  String get _talesPath => '$_dataPath/tales';
 }
