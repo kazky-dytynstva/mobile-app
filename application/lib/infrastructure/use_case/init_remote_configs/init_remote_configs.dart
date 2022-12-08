@@ -22,10 +22,7 @@ class InitRemoteConfigsUseCase extends UseCase<Dry, InitRemoteConfigsOutput> {
   Stream<InitRemoteConfigsOutput> transaction(Dry input) async* {
     _waiter.start();
 
-    final init = await _configs.init(
-      expiration: const Duration(hours: 6),
-      fetchTimeOut: _waiter.timeToWait,
-    );
+    final init = await _configs.init(expiration: const Duration(hours: 6));
 
     await _waiter.waitFor();
 

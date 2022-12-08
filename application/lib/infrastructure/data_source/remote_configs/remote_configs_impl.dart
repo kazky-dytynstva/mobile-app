@@ -12,8 +12,6 @@ import 'package:mobile_app/infrastructure/env_config/env_config.dart';
 import 'package:mobile_app/infrastructure/helper/analytic/crash_analytic.dart';
 import 'package:mobile_app/infrastructure/helper/logger/logger.dart';
 
-const _initTimeMax = Duration(seconds: 10);
-
 @LazySingleton(as: RemoteConfigs)
 class RemoteConfigsImpl implements RemoteConfigs {
   final FirebaseRemoteConfig _config;
@@ -28,15 +26,11 @@ class RemoteConfigsImpl implements RemoteConfigs {
   );
 
   @override
-  Future<bool> init({
-    required Duration expiration,
-    required Duration fetchTimeOut,
-  }) async {
+  Future<bool> init({required Duration expiration}) async {
     final hasData = _config.lastFetchTime.isAfter(DateTime(1971, 1, 1));
-    final initTimeout = hasData ? fetchTimeOut : _initTimeMax;
 
     final settings = RemoteConfigSettings(
-      fetchTimeout: initTimeout,
+      fetchTimeout: const Duration(seconds: 10),
       minimumFetchInterval:
           EnvConfig.isDebug ? const Duration(minutes: 1) : expiration,
     );
