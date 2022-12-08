@@ -4,10 +4,7 @@ import 'package:mobile_app/infrastructure/data_source/remote_configs/dto/forced_
 import 'package:mobile_app/infrastructure/data_source/remote_configs/dto/menu_dynamic_item/menu_dynamic_item_dto.dart';
 
 abstract class RemoteConfigs {
-  Future<bool> init({
-    required Duration expiration,
-    required Duration fetchTimeOut,
-  });
+  Future<bool> init({required Duration expiration});
 
   ForcedUpdateInfoDto? getForcedUpdateInfo();
 
