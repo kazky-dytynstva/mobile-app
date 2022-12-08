@@ -53,6 +53,7 @@ abstract class BaseApiClient {
         if (error.error is TimeoutException ||
             error.error is SocketException ||
             error.error is HttpException ||
+            error.error is HandshakeException ||
             error.error is WebSocketException) {
           const failure = NetworkRequestFailure.noInternet();
           return const NetworkCallResponse.failed(failure: failure);
