@@ -185,7 +185,7 @@ class AudioPlayerImpl implements AudioPlayer {
       updatedPlaylistItems.remove(item.id);
       final itemSource = await _playlistMapper.map(item);
       await playerSource.insert(index + 1, itemSource);
-      await playerSource.removeAt(index);
+      if (index >= 0) await playerSource.removeAt(index);
     }
     return unit;
   }
