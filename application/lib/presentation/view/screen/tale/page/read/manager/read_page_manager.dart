@@ -75,7 +75,9 @@ class ReadTalePageManager extends Cubit<ReadPageState>
           textItems: items,
           initialIndex: tale.lastReadPosition,
           showRateTale: !tale.isRated,
-          textScaleFactor: TextScaleFactor.m,
+          textScaleFactor: (this.state is ReadPageStateReady)
+              ? _stateReady.textScaleFactor
+              : TextScaleFactor.m,
         );
         emit(state);
       },
