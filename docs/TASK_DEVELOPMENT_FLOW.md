@@ -17,10 +17,10 @@ Some references from this doc:
     @startuml
     title: Task development workflow
     start
-    :pick up a task from Campfire;
+    :pick up a task from;
 
     partition #e0e0e0 "**preparations**" {
-      :**git pull** from the **main** branch ;
+      :**git pull** from the **dev** branch ;
       :create a new branch;
         floating note right: follow the team **branch naming convention**
       if (simple feature or a bugfix?) then (no)
@@ -36,6 +36,7 @@ Some references from this doc:
     #8BC34A:(A)
     
     partition #b0bec5 "**development**" {
+      :make sure the branch is NOT outdated;
       repeat
         :add small, atomic commit with
          - desired changes
@@ -43,6 +44,7 @@ Some references from this doc:
          - meaningful commit message;
           floating note right: follow **commit message template**
       repeat while (<b> task completed?) is (no)
+      :add to **What's new** screen\ninfo about your changes;
       if (commits history is __dirty__?) then (yes)
         :prettify commits history;
       else (no)
@@ -64,10 +66,12 @@ Some references from this doc:
          - description
          - steps to test
          - screenshots (if relates to the UI);
-        :assign PR to yourself;
-        :add **"ready for review"** label;
         :asssign team mebers for review;
           note right: at least 2 people
+        :assign PR to yourself;
+        :add **"ready for review"** label;
+        :add **milestone** with\nthe next release version;
+          note right: pick up the latest\nor create new
       else (yes)
         :notify all open conversations 
          about the changes (if needed);
@@ -123,7 +127,7 @@ Some references from this doc:
       else (no)
       endif
       :merge PR by clicking **Rebase and Merge** button;
-      :mark task in Campfire as **completed**;
+      :mark task as **completed**;
     }
     
     stop
