@@ -52,7 +52,6 @@ jobs:
 
     steps:
       - name: ⚙️ Install Flutter
-        timeout-minutes: 2
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ needs.prepare_code.outputs.flutter_version }}
@@ -71,7 +70,6 @@ jobs:
           xcode-version: latest-stable
 
       - name: 🍏 Build ios Internal
-        timeout-minutes: 20
         working-directory: ./application
         env:
           IOS_PROVISIONING_PASSWORD: ${{ secrets.IOS_PROVISIONING_PASSWORD }}
@@ -119,7 +117,6 @@ jobs:
     steps:
 
       - name: ⚙️ Install Flutter
-        timeout-minutes: 2
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ needs.prepare_code.outputs.flutter_version }}
@@ -139,7 +136,6 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
 
       - name: 🏗🤖 Build an internal Android version
-        timeout-minutes: 15
         working-directory: ./application
         env:
           GOOGLE_APP_CREDENTIALS_JSON_INTERNAL: ${{ secrets.GOOGLE_APP_CREDENTIALS_JSON_INTERNAL }}
