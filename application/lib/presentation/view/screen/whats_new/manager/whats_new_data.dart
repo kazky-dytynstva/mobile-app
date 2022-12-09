@@ -1,7 +1,14 @@
 part of 'whats_new_screen_manager.dart';
 
+VersionChanges _get5_5_4() => VersionChanges(
+      _version('5.5.4'),
+      [
+        _item('🛠 ${R.strings.whatsNew.bugfixAndImprovements}'),
+      ],
+    );
+
 VersionChanges _get5_5_0() => VersionChanges(
-      _version('5.5.0', 181),
+      _version('5.5.0'),
       [
         _item(
           '📖 ${R.strings.whatsNew.restoreLastRead}',
@@ -16,14 +23,14 @@ VersionChanges _get5_5_0() => VersionChanges(
     );
 
 VersionChanges _get5_4_2() => VersionChanges(
-      _version('5.4.2', 181),
+      _version('5.4.2'),
       [
         _item('🛠 ${R.strings.whatsNew.bugfixAndImprovements}'),
       ],
     );
 
 VersionChanges _get5_4_0() => VersionChanges(
-      _version('5.4.0', 180),
+      _version('5.4.0'),
       [
         _item(
           '📢⁉️ ${R.strings.whatsNew.dynamicItem}',
@@ -42,7 +49,7 @@ VersionChanges _get5_4_0() => VersionChanges(
     );
 
 VersionChanges _get5_3_0() => VersionChanges(
-      _version('5.3.1', 176),
+      _version('5.3.1'),
       [
         _item(
           '🎵▶️ ${R.strings.whatsNew.advancedPlaylist}',
@@ -64,7 +71,7 @@ VersionChanges _get5_3_0() => VersionChanges(
     );
 
 VersionChanges _get5_2_1() => VersionChanges(
-      _version('5.2.2', 169),
+      _version('5.2.2'),
       [
         _item(
           '🤦‍ ${R.strings.whatsNew.disableLoopMode}',
@@ -74,7 +81,7 @@ VersionChanges _get5_2_1() => VersionChanges(
     );
 
 VersionChanges _get5_2_0() => VersionChanges(
-      _version('5.2.0', 165),
+      _version('5.2.0'),
       [
         _item(
           '😍😡️ ${R.strings.whatsNew.taleRating}',
@@ -89,7 +96,7 @@ VersionChanges _get5_2_0() => VersionChanges(
     );
 
 VersionChanges _get5_1_0() => VersionChanges(
-      _version('5.1.0', 164),
+      _version('5.1.0'),
       [
         _item(
           '🔊🔁️️ ${R.strings.whatsNew.audioLoopMode}',
@@ -109,9 +116,9 @@ VersionChanges _get5_1_0() => VersionChanges(
 
 //////
 
-AppVersion _version(String name, int code) => AppVersion(
+AppVersion _version(String name) => AppVersion(
       name: StringSingleLine(name),
-      code: IntPositive(code),
+      code: IntPositive(0),
       staging: StringSingleLine(Stagings.prod),
     );
 
