@@ -36,16 +36,3 @@ jobs:
           version_code=$(( $RUN_NUMBER + build_offset ))
           echo "Build version code is $version_code"
           echo "version_code=$version_code" >> $GITHUB_OUTPUT
-
-      - name: 📦 Activate cache for last commited code
-        id: cached-commit
-        uses: actions/cache@v3
-        with:
-          path: ./
-          key: ${{ github.sha }}
-
-      - name: ⏬ Checkout repo last commit
-        if: steps.cached-commit.outputs.cache-hit != 'true'
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0

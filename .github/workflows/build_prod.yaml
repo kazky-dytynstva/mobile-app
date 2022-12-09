@@ -54,12 +54,10 @@ jobs:
           flutter-version: ${{ needs.prepare_code.outputs.flutter_version }}
           cache: true
 
-      - name: 📦 Activate cache for last commited code
-        id: cached-commit
-        uses: actions/cache@v3
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v2
         with:
-          path: ./
-          key: ${{ github.sha }}
+          fetch-depth: 0
 
       - name: 🔢 Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
@@ -119,12 +117,10 @@ jobs:
           flutter-version: ${{ needs.prepare_code.outputs.flutter_version }}
           cache: true
 
-      - name: 📦 Activate cache for last commited code
-        id: cached-commit
-        uses: actions/cache@v3
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v2
         with:
-          path: ./
-          key: ${{ github.sha }}
+          fetch-depth: 0
 
       - name: ☕️ Install Java
         uses: actions/setup-java@v3
