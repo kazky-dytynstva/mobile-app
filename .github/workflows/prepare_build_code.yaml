@@ -4,7 +4,7 @@ on:
       FLUTTER_VERSION:
         required: false
         type: string
-        default: "3.3.9"
+        default: "3.7.1"
       VERSION_CODE_OFFSET:
         required: false
         type: number
