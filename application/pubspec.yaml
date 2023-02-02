@@ -23,7 +23,7 @@ dependencies:
   flutter:
     sdk: flutter
   another_flushbar: 1.12.29
-  audio_session: 0.1.11
+  audio_session: 0.1.13
   auto_route: 5.0.4
   blur: 3.1.0
   cached_network_image: 3.2.3
@@ -34,61 +34,55 @@ dependencies:
   dto:
     git:
       url: https://github.com/kazky-dytynstva/dto
-      ref: 1.0.2
+      ref: 1.0.6
   equatable: 2.0.5
-  firebase_analytics: 10.0.6
-  firebase_app_installations: 0.2.1+5
-  firebase_core: 2.3.0
-  firebase_crashlytics: 3.0.6
-  firebase_database: 10.0.6
-  firebase_remote_config: 3.0.6
+  firebase_analytics: 10.1.0
+  firebase_app_installations: 0.2.1+8
+  firebase_core: 2.4.1
+  firebase_crashlytics: 3.0.11
+  firebase_database: 10.0.9
+  firebase_remote_config: 3.0.9
   flip_board: 0.6.1
   flutter_bloc: 8.1.1
   flutter_email_sender: 5.2.0
   flutter_link_previewer: 3.2.0
-  flutter_svg: 1.1.6
+  flutter_svg: 2.0.0
   freezed_annotation: 2.2.0
   get_it: 7.2.0
   hive: 2.2.3
   injectable: 2.1.0
-  just_audio: 0.9.30
-  just_audio_background: 0.0.1-beta.8
-  json_annotation: 4.7.0
+  just_audio: 0.9.31
+  just_audio_background: 0.0.1-beta.9
+  json_annotation: 4.8.0
   meta: 1.8.0
   open_store: 0.5.0
   package_info: 2.0.2
   page_indicator: 0.4.1
-  path_provider: 2.0.11
+  path_provider: 2.0.12
   scroll_to_index: 3.0.1
   share_plus: 6.3.0
   sprintf: 7.0.0
   super_rich_text: 1.0.0
   stream_transform: 2.1.0
   transformer_page_view: 0.1.6
-  url_launcher: 6.1.7
+  url_launcher: 6.1.8
   visibility_detector: 0.3.3
   watcher: 1.0.2
-  update_available: 2.1.0
-
-#dependency_overr.ides:
-#  auto_route:
-#    git:
-#      url: https://github.com/Agondev/auto_route_library
-#      path: auto_route
+  update_available: 2.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  auto_route_generator: 5.0.2
+  auto_route_generator: 5.0.3
   build_runner: 2.3.0
   bloc_test: 9.1.0
   flutter_launcher_icons: 0.11.0
   flutter_lints: 2.0.1
-  freezed: 2.2.0
-  hive_generator: 1.1.3
+  freezed: 2.3.2
+  hive_generator: 2.0.0
   injectable_generator: 2.1.3
-  json_serializable: 6.5.4
+  json_serializable: 6.6.1
   mocktail: 0.3.0
 
 flutter_icons:
