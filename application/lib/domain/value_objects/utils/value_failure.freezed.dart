@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'value_failure.dart';
 
@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ValueFailure<T> {
+  Object? get failedValue => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T failedValue, int max) exceedingLength,
@@ -132,11 +133,11 @@ class __$$ValueFailureExceedingLengthCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failedValue = null,
+    Object? failedValue = freezed,
     Object? max = null,
   }) {
     return _then(_$ValueFailureExceedingLength<T>(
-      failedValue: null == failedValue
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -289,6 +290,7 @@ abstract class ValueFailureExceedingLength<T> implements ValueFailure<T> {
       {required final T failedValue,
       required final int max}) = _$ValueFailureExceedingLength<T>;
 
+  @override
   T get failedValue;
   int get max;
   @JsonKey(ignore: true)
@@ -319,11 +321,11 @@ class __$$ValueFailureDeficiencyLengthCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failedValue = null,
+    Object? failedValue = freezed,
     Object? min = null,
   }) {
     return _then(_$ValueFailureDeficiencyLength<T>(
-      failedValue: null == failedValue
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -476,6 +478,7 @@ abstract class ValueFailureDeficiencyLength<T> implements ValueFailure<T> {
       {required final T failedValue,
       required final int min}) = _$ValueFailureDeficiencyLength<T>;
 
+  @override
   T get failedValue;
   int get min;
   @JsonKey(ignore: true)
@@ -648,6 +651,7 @@ abstract class ValueFailureEmptyString<T> implements ValueFailure<T> {
   const factory ValueFailureEmptyString({required final String failedValue}) =
       _$ValueFailureEmptyString<T>;
 
+  @override
   String get failedValue;
   @JsonKey(ignore: true)
   _$$ValueFailureEmptyStringCopyWith<T, _$ValueFailureEmptyString<T>>
@@ -823,6 +827,7 @@ abstract class ValueFailureMultilineString<T> implements ValueFailure<T> {
   const factory ValueFailureMultilineString(
       {required final String failedValue}) = _$ValueFailureMultilineString<T>;
 
+  @override
   String get failedValue;
   @JsonKey(ignore: true)
   _$$ValueFailureMultilineStringCopyWith<T, _$ValueFailureMultilineString<T>>
@@ -851,11 +856,11 @@ class __$$ValueFailureNumberTooSmallCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failedValue = null,
+    Object? failedValue = freezed,
     Object? min = null,
   }) {
     return _then(_$ValueFailureNumberTooSmall<T>(
-      failedValue: null == failedValue
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -1007,6 +1012,7 @@ abstract class ValueFailureNumberTooSmall<T> implements ValueFailure<T> {
       {required final T failedValue,
       required final num min}) = _$ValueFailureNumberTooSmall<T>;
 
+  @override
   T get failedValue;
   num get min;
   @JsonKey(ignore: true)
@@ -1036,11 +1042,11 @@ class __$$ValueFailureNumberTooLargeCopyWithImpl<T, $Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failedValue = null,
+    Object? failedValue = freezed,
     Object? max = null,
   }) {
     return _then(_$ValueFailureNumberTooLarge<T>(
-      failedValue: null == failedValue
+      failedValue: freezed == failedValue
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T,
@@ -1192,6 +1198,7 @@ abstract class ValueFailureNumberTooLarge<T> implements ValueFailure<T> {
       {required final T failedValue,
       required final num max}) = _$ValueFailureNumberTooLarge<T>;
 
+  @override
   T get failedValue;
   num get max;
   @JsonKey(ignore: true)
@@ -1365,6 +1372,7 @@ abstract class ValueFailureInvalidEmail<T> implements ValueFailure<T> {
   const factory ValueFailureInvalidEmail({required final String failedValue}) =
       _$ValueFailureInvalidEmail<T>;
 
+  @override
   String get failedValue;
   @JsonKey(ignore: true)
   _$$ValueFailureInvalidEmailCopyWith<T, _$ValueFailureInvalidEmail<T>>
