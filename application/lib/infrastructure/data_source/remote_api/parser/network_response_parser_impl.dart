@@ -29,7 +29,7 @@ class NetworkResponseParserImpl implements NetworkResponseParser {
       try {
         taleId = element['id'] as int;
         final dto = TaleDto.fromJson(element as Map<String, dynamic>);
-        if (!dto.ignore || !EnvConfig.isProd) {
+        if (dto.ignore == false || !EnvConfig.isProd) {
           results.add(dto);
         }
       } catch (e, trace) {
