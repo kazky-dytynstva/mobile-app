@@ -19,14 +19,14 @@ class Styles {
   FontWeight get textWeightNormal => FontWeight.w400;
 
   //region main text styles
-  TextStyle get textHeadline => _textTheme.headline6!.copyWith(
+  TextStyle get textHeadline => _textTheme.titleLarge!.copyWith(
         color: _palette.textPrimary,
         fontSize: 22,
         fontWeight: textWeightMedium,
         letterSpacing: 0.15,
       );
 
-  TextStyle get textSubTitle => _textTheme.subtitle1!.copyWith(
+  TextStyle get textSubTitle => _textTheme.titleMedium!.copyWith(
         color: _palette.textPrimary,
         fontSize: 17,
         fontWeight: textWeightNormal,
@@ -38,7 +38,7 @@ class Styles {
   TextStyle get textSubTitleSecondary =>
       textSubTitle.copyWith(color: _palette.textSecondary);
 
-  TextStyle get textBody => _textTheme.bodyText2!.copyWith(
+  TextStyle get textBody => _textTheme.bodyMedium!.copyWith(
         color: _palette.textPrimary,
         fontWeight: textWeightNormal,
         fontSize: 14.0,
@@ -49,7 +49,7 @@ class Styles {
         color: _palette.textSecondary,
       );
 
-  TextStyle get textCaption => _textTheme.caption!.copyWith(
+  TextStyle get textCaption => _textTheme.bodySmall!.copyWith(
         color: _palette.textPrimary,
         fontWeight: textWeightNormal,
         fontSize: 12.0,
