@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
+
+import 'package:flutter/material.dart' hide ColorFilter;
 import 'package:flutter_svg/svg.dart';
 import 'package:mobile_app/domain/value_objects/asset_file_path.dart';
 import 'package:mobile_app/domain/value_objects/svg_asset_graphic.dart';
@@ -99,7 +101,10 @@ class SvgWidget extends StatelessWidget {
       icon.path,
       width: width ?? R.dimen.iconSize,
       height: height ?? R.dimen.iconSize,
-      color: color ?? R.palette.iconColor,
+      colorFilter: ColorFilter.mode(
+        color ?? R.palette.iconColor,
+        BlendMode.srcIn,
+      ),
     );
   }
 
