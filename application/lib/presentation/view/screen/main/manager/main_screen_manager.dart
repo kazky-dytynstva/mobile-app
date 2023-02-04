@@ -108,6 +108,7 @@ class MainScreenManager extends Cubit<MainScreenState> {
 
   void _trackPage(MainScreenPage type) {
     final event = type.map(
+      home: () => TrackingViews.mainScreenPageHome,
       tales: () => TrackingViews.mainScreenPageTales,
       fav: () => TrackingViews.mainScreenPageFav,
       people: () => TrackingViews.mainScreenPagePeople,

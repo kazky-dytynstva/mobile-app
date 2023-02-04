@@ -59,6 +59,8 @@ abstract class TrackingViews {
 
   //region mainScreen pages
 
+  static const TrackingView mainScreenPageHome =
+      TrackingView._("main_page_home");
   static const TrackingView mainScreenPageTales =
       TrackingView._("main_page_tales");
   static const TrackingView mainScreenPageFav = TrackingView._("main_page_fav");
