@@ -31,7 +31,7 @@ before_all do |lane, options|
   }
 
   # set default variables
-  setIfNotSet.call(Options::CLEAN, true)
+  setIfNotSet.call(Options::CLEAN, false)
   setIfNotSet.call(Options::PLATFORM, Platforms::ANDROID)
   setIfNotSet.call(Options::ANDROID_OUTPUT, AndroidOutputs::APK)
   setIfNotSet.call(Options::STAGING, Stagings::DEV)
@@ -87,6 +87,12 @@ end
 desc "Run sanity checks: analyzer, formatter, tests"
 lane :check do |options|
   maybe_pub_get(options)
+
+  if options[Options::CLEAN]
+    clean(options)
+    build_runner(options)
+  end
+
   flutter("analyze lib test")
   if is_ci
     flutter("format ./ --set-exit-if-changed")
