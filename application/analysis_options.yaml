@@ -1,6 +1,7 @@
 include: package:flutter_lints/flutter.yaml
 linter:
   rules:
+    sort_pub_dependencies: true
     depend_on_referenced_packages: false
 analyzer:
   exclude: [
@@ -11,6 +12,7 @@ analyzer:
       'lib/**.config.dart'
   ]
   errors:
+    sort_pub_dependencies: error
     missing_required_param: error
     parameter_assignments: error
     missing_return: error
