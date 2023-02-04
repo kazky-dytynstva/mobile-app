@@ -133,6 +133,7 @@ class _MainScreenState extends ScreenWidgetState<MainScreen, MainScreenManager>
   }
 
   PageRouteInfo _getPageRoute(MainScreenPage type) => type.map(
+        home: () => const HomePageRoute(),
         tales: () => const TalesPageRoute(),
         fav: () => const FavPageRoute(),
         people: () => const PeoplePageRoute(),
@@ -140,6 +141,7 @@ class _MainScreenState extends ScreenWidgetState<MainScreen, MainScreenManager>
       );
 
   String _getPageLabel(MainScreenPage type) => type.map(
+        home: () => R.strings.main.pageNameHome,
         tales: () => R.strings.main.pageNameTalesList,
         fav: () => R.strings.taleFilterType.favorite,
         people: () => R.strings.main.pageNameCrewList,
@@ -151,6 +153,7 @@ class _MainScreenState extends ScreenWidgetState<MainScreen, MainScreenManager>
     bool isSelected,
   ) =>
       type.map(
+        home: () => isSelected ? R.assets.icons.homeSolid : R.assets.icons.home,
         tales: () => isSelected
             ? R.assets.icons.talesListSolid
             : R.assets.icons.talesList,

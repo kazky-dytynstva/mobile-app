@@ -4,6 +4,7 @@ import 'package:mobile_app/presentation/view/screen/feature_flags/feature_flags_
 import 'package:mobile_app/presentation/view/screen/forced_update/forced_update_screen.dart';
 import 'package:mobile_app/presentation/view/screen/main/main_screen.dart';
 import 'package:mobile_app/presentation/view/screen/main/page/fav/fav_page.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/home/home_page.dart';
 import 'package:mobile_app/presentation/view/screen/main/page/menu/menu_page.dart';
 import 'package:mobile_app/presentation/view/screen/main/page/people/people_page.dart';
 import 'package:mobile_app/presentation/view/screen/main/page/tales/tales_page.dart';
@@ -29,6 +30,7 @@ import 'package:mobile_app/presentation/view/screen/whats_new/whats_new_screen.d
     CupertinoRoute(
       page: MainScreen,
       children: [
+        MaterialRoute(page: HomePage),
         MaterialRoute(page: TalesPage),
         MaterialRoute(page: FavPage),
         MaterialRoute(page: PeoplePage),
