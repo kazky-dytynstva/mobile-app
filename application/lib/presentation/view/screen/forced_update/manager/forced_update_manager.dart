@@ -19,7 +19,7 @@ class ForcedUpdateManager extends Cubit<Unit> {
 
   void onSkipPressed() {
     _tracker.event(TrackingEvents.forcedUpdateSkipPressed);
-    _screenController.openHome();
+    _screenController.openMain();
   }
 
   void onUpdatePressed() {

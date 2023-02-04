@@ -6,27 +6,27 @@ import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/value_objects/svg_asset_icon.dart';
 import 'package:mobile_app/presentation/navigation/screen/router/router.gr.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/view/screen/home/manager/home_screen_manager.dart';
-import 'package:mobile_app/presentation/view/screen/home/model/home_page_type.dart';
-import 'package:mobile_app/presentation/view/screen/home/widget/current_playing_audio.dart';
+import 'package:mobile_app/presentation/view/screen/main/manager/main_screen_manager.dart';
+import 'package:mobile_app/presentation/view/screen/main/model/main_screen_page.dart';
+import 'package:mobile_app/presentation/view/screen/main/widget/current_playing_audio.dart';
 import 'package:mobile_app/presentation/view/screen/manager_view_mixin.dart';
 import 'package:mobile_app/presentation/view/screen/screen_mixin.dart';
 import 'package:mobile_app/presentation/widget/blinking_dot.dart';
 import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 import 'package:mobile_app/presentation/widget/svg_widget.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomeScreenState extends ScreenWidgetState<HomeScreen, HomeScreenManager>
+class _MainScreenState extends ScreenWidgetState<MainScreen, MainScreenManager>
     with ManagerViewMixin {
   @override
   Widget build(BuildContext context) {
-    Widget stateBuilder(BuildContext context, HomeScreenState state) {
+    Widget stateBuilder(BuildContext context, MainScreenState state) {
       final widget = state.map(
         initial: buildInitialState,
         ready: _buildStateReady,
@@ -38,7 +38,7 @@ class _HomeScreenState extends ScreenWidgetState<HomeScreen, HomeScreenManager>
     return Scaffold(body: bloc);
   }
 
-  Widget _buildStateReady(HomeScreenStateReady state) {
+  Widget _buildStateReady(MainScreenStateReady state) {
     final routes = state.pages.map(_getPageRoute).toList();
     return AutoTabsScaffold(
       routes: routes,
@@ -55,8 +55,8 @@ class _HomeScreenState extends ScreenWidgetState<HomeScreen, HomeScreenManager>
   }
 
   Widget _buildBottomBar(
-    List<HomePageType> pages,
-    HomePageType currentPage,
+    List<MainScreenPage> pages,
+    MainScreenPage currentPage,
     Option<TalesPageItemData> activeAudioTaleOption,
     bool showMenuDot,
   ) {
@@ -97,7 +97,7 @@ class _HomeScreenState extends ScreenWidgetState<HomeScreen, HomeScreenManager>
   }
 
   BottomNavigationBarItem _buildBottomBarItem(
-    HomePageType type, {
+    MainScreenPage type, {
     required bool isSelected,
     required bool hasBlinkingDot,
   }) {
@@ -132,22 +132,22 @@ class _HomeScreenState extends ScreenWidgetState<HomeScreen, HomeScreenManager>
     );
   }
 
-  PageRouteInfo _getPageRoute(HomePageType type) => type.map(
+  PageRouteInfo _getPageRoute(MainScreenPage type) => type.map(
         tales: () => const TalesPageRoute(),
         fav: () => const FavPageRoute(),
         people: () => const PeoplePageRoute(),
         menu: () => const MenuPageRoute(),
       );
 
-  String _getPageLabel(HomePageType type) => type.map(
-        tales: () => R.strings.home.pageNameTalesList,
+  String _getPageLabel(MainScreenPage type) => type.map(
+        tales: () => R.strings.main.pageNameTalesList,
         fav: () => R.strings.taleFilterType.favorite,
-        people: () => R.strings.home.pageNameCrewList,
-        menu: () => R.strings.home.pageNameMenu,
+        people: () => R.strings.main.pageNameCrewList,
+        menu: () => R.strings.main.pageNameMenu,
       );
 
   SvgAssetIcon _getPageIcon(
-    HomePageType type,
+    MainScreenPage type,
     bool isSelected,
   ) =>
       type.map(

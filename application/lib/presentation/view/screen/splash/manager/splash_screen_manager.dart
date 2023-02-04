@@ -84,7 +84,7 @@ class SplashScreenManager extends Cubit<SplashScreenState> {
     if (forcedUpdateInfo != null) {
       _screenController.openForcedUpdate(info: forcedUpdateInfo);
     } else {
-      _screenController.openHome();
+      _screenController.openMain();
     }
   }
 }

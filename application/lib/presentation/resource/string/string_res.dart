@@ -3,7 +3,7 @@ class StringRes {
   late final networkFailure = const _StringNetworkRequestFailure();
   late final splash = _StringResSplash(networkFailure);
   late final searchTale = _StringResSearchTale();
-  late final home = _StringResHome();
+  late final main = _StringResMain();
   late final sortAndFilter = _StringResScreenSortAndFilter();
   late final tale = _StringResScreenTale();
   late final talesList = _StringResTalesList();
@@ -78,7 +78,7 @@ class _StringResSplash {
       'Невдалось завантажити контент з хмарного сховища: $reason';
 }
 
-class _StringResHome {
+class _StringResMain {
   String get pageNameHome => 'Головна';
 
   String get pageNameTalesList => 'Казки';

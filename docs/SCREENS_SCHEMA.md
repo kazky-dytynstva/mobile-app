@@ -12,11 +12,11 @@ This doc describes the relationships between all screens (and some pages) that w
     @startuml
     frame "Splash screen\n\n<b>app entry point</b>" as screenSplash #bdbdbd
     
-    frame "Home screen" as screenHome #42a5f5 {
-    [Tales page] as pageHomeTales
-    [Fav page] as pageHomeFav
-    [People page] as pageHomePeople
-    [Menu page] as pageHomeMenu
+    frame "Main screen" as screenMain #42a5f5 {
+    [Tales page] as mainPageTales
+    [Fav page] as mainPageFav
+    [People page] as mainPagePeople
+    [Menu page] as mainPageMenu
     }
     
     frame "Settings screen" as screenSettings #a1887f{
@@ -42,21 +42,21 @@ This doc describes the relationships between all screens (and some pages) that w
     [Listen tale page] as pageTaleListen
     }
     
-    screenSplash --down--> screenHome
+    screenSplash --down--> screenMain
     screenSplash ---> screenForcedUpdate
     
-    screenForcedUpdate ..down.> screenHome
+    screenForcedUpdate ..down.> screenMain
     
-    pageHomeTales --down-> screenTale
-    pageHomeTales ---> screenSortAndFilter
-    pageHomeTales --down-> screenSearch
-    pageHomeFav ---> screenTale
-    pageHomeFav ---> screenPerson
-    pageHomePeople ---> screenPerson
-    pageHomeMenu ----> pageSettingsGeneral
-    pageHomeMenu -..-> screenDebug
-    pageHomeMenu ----> screenWhatsNew
-    pageHomeMenu ----> screenDynamicItem
+    mainPageTales --down-> screenTale
+    mainPageTales ---> screenSortAndFilter
+    mainPageTales --down-> screenSearch
+    mainPageFav ---> screenTale
+    mainPageFav ---> screenPerson
+    mainPagePeople ---> screenPerson
+    mainPageMenu ----> pageSettingsGeneral
+    mainPageMenu -..-> screenDebug
+    mainPageMenu ----> screenWhatsNew
+    mainPageMenu ----> screenDynamicItem
     
     screenPerson --down-> screenTale
     
