@@ -1,6 +1,9 @@
 name: Code Quality
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - '*'
@@ -35,6 +38,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: ⛑ Run sanity checks
+      - name: 🛟 Run sanity checks
         working-directory: ./application
-        run: fastlane check
+        run: fastlane check clean:true
