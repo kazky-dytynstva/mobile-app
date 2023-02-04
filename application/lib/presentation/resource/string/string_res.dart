@@ -79,6 +79,8 @@ class _StringResSplash {
 }
 
 class _StringResHome {
+  String get pageNameHome => 'Головна';
+
   String get pageNameTalesList => 'Казки';
 
   String get pageNameCrewList => 'Творці';
