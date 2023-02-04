@@ -6,7 +6,7 @@ import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
 import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/view/screen/home/page/fav/manager/fav_page_manager.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/fav/manager/fav_page_manager.dart';
 import 'package:mobile_app/presentation/widget/list_of_people.dart';
 import 'package:mobile_app/presentation/widget/tabs/app_tab_bar.dart';
 import 'package:mobile_app/presentation/view/screen/manager_view_mixin.dart';
@@ -77,11 +77,11 @@ class _FavPageState extends State<FavPage>
 
   AppTabBar _buildTabs(FavPageStateReady state) {
     final talesLabel = state.tales.isEmpty
-        ? R.strings.home.pageNameTalesList
-        : '${R.strings.home.pageNameTalesList} (${state.tales.length})';
+        ? R.strings.main.pageNameTalesList
+        : '${R.strings.main.pageNameTalesList} (${state.tales.length})';
     final peopleLabel = state.people.isEmpty
-        ? R.strings.home.pageNameCrewList
-        : '${R.strings.home.pageNameCrewList} (${state.people.length})';
+        ? R.strings.main.pageNameCrewList
+        : '${R.strings.main.pageNameCrewList} (${state.people.length})';
     final items = <AppTabData>[
       AppTabData(
         label: StringSingleLine(talesLabel),

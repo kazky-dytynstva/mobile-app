@@ -14,20 +14,20 @@ class TrackingView {
 abstract class TrackingViews {
   //region screen
 
-  static const TrackingView screenHome = TrackingView._("view_home");
-  static const TrackingView screenWhatsNew = TrackingView._("view_whats_new");
+  static const TrackingView screenMain = TrackingView._("screen_main");
+  static const TrackingView screenWhatsNew = TrackingView._("screen_whats_new");
   static const TrackingView screenForcedUpdate =
-      TrackingView._("view_forced_update");
-  static const TrackingView screenSettings = TrackingView._("view_settings");
+      TrackingView._("screen_forced_update");
+  static const TrackingView screenSettings = TrackingView._("screen_settings");
   static const TrackingView screenTaleSortAndFilter =
-      TrackingView._("view_tale_sort_and_filter");
-  static const TrackingView screenTale = TrackingView._("view_tale");
-  static const TrackingView screenTaleCrew = TrackingView._("view_tale_crew");
-  static const TrackingView screenPerson = TrackingView._("view_person");
+      TrackingView._("screen_tale_sort_and_filter");
+  static const TrackingView screenTale = TrackingView._("screen_tale");
+  static const TrackingView screenTaleCrew = TrackingView._("screen_tale_crew");
+  static const TrackingView screenPerson = TrackingView._("screen_person");
   static const TrackingView screenSearchTale =
-      TrackingView._("view_search_tale");
+      TrackingView._("screen_search_tale");
   static const TrackingView screenDynamicItem =
-      TrackingView._("view_dynamic_item");
+      TrackingView._("screen_dynamic_item");
 
   //endregion screen
 
@@ -57,11 +57,14 @@ abstract class TrackingViews {
 
   //endregion dialog
 
-  //region home page
+  //region mainScreen pages
 
-  static const TrackingView pageHomeTales = TrackingView._("home_page_tales");
-  static const TrackingView pageHomeFav = TrackingView._("home_page_fav");
-  static const TrackingView pageHomePeople = TrackingView._("home_page_people");
-  static const TrackingView pageHomeMenu = TrackingView._("home_page_menu");
-//endregion home page
+  static const TrackingView mainScreenPageTales =
+      TrackingView._("main_page_tales");
+  static const TrackingView mainScreenPageFav = TrackingView._("main_page_fav");
+  static const TrackingView mainScreenPagePeople =
+      TrackingView._("main_page_people");
+  static const TrackingView mainScreenPageMenu =
+      TrackingView._("main_page_menu");
+//endregion mainScreen pages
 }

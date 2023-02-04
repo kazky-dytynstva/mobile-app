@@ -9,9 +9,9 @@ import 'package:mobile_app/domain/model/menu_dynamic_item/menu_dynamic_item_data
 import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
 import 'package:mobile_app/infrastructure/env_config/env_config.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/view/screen/home/page/menu/manager/menu_page_manager.dart';
-import 'package:mobile_app/presentation/view/screen/home/page/menu/model/menu_page_item_type.dart';
-import 'package:mobile_app/presentation/view/screen/home/page/menu/widget/menu_page_item.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/menu/manager/menu_page_manager.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/menu/model/menu_page_item_type.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/menu/widget/menu_page_item.dart';
 import 'package:mobile_app/presentation/view/screen/manager_view_mixin.dart';
 import 'package:mobile_app/presentation/widget/custom_theme.dart';
 import 'package:mobile_app/presentation/widget/divider.dart';

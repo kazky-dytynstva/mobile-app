@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:mobile_app/presentation/view/screen/dynamic_item/dynamic_item_screen.dart';
 import 'package:mobile_app/presentation/view/screen/feature_flags/feature_flags_screen.dart';
 import 'package:mobile_app/presentation/view/screen/forced_update/forced_update_screen.dart';
-import 'package:mobile_app/presentation/view/screen/home/page/fav/fav_page.dart';
-import 'package:mobile_app/presentation/view/screen/home/page/menu/menu_page.dart';
-import 'package:mobile_app/presentation/view/screen/home/page/people/people_page.dart';
-import 'package:mobile_app/presentation/view/screen/home/page/tales/tales_page.dart';
+import 'package:mobile_app/presentation/view/screen/main/main_screen.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/fav/fav_page.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/menu/menu_page.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/people/people_page.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/tales/tales_page.dart';
 import 'package:mobile_app/presentation/view/screen/debug/debug_screen.dart';
-import 'package:mobile_app/presentation/view/screen/home/home_screen.dart';
 import 'package:mobile_app/presentation/view/screen/person/person_screen.dart';
 import 'package:mobile_app/presentation/view/screen/search_tale/search_tale_screen.dart';
 import 'package:mobile_app/presentation/view/screen/settings/settings_screen.dart';
@@ -27,7 +27,7 @@ import 'package:mobile_app/presentation/view/screen/whats_new/whats_new_screen.d
     CupertinoRoute(page: TaleSortAndFilterScreen),
     CupertinoRoute(page: TaleScreen),
     CupertinoRoute(
-      page: HomeScreen,
+      page: MainScreen,
       children: [
         MaterialRoute(page: TalesPage),
         MaterialRoute(page: FavPage),

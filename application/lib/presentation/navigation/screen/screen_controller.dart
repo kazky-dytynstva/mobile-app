@@ -34,7 +34,7 @@ abstract class ScreenController {
 
   void openWhatsNew();
 
-  void openHome();
+  void openMain();
 
   void openSettings({
     SettingsPageType openType = SettingsPageType.general,

@@ -50,9 +50,9 @@ class ScreenControllerImpl implements ScreenController {
 
   //region openScreen
   @override
-  void openHome() {
-    _tracker.view(TrackingViews.screenHome);
-    _appRouter.replace(const HomeScreenRoute());
+  void openMain() {
+    _tracker.view(TrackingViews.screenMain);
+    _appRouter.replace(const MainScreenRoute());
   }
 
   @override

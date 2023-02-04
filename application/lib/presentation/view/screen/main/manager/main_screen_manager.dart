@@ -11,16 +11,16 @@ import 'package:mobile_app/infrastructure/use_case/audio/stop_playing_use_case.d
 import 'package:mobile_app/infrastructure/use_case/menu/listen_show_menu_dot_use_case.dart';
 import 'package:mobile_app/infrastructure/use_case/tale/get_tale_use_case.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
-import 'package:mobile_app/presentation/view/screen/home/model/home_page_type.dart';
+import 'package:mobile_app/presentation/view/screen/main/model/main_screen_page.dart';
 
-part 'home_screen_manager.freezed.dart';
+part 'main_screen_manager.freezed.dart';
 
-part 'home_screen_state.dart';
+part 'main_screen_state.dart';
 
 typedef ChangePageAction = Function(int pageIndex);
 
 @injectable
-class HomeScreenManager extends Cubit<HomeScreenState> {
+class MainScreenManager extends Cubit<MainScreenState> {
   final Tracker _tracker;
   final ScreenController _screenController;
   final UseCase<Dry, Option<TalesPageItemData>> _listenCurrentPlayingUseCase;
@@ -29,7 +29,7 @@ class HomeScreenManager extends Cubit<HomeScreenState> {
   final UseCase<TaleId, GetTaleOutput> _getTaleUseCase;
   final AudioPlayer _player;
 
-  HomeScreenManager(
+  MainScreenManager(
     this._screenController,
     this._tracker,
     this._player,
@@ -37,14 +37,14 @@ class HomeScreenManager extends Cubit<HomeScreenState> {
     this._stopPlayingUseCase,
     this._getTaleUseCase,
     this._listenShowMenuDotUseCase,
-  ) : super(const HomeScreenState.initial()) {
+  ) : super(const MainScreenState.initial()) {
     _init();
   }
 
   final _subscriptionGroup = UseCaseSubscriptionGroup();
   late ChangePageAction _changePageAction;
 
-  HomeScreenStateReady get _stateReady => state as HomeScreenStateReady;
+  MainScreenStateReady get _stateReady => state as MainScreenStateReady;
 
   @override
   Future<void> close() async {
@@ -54,12 +54,12 @@ class HomeScreenManager extends Cubit<HomeScreenState> {
   }
 
   void _init() {
-    final pages = HomePageType.values.toList();
+    final pages = MainScreenPage.values.toList();
     pages.sort((a, b) => a.index.compareTo(b.index));
 
-    final ready = HomeScreenState.ready(
+    final ready = MainScreenState.ready(
       pages: pages,
-      currentPage: HomePageType.tales,
+      currentPage: MainScreenPage.tales,
       activeAudioTaleOption: const None(),
       showMenuDot: false,
     );
@@ -68,11 +68,11 @@ class HomeScreenManager extends Cubit<HomeScreenState> {
   }
 
   @override
-  void onChange(Change<HomeScreenState> change) {
-    if (change.nextState is HomeScreenStateReady) {
-      final nextState = change.nextState as HomeScreenStateReady;
-      final needTrack = change.currentState is! HomeScreenStateReady ||
-          (change.currentState as HomeScreenStateReady).currentPage !=
+  void onChange(Change<MainScreenState> change) {
+    if (change.nextState is MainScreenStateReady) {
+      final nextState = change.nextState as MainScreenStateReady;
+      final needTrack = change.currentState is! MainScreenStateReady ||
+          (change.currentState as MainScreenStateReady).currentPage !=
               nextState.currentPage;
       if (needTrack) {
         _trackPage(nextState.currentPage);
@@ -86,11 +86,11 @@ class HomeScreenManager extends Cubit<HomeScreenState> {
 
   void onStopPlayingPressed() {
     _stopPlayingUseCase.call(dry);
-    _tracker.event(TrackingEvents.homeCurrentAudioTaleStopPressed);
+    _tracker.event(TrackingEvents.mainCurrentAudioTaleStopPressed);
   }
 
   void onTalePressed(TalesPageItemData item) async {
-    _tracker.event(TrackingEvents.homeCurrentAudioTalePressed);
+    _tracker.event(TrackingEvents.mainCurrentAudioTalePressed);
     final taleOutput = await _getTaleUseCase.call(item.id);
     _screenController.openTale(
       tale: taleOutput.tale,
@@ -98,7 +98,7 @@ class HomeScreenManager extends Cubit<HomeScreenState> {
     );
   }
 
-  void onPagePressed(HomePageType type) {
+  void onPagePressed(MainScreenPage type) {
     if (_stateReady.currentPage == type) return;
 
     final index = _stateReady.pages.indexOf(type);
@@ -106,12 +106,12 @@ class HomeScreenManager extends Cubit<HomeScreenState> {
     emit(_stateReady.copyWith(currentPage: type));
   }
 
-  void _trackPage(HomePageType type) {
+  void _trackPage(MainScreenPage type) {
     final event = type.map(
-      tales: () => TrackingViews.pageHomeTales,
-      fav: () => TrackingViews.pageHomeFav,
-      people: () => TrackingViews.pageHomePeople,
-      menu: () => TrackingViews.pageHomeMenu,
+      tales: () => TrackingViews.mainScreenPageTales,
+      fav: () => TrackingViews.mainScreenPageFav,
+      people: () => TrackingViews.mainScreenPagePeople,
+      menu: () => TrackingViews.mainScreenPageMenu,
     );
     _tracker.view(event);
   }

@@ -68,13 +68,13 @@ abstract class TrackingEvents {
 
 //endregion taleScreen
 
-  //region homeScreen
-  static const TrackingEvent homeCurrentAudioTalePressed =
-      TrackingEvent._("home_current_audio_tale_pressed");
-  static const TrackingEvent homeCurrentAudioTaleStopPressed =
-      TrackingEvent._("home_current_audio_tale_stop_pressed");
+  //region mainScreen
+  static const TrackingEvent mainCurrentAudioTalePressed =
+      TrackingEvent._("main_current_audio_tale_pressed");
+  static const TrackingEvent mainCurrentAudioTaleStopPressed =
+      TrackingEvent._("main_current_audio_tale_stop_pressed");
 
-  //endregion homeScreen
+  //endregion mainScreen
 
   //region talePage
   static const TrackingEvent talesPageFavPressed =

@@ -15,7 +15,7 @@ import 'package:mobile_app/infrastructure/use_case/email/write_dev_use_case.dart
 import 'package:mobile_app/infrastructure/use_case/helper/open_url_use_case.dart';
 import 'package:mobile_app/infrastructure/use_case/share/share_app_use_case.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
-import 'package:mobile_app/presentation/view/screen/home/page/menu/model/menu_page_item_type.dart';
+import 'package:mobile_app/presentation/view/screen/main/page/menu/model/menu_page_item_type.dart';
 
 part 'menu_page_manager.freezed.dart';
 

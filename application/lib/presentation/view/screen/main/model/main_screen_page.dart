@@ -1,12 +1,12 @@
-enum HomePageType {
+enum MainScreenPage {
   tales,
   fav,
   people,
   menu,
 }
 
-extension HomePageTypeX on HomePageType {
-  bool get isMenu => this == HomePageType.menu;
+extension MainScreenPageX on MainScreenPage {
+  bool get isMenu => this == MainScreenPage.menu;
 
   T map<T>({
     required T Function() tales,
@@ -15,13 +15,13 @@ extension HomePageTypeX on HomePageType {
     required T Function() menu,
   }) {
     switch (this) {
-      case HomePageType.tales:
+      case MainScreenPage.tales:
         return tales();
-      case HomePageType.fav:
+      case MainScreenPage.fav:
         return fav();
-      case HomePageType.people:
+      case MainScreenPage.people:
         return people();
-      case HomePageType.menu:
+      case MainScreenPage.menu:
         return menu();
     }
   }
