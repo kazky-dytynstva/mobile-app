@@ -95,6 +95,8 @@ class Icons {
         flag,
         heart,
         heartSolid,
+        home,
+        homeSolid,
         info,
         menu,
         menuSolid,
@@ -156,6 +158,10 @@ class Icons {
   SvgAssetIcon get heart => const SvgAssetIcon(name: 'heart');
 
   SvgAssetIcon get heartSolid => const SvgAssetIcon(name: 'heart_solid');
+
+  SvgAssetIcon get home => const SvgAssetIcon(name: 'home');
+
+  SvgAssetIcon get homeSolid => const SvgAssetIcon(name: 'home_solid');
 
   SvgAssetIcon get info => const SvgAssetIcon(name: 'info');
 
