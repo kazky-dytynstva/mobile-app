@@ -1,10 +1,6 @@
 on:
   workflow_call:
     inputs:
-      FLUTTER_VERSION:
-        required: false
-        type: string
-        default: "3.7.1"
       VERSION_CODE_OFFSET:
         required: false
         type: number
@@ -15,14 +11,14 @@ on:
         value: ${{ jobs.main.outputs.version_code }}
       flutter_version:
         description: "Flutter version"
-        value: ${{ inputs.FLUTTER_VERSION }}
+        value: ${{ jobs.main.outputs.flutter_version }}
 
 jobs:
   main:
     runs-on: macos-latest
     outputs:
       version_code: ${{ steps.build_version_code.outputs.version_code }}
-      flutter_version: ${{ inputs.FLUTTER_VERSION }}
+      flutter_version: ${{ steps.flutter_version.outputs.flutter_version }}
     steps:
       - name: Print CI run number
         run: echo run number is ${{ github.run_number }}
@@ -36,3 +32,12 @@ jobs:
           version_code=$(( $RUN_NUMBER + build_offset ))
           echo "Build version code is $version_code"
           echo "version_code=$version_code" >> $GITHUB_OUTPUT
+
+      - name: 👀 Read Flutter version from FVM config
+        id: flutter_version
+        uses: kuhnroyal/flutter-fvm-config-action@v1
+        with:
+          path: 'application/.fvm/fvm_config.json'
+        run: |
+          echo "Flutter version from FVM config is ${{ env.FLUTTER_VERSION }}"
+          echo "flutter_version=${{ env.FLUTTER_VERSION }}" >> $GITHUB_OUTPUT
