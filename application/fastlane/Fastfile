@@ -414,7 +414,7 @@ end
 
 def flutter(args)
   Dir.chdir("..") do
-    sh "flutter #{args}"
+    sh "fvm flutter #{args}"
   end
 end
 
