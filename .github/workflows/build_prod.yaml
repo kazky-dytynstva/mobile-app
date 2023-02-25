@@ -48,7 +48,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: ⚙️ Install Flutter
+      - name: 🐦️ Install Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ needs.prepare_code.outputs.flutter_version }}
@@ -111,7 +111,7 @@ jobs:
     runs-on: macos-latest
     steps:
 
-      - name: ⚙️ Install Flutter
+      - name: 🐦️ Install Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ needs.prepare_code.outputs.flutter_version }}

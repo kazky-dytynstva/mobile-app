@@ -146,6 +146,15 @@ lane :dependenciesUpdate do |options|
   flutter("pub upgrade")
 end
 
+# desc "Install FVM and flutter based on it"
+# lane :activateFVM do |options|
+#   shell("dart pub global activate fvm")
+#   config = read_json(json_path: ".fvm/fvm_config.json")
+#   version = config[:flutterSdkVersion]
+#   shell("fvm install $version")
+#   shell("fvm use $version")
+# end
+
 
 ########################################################################################
 #################### PRIVATE LANES AND HELPER METHODS BELOW ############################
@@ -414,7 +423,11 @@ end
 
 def flutter(args)
   Dir.chdir("..") do
-    sh "fvm flutter #{args}"
+    if is_ci
+      sh "flutter #{args}"
+    else
+      sh "fvm flutter #{args}"
+    end
   end
 end
 

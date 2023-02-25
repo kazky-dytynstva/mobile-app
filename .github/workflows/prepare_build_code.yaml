@@ -20,9 +20,6 @@ jobs:
       version_code: ${{ steps.build_version_code.outputs.version_code }}
       flutter_version: ${{ steps.flutter_version.outputs.flutter_version }}
     steps:
-      - name: Print CI run number
-        run: echo run number is ${{ github.run_number }}
-
       - name: 🔢 Prepare build version code
         id: build_version_code
         env:
@@ -32,6 +29,8 @@ jobs:
           version_code=$(( $RUN_NUMBER + build_offset ))
           echo "Build version code is $version_code"
           echo "version_code=$version_code" >> $GITHUB_OUTPUT
+
+      - uses: actions/checkout@v2
 
       - name: 👀 Read Flutter version from FVM config
         uses: kuhnroyal/flutter-fvm-config-action@v1
