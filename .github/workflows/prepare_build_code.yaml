@@ -34,10 +34,12 @@ jobs:
           echo "version_code=$version_code" >> $GITHUB_OUTPUT
 
       - name: 👀 Read Flutter version from FVM config
-        id: flutter_version
         uses: kuhnroyal/flutter-fvm-config-action@v1
         with:
           path: 'application/.fvm/fvm_config.json'
+
+      - name: 🏪 Store Flutter version
+        id: flutter_version
         run: |
           echo "Flutter version from FVM config is ${{ env.FLUTTER_VERSION }}"
           echo "flutter_version=${{ env.FLUTTER_VERSION }}" >> $GITHUB_OUTPUT
