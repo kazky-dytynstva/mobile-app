@@ -3,7 +3,7 @@ name: Build INTERNAL
 on:
   push:
     branches:
-      - dev
+      - main
     paths:
       - 'application/**'
 
