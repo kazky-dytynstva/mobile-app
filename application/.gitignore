@@ -134,4 +134,4 @@ key.properties
 *.mocks.dart
 
 # Flutter version management
-/.fvm/flutter_sdk/
+/.fvm/flutter_sdk
