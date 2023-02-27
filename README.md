@@ -14,6 +14,7 @@
    * [data flow](docs/DATA_FLOW.md)
    * [screens schema](docs/SCREENS_SCHEMA.md)
    * [task development flow](docs/TASK_DEVELOPMENT_FLOW.md)
+   * [release workflow](docs/RELEASE_WORKFLOW.md)
 1. Read application [README.md](/application/README.md) for more instructions
 
 ----------
