@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobile_app/domain/model/changed_data/changed_data.dart';
+import 'package:mobile_app/domain/model/home_list_item_data/home_list_item_data.dart';
 import 'package:mobile_app/domain/model/person/person.dart';
 import 'package:mobile_app/domain/model/rating/rating_data.dart';
 import 'package:mobile_app/domain/model/sort_and_filter/filter_type.dart';

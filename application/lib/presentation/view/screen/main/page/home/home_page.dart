@@ -44,10 +44,15 @@ class _HomePageState extends State<HomePage>
     Widget stateBuilder(BuildContext context, HomePageState state) {
       final widget = state.map(
         initial: buildInitialState,
+        ready: _buildStateReady,
       );
       return FadeAnimatedSwitcher.screen(child: widget);
     }
 
     return BlocBuilder(bloc: _manager, builder: stateBuilder);
   }
+
+  Widget _buildStateReady(HomePageStateReady state) => Scaffold(
+        body: Container(),
+      );
 }
