@@ -34,6 +34,10 @@ class TaleSorterImpl implements TaleSorter {
         return _sortByRating(tales);
       case TaleSortType.byRatingAmount:
         return _sortByRatingAmount(tales);
+      case TaleSortType.newestFirst:
+        return _sortByDateCreatedNewFirst(tales);
+      case TaleSortType.oldestFirst:
+        return _sortByDateCreatedOldFirst(tales);
     }
   }
 
@@ -154,6 +158,32 @@ class TaleSorterImpl implements TaleSorter {
     return tales;
   }
 
+  List<TalesPageItemData> _sortByDateCreatedNewFirst(
+    List<TalesPageItemData> tales,
+  ) {
+    int comparator(TalesPageItemData first, TalesPageItemData second) {
+      final result0 = _compareDateCreatedNewFirst(first, second);
+      if (result0 != 0) return result0;
+      return first.id.get().compareTo(second.id.get());
+    }
+
+    tales.sort(comparator);
+    return tales;
+  }
+
+  List<TalesPageItemData> _sortByDateCreatedOldFirst(
+    List<TalesPageItemData> tales,
+  ) {
+    int comparator(TalesPageItemData first, TalesPageItemData second) {
+      final result0 = _compareDateCreatedOldFirst(first, second);
+      if (result0 != 0) return result0;
+      return first.id.get().compareTo(second.id.get());
+    }
+
+    tales.sort(comparator);
+    return tales;
+  }
+
   int _compare({
     required String first,
     required String second,
@@ -192,5 +222,17 @@ class TaleSorterImpl implements TaleSorter {
       (rating) => rating.numberOfRatings.get(),
     );
     return ratingB.compareTo(ratingA);
+  }
+
+  int _compareDateCreatedNewFirst(TalesPageItemData a, TalesPageItemData b) {
+    final ratingA = a.createDate.millisecondsSinceEpoch;
+    final ratingB = b.createDate.millisecondsSinceEpoch;
+    return ratingB.compareTo(ratingA);
+  }
+
+  int _compareDateCreatedOldFirst(TalesPageItemData a, TalesPageItemData b) {
+    final ratingA = a.createDate.millisecondsSinceEpoch;
+    final ratingB = b.createDate.millisecondsSinceEpoch;
+    return ratingA.compareTo(ratingB);
   }
 }

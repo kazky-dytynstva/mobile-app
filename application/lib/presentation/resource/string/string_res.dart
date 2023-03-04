@@ -258,6 +258,10 @@ class _StringTaleFilterType {
 class _StringTaleSortType {
   String get random => 'Випадково';
 
+  String get oldestFirst => 'Спочатку старі';
+
+  String get newestFirst => 'Спочатку нові';
+
   String get byName => 'За назвою';
 
   String get byAuthor => 'За автором';
