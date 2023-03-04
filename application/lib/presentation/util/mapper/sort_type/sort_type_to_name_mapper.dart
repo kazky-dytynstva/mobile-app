@@ -11,6 +11,10 @@ class SortTypeToStringMapper implements Mapper<TaleSortType, StringSingleLine> {
     switch (input) {
       case TaleSortType.random:
         return StringSingleLine(R.strings.taleSortType.random);
+      case TaleSortType.newestFirst:
+        return StringSingleLine(R.strings.taleSortType.newestFirst);
+      case TaleSortType.oldestFirst:
+        return StringSingleLine(R.strings.taleSortType.oldestFirst);
       case TaleSortType.byName:
         return StringSingleLine(R.strings.taleSortType.byName);
       case TaleSortType.byAuthor:

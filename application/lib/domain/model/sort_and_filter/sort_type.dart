@@ -1,5 +1,7 @@
 enum TaleSortType {
   random,
+  newestFirst,
+  oldestFirst,
   byName,
   byAuthor,
   byRating,
