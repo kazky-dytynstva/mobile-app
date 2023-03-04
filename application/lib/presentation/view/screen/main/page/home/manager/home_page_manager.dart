@@ -15,6 +15,7 @@ import 'package:mobile_app/domain/navigation/snackbar_controller.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/infrastructure/use_case/tale/change_tale_fav.dart';
+import 'package:mobile_app/infrastructure/use_case/tale/get_home_page_tales_use_case.dart';
 import 'package:mobile_app/infrastructure/use_case/tale/get_tale_use_case.dart';
 import 'package:mobile_app/presentation/navigation/dialog/dialog_controller.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
@@ -34,7 +35,12 @@ class HomePageManager extends Cubit<HomePageState> {
   final UseCase<Dry, ChangedData<TalesPageItemData, TaleId>>
       _listenAllTalesUseCase;
   final UseCase<TaleId, GetTaleOutput> _getTaleUseCase;
+  final UseCase<GetHomePageTalesInput, GetHomePageTalesOutput>
+      _getHomePageTales;
   final Tracker _tracker;
+  final _talesRandom = <TalesPageItemData>[];
+  final _talesLatest = <TalesPageItemData>[];
+  final _talesRating = <TalesPageItemData>[];
 
   HomePageManager(
     this._screenController,
@@ -43,6 +49,7 @@ class HomePageManager extends Cubit<HomePageState> {
     this._listenAllTalesUseCase,
     this._getTaleUseCase,
     this._changeTaleFavUseCase,
+    this._getHomePageTales,
     this._tracker,
   ) : super(const HomePageState.initial()) {
     _init();
@@ -61,6 +68,7 @@ class HomePageManager extends Cubit<HomePageState> {
   void _init() async {
     _updateState(dry);
     _addListeners();
+    _prepareTales();
   }
 
   void onTalePressed(TalesPageItemData item) async {
@@ -105,7 +113,10 @@ class HomePageManager extends Cubit<HomePageState> {
     }
   }
 
-  void _updateState(Dry dry) {}
+  void _updateState(Dry dry) {
+    final state = this.state;
+    if (state is! HomePageStateReady) return;
+  }
 
   void _addListeners() {
     void taleDeleted(TaleId id) {
@@ -131,4 +142,30 @@ class HomePageManager extends Cubit<HomePageState> {
         .debounce(R.durations.updateTaleListDebounce)
         .listen(_updateState);
   }
+
+  void _prepareTales() async {
+    const amount = 10;
+    _talesRandom.addAll(
+      await _getHomePageTales
+          .call(const GetHomePageTalesInput.random(requestedAmount: amount)),
+    );
+
+    _talesLatest.addAll(
+      await _getHomePageTales
+          .call(const GetHomePageTalesInput.latest(requestedAmount: amount)),
+    );
+
+    _talesRating.addAll(
+      await _getHomePageTales.call(
+          const GetHomePageTalesInput.bestRating(requestedAmount: amount)),
+    );
+
+    emit(HomePageState.ready(dataItems: _createDataItems()));
+  }
+
+  List<HomeListItemData> _createDataItems() => [
+        HomeListItemData.random(tales: _talesRandom),
+        HomeListItemData.latest(tales: _talesLatest),
+        HomeListItemData.bestRating(tales: _talesRating),
+      ];
 }
