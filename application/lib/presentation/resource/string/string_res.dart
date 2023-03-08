@@ -86,6 +86,12 @@ class _StringResMain {
   String get pageNameCrewList => 'Творці';
 
   String get pageNameMenu => 'Меню';
+
+  String get homeItemsRandom => '🎲 Випадкові казки';
+
+  String get homeItemsLatest => '🎊 Останні додані казки';
+
+  String get homeItemsBestRating => '😍 Казки з найкращим рейтингом';
 }
 
 class _StringResSearchTale {
