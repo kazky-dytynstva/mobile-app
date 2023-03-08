@@ -1,5 +1,17 @@
 part of 'whats_new_screen_manager.dart';
 
+VersionChanges _get5_6_0({required bool isHomePageEnabled}) => VersionChanges(
+      _version('5.6.0'),
+      [
+        if (isHomePageEnabled)
+          _item(
+            '🏡 ${R.strings.whatsNew.homePage}',
+            desc: R.strings.whatsNew.homePageDesc,
+          ),
+        _item('🛠 ${R.strings.whatsNew.bugfixAndImprovements}'),
+      ],
+    );
+
 VersionChanges _get5_5_4() => VersionChanges(
       _version('5.5.4'),
       [
