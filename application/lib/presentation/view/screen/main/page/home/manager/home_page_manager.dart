@@ -7,7 +7,6 @@ import 'package:mobile_app/domain/model/changed_data/changed_data.dart';
 import 'package:mobile_app/domain/model/home_list_item_data/home_list_item_data.dart';
 import 'package:mobile_app/domain/model/person/person.dart';
 import 'package:mobile_app/domain/model/rating/rating_data.dart';
-import 'package:mobile_app/domain/model/sort_and_filter/filter_type.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
@@ -38,9 +37,11 @@ class HomePageManager extends Cubit<HomePageState> {
   final UseCase<GetHomePageTalesInput, GetHomePageTalesOutput>
       _getHomePageTales;
   final Tracker _tracker;
+  final _allListsTogether = <List<TalesPageItemData>>[];
   final _talesRandom = <TalesPageItemData>[];
   final _talesLatest = <TalesPageItemData>[];
   final _talesRating = <TalesPageItemData>[];
+  DateTime _stateUpdateTimestamp = DateTime.now();
 
   HomePageManager(
     this._screenController,
@@ -74,10 +75,7 @@ class HomePageManager extends Cubit<HomePageState> {
   void onTalePressed(TalesPageItemData item) async {
     _tracker.event(TrackingEvents.favPageTalePressed);
     final taleOutput = await _getTaleUseCase.call(item.id);
-    _screenController.openTale(
-      tale: taleOutput.tale,
-      filterType: TaleFilterType.favorite,
-    );
+    _screenController.openTale(tale: taleOutput.tale);
   }
 
   void onPersonPressed(Person person) {
@@ -116,14 +114,32 @@ class HomePageManager extends Cubit<HomePageState> {
   void _updateState(Dry dry) {
     final state = this.state;
     if (state is! HomePageStateReady) return;
+    if (_stateUpdateTimestamp == state.updateTimestamp) return;
+    emit(HomePageState.ready(
+      dataItems: _createDataItems(),
+      updateTimestamp: _stateUpdateTimestamp,
+    ));
   }
 
   void _addListeners() {
-    void taleDeleted(TaleId id) {
+    void taleDeleted(TaleId deletedTaleId) {
+      for (final list in _allListsTogether) {
+        final index = list.indexWhere((tale) => tale.id == deletedTaleId);
+        if (index == -1) continue;
+        list.removeAt(index);
+        _stateUpdateTimestamp = DateTime.now();
+      }
       _updateStateController.add(dry);
     }
 
-    void taleUpdated(TalesPageItemData item) {
+    void taleUpdated(TalesPageItemData updated) {
+      for (final list in _allListsTogether) {
+        final index = list.indexWhere((tale) => tale.id == updated.id);
+        if (index == -1) continue;
+        list.removeAt(index);
+        list.insert(index, updated);
+        _stateUpdateTimestamp = DateTime.now();
+      }
       _updateStateController.add(dry);
     }
 
@@ -160,7 +176,16 @@ class HomePageManager extends Cubit<HomePageState> {
           const GetHomePageTalesInput.bestRating(requestedAmount: amount)),
     );
 
-    emit(HomePageState.ready(dataItems: _createDataItems()));
+    _allListsTogether.addAll([
+      _talesRandom,
+      _talesRating,
+      _talesLatest,
+    ]);
+
+    emit(HomePageState.ready(
+      dataItems: _createDataItems(),
+      updateTimestamp: _stateUpdateTimestamp,
+    ));
   }
 
   List<HomeListItemData> _createDataItems() => [
