@@ -7,7 +7,7 @@ import 'package:mobile_app/domain/model/tale_crew/tale_crew_list_item.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/view/screen/manager_view_mixin.dart';
 import 'package:mobile_app/presentation/view/screen/screen_mixin.dart';
-import 'package:mobile_app/presentation/view/screen/settings/widget/settings_section_label.dart';
+import 'package:mobile_app/presentation/widget/settings_section_label.dart';
 import 'package:mobile_app/presentation/view/screen/tale_crew/manager/tale_crew_screen_manager.dart';
 import 'package:mobile_app/presentation/view/screen/tale_crew/manager/tale_crew_screen_state.dart';
 import 'package:mobile_app/presentation/widget/bottom_bar_with_actions.dart';
