@@ -36,7 +36,7 @@ mixin ButtonMixin {
                 : style.color);
     return Text(
       allCaps ? text.toUpperCase() : text,
-      style: style.copyWith(color: textColor),
+      style: style.copyWith(color: textColor, height: 1),
     );
   }
 
