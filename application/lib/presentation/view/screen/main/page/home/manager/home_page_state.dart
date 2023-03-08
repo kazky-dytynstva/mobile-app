@@ -7,5 +7,6 @@ abstract class HomePageState with _$HomePageState {
   @Assert('dataItems.length > 0')
   const factory HomePageState.ready({
     required List<HomeListItemData> dataItems,
+    required DateTime updateTimestamp,
   }) = HomePageStateReady;
 }
