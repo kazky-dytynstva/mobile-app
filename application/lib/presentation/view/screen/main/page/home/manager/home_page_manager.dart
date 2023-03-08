@@ -10,7 +10,6 @@ import 'package:mobile_app/domain/model/rating/rating_data.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
-import 'package:mobile_app/domain/navigation/snackbar_controller.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/infrastructure/use_case/tale/change_tale_fav.dart';
@@ -29,7 +28,6 @@ part 'home_page_state.dart';
 class HomePageManager extends Cubit<HomePageState> {
   final ScreenController _screenController;
   final DialogController _dialogController;
-  final SnackbarController _snackbarController;
   final UseCase<ChangeTaleFavInput, Dry> _changeTaleFavUseCase;
   final UseCase<Dry, ChangedData<TalesPageItemData, TaleId>>
       _listenAllTalesUseCase;
@@ -46,7 +44,6 @@ class HomePageManager extends Cubit<HomePageState> {
   HomePageManager(
     this._screenController,
     this._dialogController,
-    this._snackbarController,
     this._listenAllTalesUseCase,
     this._getTaleUseCase,
     this._changeTaleFavUseCase,
@@ -93,22 +90,8 @@ class HomePageManager extends Cubit<HomePageState> {
 
   void onTaleFavPressed(TalesPageItemData item) {
     _tracker.event(TrackingEvents.favPageFavTalePressed);
-    void doAction(bool newFavStatus) {
-      final input = ChangeTaleFavInput(item.id, newFavStatus);
-      _changeTaleFavUseCase.call(input);
-    }
-
-    doAction(!item.isFav);
-
-    if (item.isFav) {
-      _snackbarController.showBringBackFavTale(
-        name: item.name,
-        onBringBackPressed: () {
-          _tracker.event(TrackingEvents.favPageFavTaleUndoPressed);
-          doAction(true);
-        },
-      );
-    }
+    final input = ChangeTaleFavInput(item.id, !item.isFav);
+    _changeTaleFavUseCase.call(input);
   }
 
   void _updateState(Dry dry) {
