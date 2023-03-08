@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 
-class SettingsSectionLabel extends StatelessWidget {
+class LabelWithLine extends StatelessWidget {
   final String label;
   final TextStyle? labelStyle;
 
-  const SettingsSectionLabel({
+  const LabelWithLine({
     Key? key,
     required this.label,
     this.labelStyle,

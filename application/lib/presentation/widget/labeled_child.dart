@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/widget/settings_section_label.dart';
+import 'package:mobile_app/presentation/widget/label_with_line.dart';
 
 class LabeledChild extends StatelessWidget {
   final String label;
@@ -22,7 +22,7 @@ class LabeledChild extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SettingsSectionLabel(
+          LabelWithLine(
             label: label,
             labelStyle: labelStyle,
           ),
