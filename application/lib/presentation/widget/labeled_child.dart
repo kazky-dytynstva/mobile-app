@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/view/screen/settings/widget/settings_section_label.dart';
+import 'package:mobile_app/presentation/widget/settings_section_label.dart';
 
 class LabeledChild extends StatelessWidget {
   final String label;
