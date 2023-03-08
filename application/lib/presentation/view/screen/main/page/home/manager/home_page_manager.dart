@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobile_app/domain/model/changed_data/changed_data.dart';
 import 'package:mobile_app/domain/model/home_list_item_data/home_list_item_data.dart';
-import 'package:mobile_app/domain/model/person/person.dart';
 import 'package:mobile_app/domain/model/rating/rating_data.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
@@ -70,18 +69,13 @@ class HomePageManager extends Cubit<HomePageState> {
   }
 
   void onTalePressed(TalesPageItemData item) async {
-    _tracker.event(TrackingEvents.favPageTalePressed);
+    _tracker.event(TrackingEvents.homePageTalePressed);
     final taleOutput = await _getTaleUseCase.call(item.id);
     _screenController.openTale(tale: taleOutput.tale);
   }
 
-  void onPersonPressed(Person person) {
-    _tracker.event(TrackingEvents.favPagePersonPressed);
-    _screenController.openPerson(person: person);
-  }
-
   void onRatingPressed(TaleName name, RatingData data) {
-    _tracker.event(TrackingEvents.favPageTaleRatingPressed);
+    _tracker.event(TrackingEvents.homePageTaleRatingPressed);
     _dialogController.showTaleRating(
       name: name,
       data: data,
@@ -89,7 +83,7 @@ class HomePageManager extends Cubit<HomePageState> {
   }
 
   void onTaleFavPressed(TalesPageItemData item) {
-    _tracker.event(TrackingEvents.favPageFavTalePressed);
+    _tracker.event(TrackingEvents.homePageFavTalePressed);
     final input = ChangeTaleFavInput(item.id, !item.isFav);
     _changeTaleFavUseCase.call(input);
   }

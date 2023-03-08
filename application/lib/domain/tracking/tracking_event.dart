@@ -99,6 +99,14 @@ abstract class TrackingEvents {
       TrackingEvent._("tales_page_random_tale_open_pressed");
 
   //endregion talePage
+  static const TrackingEvent homePageTalePressed =
+      TrackingEvent._("home_page_tale_pressed");
+  static const TrackingEvent homePageTaleRatingPressed =
+      TrackingEvent._("home_page_tale_rating_pressed");
+  static const TrackingEvent homePageFavTalePressed =
+      TrackingEvent._("home_page_fav_tale_pressed");
+
+  //endregion homePage
 
   //region favPage
   static const TrackingEvent favPageTalePressed =
