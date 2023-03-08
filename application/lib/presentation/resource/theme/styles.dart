@@ -22,6 +22,7 @@ class Styles {
   TextStyle get textHeadline => _textTheme.titleLarge!.copyWith(
         color: _palette.textPrimary,
         fontSize: 22,
+        height: 28 / 22,
         fontWeight: textWeightMedium,
         letterSpacing: 0.15,
       );
@@ -29,6 +30,7 @@ class Styles {
   TextStyle get textSubTitle => _textTheme.titleMedium!.copyWith(
         color: _palette.textPrimary,
         fontSize: 17,
+        height: 24 / 17,
         fontWeight: textWeightNormal,
         letterSpacing: 0.15,
       );
@@ -42,6 +44,7 @@ class Styles {
         color: _palette.textPrimary,
         fontWeight: textWeightNormal,
         fontSize: 14.0,
+        height: 22 / 14,
         letterSpacing: 0.25,
       );
 
@@ -53,6 +56,7 @@ class Styles {
         color: _palette.textPrimary,
         fontWeight: textWeightNormal,
         fontSize: 12.0,
+        height: 16 / 12,
         letterSpacing: 0.4,
       );
 
@@ -70,6 +74,7 @@ class Styles {
       textButton.copyWith(color: _palette.textPrimary);
 
   TextStyle get toolbarTitle => textHeadline;
+
   TextStyle get toolbarSubTitle => textBody;
 
   //endregion secondary text styles
