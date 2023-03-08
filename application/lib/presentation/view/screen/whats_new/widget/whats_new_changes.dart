@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/model/version_changes/version_changes.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/widget/settings_section_label.dart';
+import 'package:mobile_app/presentation/widget/label_with_line.dart';
 
 class WhatsNewsChanges extends StatelessWidget {
   final VersionChanges changes;
@@ -16,7 +16,7 @@ class WhatsNewsChanges extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          SettingsSectionLabel(label: 'v. ${changes.version.name.get()}'),
+          LabelWithLine(label: 'v. ${changes.version.name.get()}'),
           ...changes.items.map(_buildChange),
           R.spaces.verticalUnit,
         ],

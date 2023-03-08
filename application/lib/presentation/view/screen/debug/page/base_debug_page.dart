@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/widget/settings_section_label.dart';
+import 'package:mobile_app/presentation/widget/label_with_line.dart';
 import 'package:mobile_app/presentation/widget/custom_theme.dart';
 
 abstract class BaseDebugPage extends StatefulWidget {
@@ -53,7 +53,7 @@ class DebugPageSection extends StatelessWidget {
         ],
       );
 
-  Widget _buildSectionTitle(String title) => SettingsSectionLabel(label: title);
+  Widget _buildSectionTitle(String title) => LabelWithLine(label: title);
 }
 
 extension ListWithWidgetExtension on List<Widget> {
