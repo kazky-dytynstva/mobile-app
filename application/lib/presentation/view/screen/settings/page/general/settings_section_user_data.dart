@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/view/screen/settings/widget/settings_section.dart';
 import 'package:mobile_app/presentation/widget/app_check_box.dart';
+import 'package:mobile_app/presentation/widget/labeled_child.dart';
 import 'package:mobile_app/presentation/widget/list_item.dart';
 import 'package:mobile_app/presentation/widget/svg_widget.dart';
 
@@ -26,7 +26,7 @@ class SettingsSectionUserData extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => SettingsSection(
+  Widget build(BuildContext context) => LabeledChildren(
         label: R.strings.settings.sectionLabelUserData,
         children: [
           _buildPrivacyPolicy(),
