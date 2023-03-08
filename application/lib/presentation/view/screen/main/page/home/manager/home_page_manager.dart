@@ -165,7 +165,7 @@ class HomePageManager extends Cubit<HomePageState> {
 
   List<HomeListItemData> _createDataItems() => [
         HomeListItemData.random(tales: _talesRandom),
-        HomeListItemData.latest(tales: _talesLatest),
         HomeListItemData.bestRating(tales: _talesRating),
+        HomeListItemData.latest(tales: _talesLatest),
       ];
 }
