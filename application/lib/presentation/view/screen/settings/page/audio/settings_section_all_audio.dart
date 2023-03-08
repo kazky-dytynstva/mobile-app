@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/model/settings/settings_data_audio.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/view/screen/settings/widget/settings_section.dart';
 import 'package:mobile_app/presentation/widget/button/button_icon.dart';
 import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
+import 'package:mobile_app/presentation/widget/labeled_child.dart';
 import 'package:mobile_app/presentation/widget/list_item.dart';
 import 'package:mobile_app/presentation/widget/loading_bar.dart';
 
@@ -22,7 +22,7 @@ class SettingsSectionAllAudio extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => SettingsSection(
+  Widget build(BuildContext context) => LabeledChildren(
         label: R.strings.settings.sectionLabelAllAudio,
         children: [
           _buildCacheAllAudio(),

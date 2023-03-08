@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/model/app_theme/app_theme.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:mobile_app/presentation/view/screen/settings/widget/settings_section.dart';
 import 'package:mobile_app/presentation/view/screen/settings/widget/theme_switch_item.dart';
+import 'package:mobile_app/presentation/widget/labeled_child.dart';
 
 typedef OnThemeChanged = Function(AppTheme appTheme);
 
@@ -25,7 +25,7 @@ class SettingsSectionAppTheme extends StatelessWidget {
         selectedTheme: currentTheme,
       ),
     );
-    return SettingsSection(
+    return LabeledChildren(
       label: R.strings.settings.sectionLabelAppTheme,
       children: themeSwitchers.toList(),
     );
