@@ -3,17 +3,20 @@ import 'package:mobile_app/presentation/resource/r.dart';
 
 class SettingsSectionLabel extends StatelessWidget {
   final String label;
+  final TextStyle? labelStyle;
 
   const SettingsSectionLabel({
     Key? key,
     required this.label,
+    this.labelStyle,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final style = labelStyle ?? R.styles.textCaption;
     final text = Text(
       label,
-      style: R.styles.textCaption.copyWith(color: R.palette.accent),
+      style: style.copyWith(color: R.palette.accent),
     );
     final row = Row(
       children: [
