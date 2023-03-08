@@ -114,6 +114,9 @@ desc "Create build output\n" \
      "   - #{Options::STAGING}: #{Stagings.all_variables}\n" \
      "   - #{Options::ANDROID_OUTPUT}: #{AndroidOutputs.all_variables}\n" \
      "   - #{Options::CLEAN}: [true, false]"
+     "   - #{Options::UPLOAD_TO_STORE}: [true, false]"
+     "   - #{Options::VERSION_NAME}: ${1.2.3}"
+     "   - #{Options::VERSION_CODE}: ${145}"
 lane :build do |options|
   prepare_platform_files(options)
 
