@@ -8,12 +8,16 @@ import 'package:update_available/update_available.dart';
 class AppUpdateHelperImpl implements AppUpdateHelper {
   @override
   Future<bool> hasUpdates() async {
-    final updateAvailability = await getUpdateAvailability();
-    return updateAvailability.fold(
-      available: () => true,
-      notAvailable: () => false,
-      unknown: () => false,
-    );
+    try {
+      final updateAvailability = await getUpdateAvailability();
+      return updateAvailability.fold(
+        available: () => true,
+        notAvailable: () => false,
+        unknown: () => false,
+      );
+    } catch (e) {
+      return false;
+    }
   }
 
   @override
