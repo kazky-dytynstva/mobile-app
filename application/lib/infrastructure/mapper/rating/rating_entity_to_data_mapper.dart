@@ -5,13 +5,13 @@ import 'package:mobile_app/domain/model/rating/rating_type.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
 import 'package:mobile_app/infrastructure/data_source/storage_local/tale/entity/rating/rating_entity.dart';
 
-const _borderAwesome = 4.3;
+const _borderAwesome = 4.0;
 
-const _borderLike = 3.9;
+const _borderLike = 3.0;
 
-const _borderModerate = 3.0;
+const _borderModerate = 2.0;
 
-const _borderDislike = 2.0;
+const _borderDislike = 1.0;
 
 @LazySingleton(as: Mapper)
 class RatingEntityToDataMapper implements Mapper<RatingEntity, RatingData> {
