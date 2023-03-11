@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:bloc/bloc.dart';
+import 'package:mobile_app/domain/feature_flag/feature.dart';
+import 'package:mobile_app/domain/feature_flag/feature_flag_provider.dart';
 import 'package:mobile_app/domain/model/rating/rating_data.dart';
 import 'package:mobile_app/domain/model/sort_and_filter/data/sort_and_filter_open_type.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
@@ -55,6 +57,7 @@ class TalesPageManager extends Cubit<TalesPageState> {
   final Mapper<TaleFilterType, StringSingleLine> _filterTypeToNameMapper;
   final Mapper<TaleFilterType, SvgAssetGraphic> _filterTypeToIconMapper;
   final Mapper<TaleSortType, StringSingleLine> _sortTypeToNameMapper;
+  final FeatureFlagProvider _featureFlagProvider;
   final Tracker _tracker;
 
   TalesPageManager(
@@ -73,6 +76,7 @@ class TalesPageManager extends Cubit<TalesPageState> {
     this._filterTypeToNameMapper,
     this._sortTypeToNameMapper,
     this._filterTypeToIconMapper,
+    this._featureFlagProvider,
     this._tracker,
   ) : super(const TalesPageState.initial()) {
     _init();
@@ -152,10 +156,12 @@ class TalesPageManager extends Cubit<TalesPageState> {
       _sortType,
       _sortTypeToNameMapper.map(_sortType),
     );
+    final homePageEnabled = _featureFlagProvider.isEnabled(Feature.homePage);
     final newState = TalesPageState.ready(
       filterData: filterData,
       sortData: sortData,
       tales: List.from(filteredAndSorted),
+      showRandom: !homePageEnabled,
     );
     emit(newState);
   }
