@@ -48,6 +48,10 @@ class _StringResGeneral {
 
   String get minutes => '%s хвилин';
 
+  String get hour => '%s годину';
+
+  String get hours => '%s години';
+
   String get thankYou => 'Дякуємо 🙏';
 
   String get emptyList => 'Список порожній ...';
