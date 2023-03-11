@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/domain/extensions/string.dart';
+import 'package:mobile_app/domain/mapper/mapper.dart';
 import 'package:mobile_app/domain/model/player/countdown_time.dart';
+import 'package:mobile_app/domain/value_objects/string_single_line.dart';
+import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/view/dialog/base/base_dialog.dart';
 import 'package:mobile_app/presentation/widget/flip_down_timer.dart';
@@ -25,6 +27,8 @@ class AudiCountdownDialog extends BaseDialog {
 }
 
 class _State extends BaseDialogState<AudiCountdownDialog> {
+  final Mapper<CountdownTime, StringSingleLine> mapper = getIt();
+
   bool get isActive => widget.remainingTime.inSeconds > 0;
 
   @override
@@ -69,8 +73,7 @@ class _State extends BaseDialogState<AudiCountdownDialog> {
       );
 
   Widget _createItem(CountdownTime time) => ListItem(
-        title: R.strings.general.minutes
-            .format(time.duration.inMinutes.toString()),
+        title: mapper.map(time).get(),
         onPressed: () => widget._onCountdownTimePressed(time),
       );
 }
