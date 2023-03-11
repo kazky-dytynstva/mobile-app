@@ -411,6 +411,11 @@ class _StringResEmail {
 }
 
 class _StringResWhatsNew {
+  String get newCountdownTimeItems => 'Таймер для автоматичної зупинки';
+
+  String get newCountdownTimeItemsDesc =>
+      'На ваші прохання ми додали 2 додаткові опції для таймера: тепер його можна встановити на 1 або 2 години 😉';
+
   String get homePage => 'Домашня сторінка';
 
   String get homePageDesc =>
