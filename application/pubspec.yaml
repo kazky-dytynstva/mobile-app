@@ -65,7 +65,7 @@ dependencies:
   stream_transform: 2.1.0
   super_rich_text: 1.0.0
   transformer_page_view: 0.1.6
-  update_available: 2.2.0
+  update_available: 2.2.1
   url_launcher: 6.1.8
   visibility_detector: 0.3.3
   watcher: 1.0.2
