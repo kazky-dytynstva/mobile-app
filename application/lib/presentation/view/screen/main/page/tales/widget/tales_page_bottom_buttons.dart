@@ -9,6 +9,7 @@ class TalesPageBottomButtons extends StatelessWidget {
   final VoidCallback onSortPressed;
   final VoidCallback onSearchPressed;
   final VoidCallback onRandomPressed;
+  final bool showRandom;
 
   const TalesPageBottomButtons({
     Key? key,
@@ -16,6 +17,7 @@ class TalesPageBottomButtons extends StatelessWidget {
     required this.onSortPressed,
     required this.onSearchPressed,
     required this.onRandomPressed,
+    required this.showRandom,
   }) : super(key: key);
 
   @override
@@ -23,7 +25,7 @@ class TalesPageBottomButtons extends StatelessWidget {
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _createRandom(),
+        if (showRandom) _createRandom(),
         _createFilter(),
         _createSort(),
         _createSearch(),
