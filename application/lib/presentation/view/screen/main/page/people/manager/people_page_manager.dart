@@ -71,7 +71,7 @@ class PeoplePageManager extends Cubit<PeoplePageState> {
   }
 
   void onPersonPressed(Person person) {
-    _tracker.event(TrackingEvents.peoplePageFavPressed);
+    _tracker.event(TrackingEvents.peoplePagePersonPressed);
     final role = _currentRole;
     if (role != null) {
       final event = TrackingEvents.getPeoplePagePersonPressedByRole(role);
