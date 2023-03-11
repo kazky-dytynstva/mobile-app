@@ -8,6 +8,10 @@ VersionChanges _get5_6_0({required bool isHomePageEnabled}) => VersionChanges(
             '🏡 ${R.strings.whatsNew.homePage}',
             desc: R.strings.whatsNew.homePageDesc,
           ),
+        _item(
+          '⏱️🎵 ${R.strings.whatsNew.newCountdownTimeItems}',
+          desc: R.strings.whatsNew.newCountdownTimeItemsDesc,
+        ),
         _item('🛠 ${R.strings.whatsNew.bugfixAndImprovements}'),
       ],
     );
