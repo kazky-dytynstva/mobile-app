@@ -35,6 +35,7 @@ class WhatsNewScreenManager extends Cubit<WhatsNewScreenState> {
   void init() {
     final isHomePageEnabled = _featureFlagProvider.isEnabled(Feature.homePage);
     final changes = [
+      _get5_6_1(),
       _get5_6_0(isHomePageEnabled: isHomePageEnabled),
       _get5_5_4(),
       _get5_5_0(),

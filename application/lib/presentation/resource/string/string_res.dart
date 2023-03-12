@@ -411,6 +411,9 @@ class _StringResEmail {
 }
 
 class _StringResWhatsNew {
+  String get bugfixAudioPlayer =>
+      'Виправили критичну помилку з програванням аудіо';
+
   String get newCountdownTimeItems => 'Таймер для автоматичної зупинки';
 
   String get newCountdownTimeItemsDesc =>
