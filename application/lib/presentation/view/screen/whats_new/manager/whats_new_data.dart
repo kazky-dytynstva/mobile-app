@@ -1,5 +1,12 @@
 part of 'whats_new_screen_manager.dart';
 
+VersionChanges _get5_6_1() => VersionChanges(
+      _version('5.6.1'),
+      [
+        _item('👩🏻‍🔧 🎵 ${R.strings.whatsNew.bugfixAudioPlayer}'),
+      ],
+    );
+
 VersionChanges _get5_6_0({required bool isHomePageEnabled}) => VersionChanges(
       _version('5.6.0'),
       [
