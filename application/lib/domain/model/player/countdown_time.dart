@@ -1,4 +1,4 @@
-import 'package:mobile_app/infrastructure/env_config/env_config.dart';
+import 'package:mobile_app/data/env_config/env_config.dart';
 
 enum CountdownTime {
   min5(EnvConfig.isProd ? Duration(minutes: 5) : Duration(seconds: 63)),

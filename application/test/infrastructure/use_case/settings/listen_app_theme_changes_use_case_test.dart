@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_app/domain/model/app_theme/app_theme.dart';
-import 'package:mobile_app/infrastructure/use_case/settings/listen_app_theme_changes_use_case.dart';
+import 'package:mobile_app/data/use_case/settings/listen_app_theme_changes_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../utils/mocks/mocks.dart';

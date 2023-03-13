@@ -7,8 +7,8 @@ import 'package:mobile_app/domain/model/tale_sort_and_filter/tale_filter_item_da
 import 'package:mobile_app/domain/model/tale_sort_and_filter/tale_sort_item_data.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
-import 'package:mobile_app/infrastructure/use_case/tale_sort_and_filter/get_sort_and_filter_items_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/tale_sort_and_filter/save_sort_and_filter_use_case.dart';
+import 'package:mobile_app/data/use_case/tale_sort_and_filter/get_sort_and_filter_items_use_case.dart';
+import 'package:mobile_app/data/use_case/tale_sort_and_filter/save_sort_and_filter_use_case.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 
 part 'tale_sort_and_filter_manager.freezed.dart';

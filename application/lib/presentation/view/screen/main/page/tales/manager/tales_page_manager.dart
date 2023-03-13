@@ -13,9 +13,9 @@ import 'package:mobile_app/domain/navigation/snackbar_controller.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
 import 'package:mobile_app/domain/value_objects/svg_asset_graphic.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/get_tale_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/tale_sort_and_filter/filter_and_sort_tales_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/tale_sort_and_filter/get_tale_sort_and_filter_type.dart';
+import 'package:mobile_app/data/use_case/tale/get_tale_use_case.dart';
+import 'package:mobile_app/data/use_case/tale_sort_and_filter/filter_and_sort_tales_use_case.dart';
+import 'package:mobile_app/data/use_case/tale_sort_and_filter/get_tale_sort_and_filter_type.dart';
 import 'package:mobile_app/presentation/navigation/dialog/dialog_controller.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
@@ -30,8 +30,8 @@ import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/change_tale_fav.dart';
-import 'package:mobile_app/infrastructure/use_case/tale_list/get_all_tales.dart';
+import 'package:mobile_app/data/use_case/tale/change_tale_fav.dart';
+import 'package:mobile_app/data/use_case/tale_list/get_all_tales.dart';
 
 part 'tales_page_manager.freezed.dart';
 

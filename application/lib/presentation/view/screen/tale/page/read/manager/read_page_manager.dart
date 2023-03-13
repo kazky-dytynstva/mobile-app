@@ -10,14 +10,14 @@ import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/navigation/snackbar_controller.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
-import 'package:mobile_app/infrastructure/use_case/settings/listen_text_scale_factor_changes_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/rate_tale_use_case.dart';
+import 'package:mobile_app/data/use_case/settings/listen_text_scale_factor_changes_use_case.dart';
+import 'package:mobile_app/data/use_case/tale/rate_tale_use_case.dart';
 import 'package:mobile_app/presentation/navigation/dialog/dialog_controller.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:mobile_app/domain/model/tale/tale.dart';
 import 'package:mobile_app/domain/model/tale/tale_text_item.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/save_last_read_position.dart';
+import 'package:mobile_app/data/use_case/tale/save_last_read_position.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/view/screen/tale/manager/tale_screen_manager.dart';
 

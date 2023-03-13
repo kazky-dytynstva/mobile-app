@@ -1,8 +1,8 @@
-import 'package:mobile_app/infrastructure/data_source/storage_local/tale/entity/chapter/chapter_entity.dart';
-import 'package:mobile_app/infrastructure/data_source/storage_local/tale/entity/crew/crew_entity.dart';
-import 'package:mobile_app/infrastructure/data_source/storage_local/tale/entity/rating/rating_entity.dart';
-import 'package:mobile_app/infrastructure/data_source/storage_local/tale/entity/tale_entity.dart';
-import 'package:mobile_app/infrastructure/di/module/storage.dart';
+import 'package:mobile_app/data/data_source/storage_local/tale/entity/chapter/chapter_entity.dart';
+import 'package:mobile_app/data/data_source/storage_local/tale/entity/crew/crew_entity.dart';
+import 'package:mobile_app/data/data_source/storage_local/tale/entity/rating/rating_entity.dart';
+import 'package:mobile_app/data/data_source/storage_local/tale/entity/tale_entity.dart';
+import 'package:mobile_app/data/di/module/storage.dart';
 
 import '../utils.dart';
 

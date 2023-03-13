@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/domain/value_objects/url_string.dart';
-import 'package:mobile_app/infrastructure/use_case/helper/open_url_use_case.dart';
+import 'package:mobile_app/data/use_case/helper/open_url_use_case.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 
 @injectable

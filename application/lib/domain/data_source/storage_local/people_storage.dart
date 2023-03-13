@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:mobile_app/data/data_source/storage_local/people/entity/person_entity.dart';
 import 'package:mobile_app/domain/model/changed_data/changed_data.dart';
 import 'package:mobile_app/domain/model/person/value_objects/person_id.dart';
-
-import '../../../infrastructure/data_source/storage_local/people/entity/person_entity.dart';
 
 abstract class PeopleStorage {
   Future<bool> isEmpty();

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/env_config/env_config.dart';
+import 'package:mobile_app/data/env_config/env_config.dart';
 
 class AppVersion extends Equatable {
   final StringSingleLine name;

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile_app/infrastructure/use_case/settings/user_data/set_crash_logging_enabled_use_case.dart';
+import 'package:mobile_app/data/use_case/settings/user_data/set_crash_logging_enabled_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../utils/utils.dart';

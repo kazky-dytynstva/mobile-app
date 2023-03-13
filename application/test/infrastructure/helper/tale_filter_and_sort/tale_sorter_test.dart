@@ -9,7 +9,7 @@ import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
 import 'package:mobile_app/domain/model/tale_tag/tale_tag.dart';
 import 'package:mobile_app/domain/value_objects/image_url.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/helper/tale_filter_and_sort/tale_sorter.dart';
+import 'package:mobile_app/data/helper/tale_filter_and_sort/tale_sorter.dart';
 
 part 'tale_sorter_test.util.dart';
 

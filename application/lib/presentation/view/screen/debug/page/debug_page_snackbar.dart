@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/navigation/snackbar_controller.dart';
-import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
+import 'package:mobile_app/data/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/view/screen/debug/page/base_debug_page.dart';
 import 'package:mobile_app/presentation/widget/button/button_secondary.dart';
 

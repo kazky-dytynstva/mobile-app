@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobile_app/domain/feature_flag/feature.dart';
 import 'package:mobile_app/domain/feature_flag/feature_flag_provider.dart';
-import 'package:mobile_app/infrastructure/feature_flag/dev_feature_provider.dart';
+import 'package:mobile_app/data/feature_flag/dev_feature_provider.dart';
 
 part 'feature_flags_screen_state.dart';
 

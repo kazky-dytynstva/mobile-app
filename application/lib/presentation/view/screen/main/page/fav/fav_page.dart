@@ -4,7 +4,7 @@ import 'package:mobile_app/domain/model/app_tab/app_tab_data.dart';
 import 'package:mobile_app/domain/model/person/person.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
+import 'package:mobile_app/data/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/view/screen/main/page/fav/manager/fav_page_manager.dart';
 import 'package:mobile_app/presentation/widget/list_of_people.dart';

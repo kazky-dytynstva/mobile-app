@@ -3,7 +3,7 @@ import 'package:mobile_app/domain/model/person/person.dart';
 import 'package:mobile_app/domain/model/tale_crew/tale_crew_role.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/use_case/people/get_people_page_tab_data_list_use_case.dart';
+import 'package:mobile_app/data/use_case/people/get_people_page_tab_data_list_use_case.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mocktail/mocktail.dart';
 

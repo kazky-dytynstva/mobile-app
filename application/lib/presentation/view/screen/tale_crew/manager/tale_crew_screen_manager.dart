@@ -10,9 +10,9 @@ import 'package:mobile_app/domain/model/tale_crew/tale_crew_role.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/di/named_annotations.dart';
-import 'package:mobile_app/infrastructure/use_case/person/change_person_fav_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/person/listen_person_changes_use_case.dart';
+import 'package:mobile_app/data/di/named_annotations.dart';
+import 'package:mobile_app/data/use_case/person/change_person_fav_use_case.dart';
+import 'package:mobile_app/data/use_case/person/listen_person_changes_use_case.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 import 'package:mobile_app/presentation/view/screen/tale_crew/manager/tale_crew_screen_state.dart';
 

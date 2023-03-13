@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
-import 'package:mobile_app/infrastructure/env_config/env_config.dart';
+import 'package:mobile_app/data/di/dependency_injection.dart';
+import 'package:mobile_app/data/env_config/env_config.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/widget/custom_theme.dart';

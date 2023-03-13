@@ -3,8 +3,8 @@ import 'package:mobile_app/domain/model/person/value_objects/person_id.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
 import 'package:mobile_app/domain/value_objects/url_string.dart';
-import 'package:mobile_app/infrastructure/helper/url_creator/url_creator.dart';
-import 'package:mobile_app/infrastructure/helper/url_creator/url_creator_impl.dart';
+import 'package:mobile_app/data/helper/url_creator/url_creator.dart';
+import 'package:mobile_app/data/helper/url_creator/url_creator_impl.dart';
 
 const _baseUrl = 'https://raw.githubusercontent.com/';
 const _contentVersion = 2;
