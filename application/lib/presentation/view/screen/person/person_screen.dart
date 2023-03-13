@@ -6,7 +6,7 @@ import 'package:mobile_app/domain/model/person/person_tales_tab_data.dart';
 import 'package:mobile_app/domain/model/person/value_objects/person_name.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
 import 'package:mobile_app/domain/value_objects/url_string.dart';
-import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
+import 'package:mobile_app/data/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/view/screen/manager_view_mixin.dart';
 import 'package:mobile_app/presentation/view/screen/person/manager/person_screen_manager.dart';

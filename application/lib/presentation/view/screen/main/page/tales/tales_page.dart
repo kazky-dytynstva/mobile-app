@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/domain/model/sort_and_filter/filter_type.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
-import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
+import 'package:mobile_app/data/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/view/screen/main/page/tales/manager/tales_page_manager.dart';
 import 'package:mobile_app/presentation/view/screen/main/page/tales/widget/tales_page_bottom_buttons.dart';

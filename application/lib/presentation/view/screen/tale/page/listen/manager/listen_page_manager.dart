@@ -18,10 +18,10 @@ import 'package:mobile_app/domain/navigation/snackbar_controller.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
-import 'package:mobile_app/infrastructure/helper/player/audio_player.dart';
-import 'package:mobile_app/infrastructure/use_case/loop_mode/save_loop_mode_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/loop_mode/set_initial_loop_mode_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/rate_tale_use_case.dart';
+import 'package:mobile_app/data/helper/player/audio_player.dart';
+import 'package:mobile_app/data/use_case/loop_mode/save_loop_mode_use_case.dart';
+import 'package:mobile_app/data/use_case/loop_mode/set_initial_loop_mode_use_case.dart';
+import 'package:mobile_app/data/use_case/tale/rate_tale_use_case.dart';
 import 'package:mobile_app/presentation/navigation/dialog/dialog_controller.dart';
 import 'package:mobile_app/presentation/view/screen/tale/manager/tale_screen_manager.dart';
 

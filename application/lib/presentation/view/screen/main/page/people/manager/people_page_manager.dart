@@ -7,10 +7,10 @@ import 'package:mobile_app/domain/model/person/value_objects/person_id.dart';
 import 'package:mobile_app/domain/model/tale_crew/tale_crew_role.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
-import 'package:mobile_app/infrastructure/use_case/people/get_people_by_role_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/people/get_people_page_tab_data_list_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/people/listen_people_changes_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/person/change_person_fav_use_case.dart';
+import 'package:mobile_app/data/use_case/people/get_people_by_role_use_case.dart';
+import 'package:mobile_app/data/use_case/people/get_people_page_tab_data_list_use_case.dart';
+import 'package:mobile_app/data/use_case/people/listen_people_changes_use_case.dart';
+import 'package:mobile_app/data/use_case/person/change_person_fav_use_case.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 
 part 'people_page_manager.freezed.dart';

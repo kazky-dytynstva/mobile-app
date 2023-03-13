@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:mobile_app/data/data_source/storage_local/tale/entity/tale_entity.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/model/changed_data/changed_data.dart';
-import 'package:mobile_app/infrastructure/data_source/storage_local/tale/entity/rating/rating_entity.dart';
-
-import '../../../infrastructure/data_source/storage_local/tale/entity/tale_entity.dart';
+import 'package:mobile_app/data/data_source/storage_local/tale/entity/rating/rating_entity.dart';
 
 abstract class TaleStorage {
   Future<bool> isEmpty();

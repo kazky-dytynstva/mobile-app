@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:mobile_app/infrastructure/util/debouncer.dart';
-import 'package:mobile_app/infrastructure/util/throttling.dart';
+import 'package:mobile_app/data/util/debouncer.dart';
+import 'package:mobile_app/data/util/throttling.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 
 enum HideDirection {

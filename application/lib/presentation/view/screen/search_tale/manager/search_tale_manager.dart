@@ -12,11 +12,11 @@ import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/change_tale_fav.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/get_random_tale_name_and_author_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/get_tale_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/search_tales_use_case.dart';
-import 'package:mobile_app/infrastructure/util/debouncer.dart';
+import 'package:mobile_app/data/use_case/tale/change_tale_fav.dart';
+import 'package:mobile_app/data/use_case/tale/get_random_tale_name_and_author_use_case.dart';
+import 'package:mobile_app/data/use_case/tale/get_tale_use_case.dart';
+import 'package:mobile_app/data/use_case/tale/search_tales_use_case.dart';
+import 'package:mobile_app/data/util/debouncer.dart';
 import 'package:mobile_app/presentation/navigation/dialog/dialog_controller.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 

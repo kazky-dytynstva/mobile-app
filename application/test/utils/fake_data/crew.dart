@@ -1,4 +1,4 @@
-import 'package:mobile_app/infrastructure/data_source/storage_local/tale/entity/crew/crew_entity.dart';
+import 'package:mobile_app/data/data_source/storage_local/tale/entity/crew/crew_entity.dart';
 
 final TaleCrewEntity crewNullable = getCrewEntity(
   authors: null,

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_app/domain/model/sort_and_filter/filter_type.dart';
 import 'package:mobile_app/domain/model/sort_and_filter/sort_type.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
-import 'package:mobile_app/infrastructure/use_case/tale_sort_and_filter/save_sort_and_filter_use_case.dart';
+import 'package:mobile_app/data/use_case/tale_sort_and_filter/save_sort_and_filter_use_case.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../utils/mocks/mocks.dart';

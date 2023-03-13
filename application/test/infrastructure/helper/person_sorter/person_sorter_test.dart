@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_app/domain/constant/alphabet.dart';
 import 'package:mobile_app/domain/model/person/person.dart';
-import 'package:mobile_app/infrastructure/helper/person_sorter/person_sorter.dart';
+import 'package:mobile_app/data/helper/person_sorter/person_sorter.dart';
 
 import '../../../utils/utils.dart';
 

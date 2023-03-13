@@ -9,7 +9,7 @@ import 'package:mobile_app/domain/model/player/countdown_time.dart';
 import 'package:mobile_app/domain/model/player/loop_mode.dart';
 import 'package:mobile_app/domain/model/player/playlist_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
-import 'package:mobile_app/infrastructure/helper/player/audio_player_impl.dart';
+import 'package:mobile_app/data/helper/player/audio_player_impl.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../utils/utils.dart';

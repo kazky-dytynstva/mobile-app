@@ -3,7 +3,7 @@ import 'package:mobile_app/domain/data_source/storage_local/tale_storage.dart';
 import 'package:mobile_app/domain/model/player/playlist_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/mapper/player/tale_audio_to_audio_source_mapper.dart';
+import 'package:mobile_app/data/mapper/player/tale_audio_to_audio_source_mapper.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../utils/utils.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_app/domain/model/tale_crew/tale_crew_role.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/mapper/people/crew_role_to_plural_label_mapper.dart';
+import 'package:mobile_app/data/mapper/people/crew_role_to_plural_label_mapper.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 
 void main() {

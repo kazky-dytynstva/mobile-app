@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_app/domain/data_source/storage_local/settings_storage.dart';
 import 'package:mobile_app/domain/model/app_theme/app_theme.dart';
-import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
+import 'package:mobile_app/data/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 
 typedef AppBuilder = Widget Function();

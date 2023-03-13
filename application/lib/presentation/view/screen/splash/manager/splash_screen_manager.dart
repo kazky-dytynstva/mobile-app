@@ -5,12 +5,12 @@ import 'package:mobile_app/domain/model/forced_update_info/forced_update_info.da
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
 import 'package:mobile_app/domain/value_objects/string_not_empty.dart';
-import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
-import 'package:mobile_app/infrastructure/helper/tracking/tracker_group.dart';
-import 'package:mobile_app/infrastructure/use_case/app_start_count/increment_app_starts_count_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/init_remote_configs/init_remote_configs.dart';
-import 'package:mobile_app/infrastructure/use_case/prepare_content/prepare_content_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/storage/check_app_version_changed_use_case.dart';
+import 'package:mobile_app/data/di/dependency_injection.dart';
+import 'package:mobile_app/data/helper/tracking/tracker_group.dart';
+import 'package:mobile_app/data/use_case/app_start_count/increment_app_starts_count_use_case.dart';
+import 'package:mobile_app/data/use_case/init_remote_configs/init_remote_configs.dart';
+import 'package:mobile_app/data/use_case/prepare_content/prepare_content_use_case.dart';
+import 'package:mobile_app/data/use_case/storage/check_app_version_changed_use_case.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 

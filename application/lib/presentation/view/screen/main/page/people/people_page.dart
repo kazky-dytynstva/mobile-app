@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/domain/model/app_tab/app_tab_data.dart';
 import 'package:mobile_app/domain/model/people/people_page_tab_data.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
+import 'package:mobile_app/data/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/view/screen/main/page/people/manager/people_page_manager.dart';
 import 'package:mobile_app/presentation/view/screen/main/page/people/widget/role_people_tab_page.dart';
 import 'package:mobile_app/presentation/view/screen/manager_view_mixin.dart';

@@ -7,11 +7,11 @@ import 'package:mobile_app/domain/feature_flag/feature_flag_provider.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
-import 'package:mobile_app/infrastructure/helper/player/audio_player.dart';
-import 'package:mobile_app/infrastructure/helper/tracking/tracker_group.dart';
-import 'package:mobile_app/infrastructure/use_case/audio/stop_playing_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/menu/listen_show_menu_dot_use_case.dart';
-import 'package:mobile_app/infrastructure/use_case/tale/get_tale_use_case.dart';
+import 'package:mobile_app/data/helper/player/audio_player.dart';
+import 'package:mobile_app/data/helper/tracking/tracker_group.dart';
+import 'package:mobile_app/data/use_case/audio/stop_playing_use_case.dart';
+import 'package:mobile_app/data/use_case/menu/listen_show_menu_dot_use_case.dart';
+import 'package:mobile_app/data/use_case/tale/get_tale_use_case.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 import 'package:mobile_app/presentation/view/screen/main/model/main_screen_page.dart';
 

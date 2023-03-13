@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:mobile_app/domain/value_objects/image_url.dart';
-import 'package:mobile_app/infrastructure/data_source/network_connection/network_connection.dart';
-import 'package:mobile_app/infrastructure/di/dependency_injection.dart';
+import 'package:mobile_app/data/data_source/network_connection/network_connection.dart';
+import 'package:mobile_app/data/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/widget/svg_widget.dart';
 

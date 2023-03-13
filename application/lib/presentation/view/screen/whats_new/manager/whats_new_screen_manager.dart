@@ -10,7 +10,7 @@ import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
 import 'package:mobile_app/domain/value_objects/string_not_empty.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
-import 'package:mobile_app/infrastructure/env_config/env_config.dart';
+import 'package:mobile_app/data/env_config/env_config.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 
