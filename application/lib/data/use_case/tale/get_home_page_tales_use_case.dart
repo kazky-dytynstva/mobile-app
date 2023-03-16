@@ -41,7 +41,20 @@ class GetHomePageTalesUseCase
 
     final sorted = _getSorted(allItems, input);
     final filtered = sorted.sublist(0, input._requestedAmount);
-    yield filtered..shuffle();
+    yield _getMixed(filtered, input);
+  }
+
+  List<TalesPageItemData> _getMixed(
+    List<TalesPageItemData> allItems,
+    GetHomePageTalesInput input,
+  ) {
+    switch (input._type) {
+      case _GetHomePageTalesType.latest:
+        return allItems..shuffle();
+      case _GetHomePageTalesType.random:
+      case _GetHomePageTalesType.bestRating:
+        return allItems;
+    }
   }
 
   List<TalesPageItemData> _getSorted(
