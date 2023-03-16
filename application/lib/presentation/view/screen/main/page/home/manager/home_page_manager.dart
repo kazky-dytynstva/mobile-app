@@ -104,7 +104,7 @@ class HomePageManager extends Cubit<HomePageState> {
         final index = list.indexWhere((tale) => tale.id == deletedTaleId);
         if (index == -1) continue;
         list.removeAt(index);
-        _stateUpdateTimestamp = DateTime.now();
+        _resetUpdateTimestamp();
       }
       _updateStateController.add(dry);
     }
@@ -112,10 +112,13 @@ class HomePageManager extends Cubit<HomePageState> {
     void taleUpdated(TalesPageItemData updated) {
       for (final list in _allListsTogether) {
         final index = list.indexWhere((tale) => tale.id == updated.id);
-        if (index == -1) continue;
+        if (index == -1) {
+          _addTaleIfItIsNewest(updated);
+          continue;
+        }
         list.removeAt(index);
         list.insert(index, updated);
-        _stateUpdateTimestamp = DateTime.now();
+        _resetUpdateTimestamp();
       }
       _updateStateController.add(dry);
     }
@@ -170,4 +173,24 @@ class HomePageManager extends Cubit<HomePageState> {
         HomeListItemData.bestRating(tales: _talesRating),
         HomeListItemData.latest(tales: _talesLatest),
       ];
+
+  void _addTaleIfItIsNewest(TalesPageItemData taleToAdd) {
+    final listToCheck = _talesLatest;
+
+    if (listToCheck.indexWhere((tale) => tale.id == taleToAdd.id) >= 0) return;
+
+    final latestCreateMin = listToCheck
+        .map((tale) => tale.createDate)
+        .reduce((value, element) => value.isBefore(element) ? value : element);
+
+    if (taleToAdd.createDate.isBefore(latestCreateMin)) return;
+
+    final indexToInsert = listToCheck
+        .indexWhere((tale) => taleToAdd.createDate.isAfter(tale.createDate));
+
+    listToCheck.insert(indexToInsert, taleToAdd);
+    _resetUpdateTimestamp();
+  }
+
+  void _resetUpdateTimestamp() => _stateUpdateTimestamp = DateTime.now();
 }
