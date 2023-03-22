@@ -31,7 +31,7 @@ class WhatsNewScreenManager extends Cubit<WhatsNewScreenState> {
   void init() {
     final changes = [
       _get5_6_1(),
-      _get5_6_0(isHomePageEnabled: true),
+      _get5_6_0(),
       _get5_5_4(),
       _get5_5_0(),
       _get5_4_2(),
