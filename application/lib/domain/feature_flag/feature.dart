@@ -6,12 +6,6 @@ enum Feature {
     desc:
         'Used to `hide` donation from the googlePlay/appStore during release ☺️.'
         '\nDO NOT DELETE!',
-  ),
-  homePage(
-    'flag_home_page_enabled',
-    true,
-    Owner.Andrii,
-    desc: 'Used to `show` home page on the home screen',
   );
 
   /// Used as keyID + in firebase remote configs
