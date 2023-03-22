@@ -8,6 +8,5 @@ abstract class TalesPageState with _$TalesPageState {
     required TaleFilterItemData filterData,
     required TaleSortItemData sortData,
     required List<TalesPageItemData> tales,
-    required bool showRandom,
   }) = TalesPageStateReady;
 }

@@ -63,7 +63,7 @@ class _TalesPageState extends State<TalesPage>
     );
     final bottomBar = Positioned.fill(
       top: null,
-      child: _createBottomButtons(showRandom: state.showRandom),
+      child: _createBottomButtons(),
     );
     return Stack(
       children: [
@@ -106,13 +106,11 @@ class _TalesPageState extends State<TalesPage>
         isFavList: filterType.isFav,
       );
 
-  Widget _createBottomButtons({required bool showRandom}) {
+  Widget _createBottomButtons() {
     final buttons = TalesPageBottomButtons(
       onFilterPressed: _manager.onFilterPressed,
       onSortPressed: _manager.onSortPressed,
-      onRandomPressed: _manager.onRandomTalePressed,
       onSearchPressed: _manager.onSearchPressed,
-      showRandom: showRandom,
     );
     return HideWhenScroll(
       controller: _scrollController,

@@ -156,7 +156,6 @@ class TalesPageManager extends Cubit<TalesPageState> {
       filterData: filterData,
       sortData: sortData,
       tales: List.from(filteredAndSorted),
-      showRandom: false,
     );
     emit(newState);
   }
