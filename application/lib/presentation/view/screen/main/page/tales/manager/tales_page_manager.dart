@@ -51,7 +51,6 @@ class TalesPageManager extends Cubit<TalesPageState> {
   final UseCase<TaleId, GetTaleOutput> _getTaleUseCase;
   final UseCase<FilterAndSortTalesInput, FilterAndSortTalesOutput>
       _filterAndSortTalesUseCase;
-  final UseCase<Dry, TalesPageItemData> _getRandomTale;
   final Mapper<TaleFilterType, StringSingleLine> _filterTypeToNameMapper;
   final Mapper<TaleFilterType, SvgAssetGraphic> _filterTypeToIconMapper;
   final Mapper<TaleSortType, StringSingleLine> _sortTypeToNameMapper;
@@ -67,7 +66,6 @@ class TalesPageManager extends Cubit<TalesPageState> {
     this._listenAllTalesUseCase,
     this._filterAndSortTalesUseCase,
     this._getTaleUseCase,
-    this._getRandomTale,
     this._listenSortTypeChangeOutput,
     this._listenFilterTypeChangeOutput,
     this._filterTypeToNameMapper,
@@ -83,7 +81,6 @@ class TalesPageManager extends Cubit<TalesPageState> {
   late TaleSortType _sortType;
   final _allTales = <TalesPageItemData>[];
   final _subscriptions = UseCaseSubscriptionGroup();
-  TaleId? _showRandomTaleId;
 
   @override
   Future<void> close() async {
@@ -103,14 +100,7 @@ class TalesPageManager extends Cubit<TalesPageState> {
 
   void onTalePressed(TalesPageItemData item) async {
     _tracker.event(TrackingEvents.talesPageTalePressed);
-    _showRandomTaleId = null;
     _openTale(item);
-  }
-
-  void onRandomTalePressed() {
-    _tracker.event(TrackingEvents.talesPageRandomPressed);
-    _showRandomTaleId = null;
-    _getRandomTale.call(dry).then(_showRandomTaleDialog);
   }
 
   void onSearchPressed() {
@@ -175,9 +165,6 @@ class TalesPageManager extends Cubit<TalesPageState> {
         _allTales.remove(tale);
         _allTales.add(item);
         _updateTaleController.add(dry);
-        if (_showRandomTaleId == item.id) {
-          _showRandomTaleDialog(item);
-        }
       }
     }
 
@@ -230,23 +217,6 @@ class TalesPageManager extends Cubit<TalesPageState> {
       openType: openType,
       sortType: _sortType,
       filterType: _filterType,
-    );
-  }
-
-  void _showRandomTaleDialog(TalesPageItemData tale) {
-    _dialogController.showRandomTale(
-      tale,
-      onFavPressed: () {
-        _tracker.event(TrackingEvents.talesPageRandomTaleFavPressed);
-        _showRandomTaleId = tale.id;
-        onTaleFavPressed(tale);
-        _changeTaleFav(tale);
-      },
-      onReadPressed: () {
-        _tracker.event(TrackingEvents.talesPageRandomTaleOpenPressed);
-        _openTale(tale);
-      },
-      onNextPressed: onRandomTalePressed,
     );
   }
 
