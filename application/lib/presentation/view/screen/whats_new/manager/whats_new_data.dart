@@ -7,14 +7,13 @@ VersionChanges _get5_6_1() => VersionChanges(
       ],
     );
 
-VersionChanges _get5_6_0({required bool isHomePageEnabled}) => VersionChanges(
+VersionChanges _get5_6_0() => VersionChanges(
       _version('5.6.0'),
       [
-        if (isHomePageEnabled)
-          _item(
-            '🏡 ${R.strings.whatsNew.homePage}',
-            desc: R.strings.whatsNew.homePageDesc,
-          ),
+        _item(
+          '🏡 ${R.strings.whatsNew.homePage}',
+          desc: R.strings.whatsNew.homePageDesc,
+        ),
         _item(
           '⏱️🎵 ${R.strings.whatsNew.newCountdownTimeItems}',
           desc: R.strings.whatsNew.newCountdownTimeItemsDesc,

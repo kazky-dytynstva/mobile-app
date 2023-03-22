@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/model/rating/rating_data.dart';
 import 'package:mobile_app/domain/model/rating/rating_type.dart';
-import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
 import 'package:mobile_app/presentation/view/dialog/audio_countdown_dialog.dart';
 import 'package:mobile_app/presentation/view/dialog/tale_more_dialog.dart';
@@ -34,13 +33,6 @@ abstract class DialogController {
   void showConfirmRateTale(
     RatingType type, {
     required VoidCallback onConfirmPressed,
-  });
-
-  void showRandomTale(
-    TalesPageItemData tale, {
-    required VoidCallback onReadPressed,
-    required VoidCallback onFavPressed,
-    required VoidCallback onNextPressed,
   });
 
   void showTaleMore({

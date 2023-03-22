@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:bloc/bloc.dart';
-import 'package:mobile_app/domain/feature_flag/feature.dart';
-import 'package:mobile_app/domain/feature_flag/feature_flag_provider.dart';
 import 'package:mobile_app/domain/model/rating/rating_data.dart';
 import 'package:mobile_app/domain/model/sort_and_filter/data/sort_and_filter_open_type.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
@@ -53,11 +51,9 @@ class TalesPageManager extends Cubit<TalesPageState> {
   final UseCase<TaleId, GetTaleOutput> _getTaleUseCase;
   final UseCase<FilterAndSortTalesInput, FilterAndSortTalesOutput>
       _filterAndSortTalesUseCase;
-  final UseCase<Dry, TalesPageItemData> _getRandomTale;
   final Mapper<TaleFilterType, StringSingleLine> _filterTypeToNameMapper;
   final Mapper<TaleFilterType, SvgAssetGraphic> _filterTypeToIconMapper;
   final Mapper<TaleSortType, StringSingleLine> _sortTypeToNameMapper;
-  final FeatureFlagProvider _featureFlagProvider;
   final Tracker _tracker;
 
   TalesPageManager(
@@ -70,13 +66,11 @@ class TalesPageManager extends Cubit<TalesPageState> {
     this._listenAllTalesUseCase,
     this._filterAndSortTalesUseCase,
     this._getTaleUseCase,
-    this._getRandomTale,
     this._listenSortTypeChangeOutput,
     this._listenFilterTypeChangeOutput,
     this._filterTypeToNameMapper,
     this._sortTypeToNameMapper,
     this._filterTypeToIconMapper,
-    this._featureFlagProvider,
     this._tracker,
   ) : super(const TalesPageState.initial()) {
     _init();
@@ -87,7 +81,6 @@ class TalesPageManager extends Cubit<TalesPageState> {
   late TaleSortType _sortType;
   final _allTales = <TalesPageItemData>[];
   final _subscriptions = UseCaseSubscriptionGroup();
-  TaleId? _showRandomTaleId;
 
   @override
   Future<void> close() async {
@@ -107,14 +100,7 @@ class TalesPageManager extends Cubit<TalesPageState> {
 
   void onTalePressed(TalesPageItemData item) async {
     _tracker.event(TrackingEvents.talesPageTalePressed);
-    _showRandomTaleId = null;
     _openTale(item);
-  }
-
-  void onRandomTalePressed() {
-    _tracker.event(TrackingEvents.talesPageRandomPressed);
-    _showRandomTaleId = null;
-    _getRandomTale.call(dry).then(_showRandomTaleDialog);
   }
 
   void onSearchPressed() {
@@ -156,12 +142,10 @@ class TalesPageManager extends Cubit<TalesPageState> {
       _sortType,
       _sortTypeToNameMapper.map(_sortType),
     );
-    final homePageEnabled = _featureFlagProvider.isEnabled(Feature.homePage);
     final newState = TalesPageState.ready(
       filterData: filterData,
       sortData: sortData,
       tales: List.from(filteredAndSorted),
-      showRandom: !homePageEnabled,
     );
     emit(newState);
   }
@@ -181,9 +165,6 @@ class TalesPageManager extends Cubit<TalesPageState> {
         _allTales.remove(tale);
         _allTales.add(item);
         _updateTaleController.add(dry);
-        if (_showRandomTaleId == item.id) {
-          _showRandomTaleDialog(item);
-        }
       }
     }
 
@@ -236,23 +217,6 @@ class TalesPageManager extends Cubit<TalesPageState> {
       openType: openType,
       sortType: _sortType,
       filterType: _filterType,
-    );
-  }
-
-  void _showRandomTaleDialog(TalesPageItemData tale) {
-    _dialogController.showRandomTale(
-      tale,
-      onFavPressed: () {
-        _tracker.event(TrackingEvents.talesPageRandomTaleFavPressed);
-        _showRandomTaleId = tale.id;
-        onTaleFavPressed(tale);
-        _changeTaleFav(tale);
-      },
-      onReadPressed: () {
-        _tracker.event(TrackingEvents.talesPageRandomTaleOpenPressed);
-        _openTale(tale);
-      },
-      onNextPressed: onRandomTalePressed,
     );
   }
 

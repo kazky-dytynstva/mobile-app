@@ -2,8 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:mobile_app/domain/feature_flag/feature.dart';
-import 'package:mobile_app/domain/feature_flag/feature_flag_provider.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
@@ -30,7 +28,6 @@ class MainScreenManager extends Cubit<MainScreenState> {
   final UseCase<Dry, StopPlayingOutput> _stopPlayingUseCase;
   final UseCase<TaleId, GetTaleOutput> _getTaleUseCase;
   final AudioPlayer _player;
-  final FeatureFlagProvider _featureProvider;
 
   MainScreenManager(
     this._screenController,
@@ -40,7 +37,6 @@ class MainScreenManager extends Cubit<MainScreenState> {
     this._stopPlayingUseCase,
     this._getTaleUseCase,
     this._listenShowMenuDotUseCase,
-    this._featureProvider,
   ) : super(const MainScreenState.initial()) {
     _init();
   }
@@ -60,17 +56,9 @@ class MainScreenManager extends Cubit<MainScreenState> {
   void _init() {
     final pages = MainScreenPage.values.toList();
 
-    final showHome = _featureProvider.isEnabled(Feature.homePage);
-
-    if (!showHome) {
-      pages.remove(MainScreenPage.home);
-    }
-
-    final currentPage = showHome ? MainScreenPage.home : MainScreenPage.tales;
-
     final ready = MainScreenState.ready(
       pages: pages,
-      currentPage: currentPage,
+      currentPage: MainScreenPage.home,
       activeAudioTaleOption: const None(),
       showMenuDot: false,
     );

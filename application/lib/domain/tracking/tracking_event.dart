@@ -85,18 +85,12 @@ abstract class TrackingEvents {
       TrackingEvent._("tales_page_filter_pressed");
   static const TrackingEvent talesPageSortPressed =
       TrackingEvent._("tales_page_sort_pressed");
-  static const TrackingEvent talesPageRandomPressed =
-      TrackingEvent._("tales_page_random_pressed");
   static const TrackingEvent talesPageSearchPressed =
       TrackingEvent._("tales_page_search_pressed");
   static const TrackingEvent talesPageTalePressed =
       TrackingEvent._("tales_page_tale_pressed");
   static const TrackingEvent talesPageTaleRatingPressed =
       TrackingEvent._("tales_page_tale_rating_pressed");
-  static const TrackingEvent talesPageRandomTaleFavPressed =
-      TrackingEvent._("tales_page_random_tale_fav_pressed");
-  static const TrackingEvent talesPageRandomTaleOpenPressed =
-      TrackingEvent._("tales_page_random_tale_open_pressed");
 
   //endregion talePage
   static const TrackingEvent homePageTalePressed =
