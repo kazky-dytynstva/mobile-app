@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:mobile_app/domain/feature_flag/feature.dart';
-import 'package:mobile_app/domain/feature_flag/feature_flag_provider.dart';
 import 'package:mobile_app/domain/model/app_version/app_version.dart';
 import 'package:mobile_app/domain/model/show_dot/show_dot_type.dart';
 import 'package:mobile_app/domain/model/version_changes/version_changes.dart';
@@ -24,19 +22,16 @@ part 'whats_new_screen_manager.freezed.dart';
 class WhatsNewScreenManager extends Cubit<WhatsNewScreenState> {
   final ScreenController _screenController;
   final UseCase<ShowDotType, Dry> _setShowDotTypeWatchedUseCase;
-  final FeatureFlagProvider _featureFlagProvider;
 
   WhatsNewScreenManager(
     this._screenController,
     this._setShowDotTypeWatchedUseCase,
-    this._featureFlagProvider,
   ) : super(const WhatsNewScreenState.init());
 
   void init() {
-    final isHomePageEnabled = _featureFlagProvider.isEnabled(Feature.homePage);
     final changes = [
       _get5_6_1(),
-      _get5_6_0(isHomePageEnabled: isHomePageEnabled),
+      _get5_6_0(isHomePageEnabled: true),
       _get5_5_4(),
       _get5_5_0(),
       _get5_4_2(),
