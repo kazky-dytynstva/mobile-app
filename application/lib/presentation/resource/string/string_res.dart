@@ -320,10 +320,6 @@ class _StringResDialog {
 
   String get switchToWiFiTitle => 'Увага !!!';
 
-  String get randomTaleTitle => 'Випадкова казка';
-
-  String get randomTaleNext => 'Наступна';
-
   String get reportTaleTitle => 'Щось не так з казкою?';
 
   String get reportTaleMsg => 'Знайшли помилку?\n'
