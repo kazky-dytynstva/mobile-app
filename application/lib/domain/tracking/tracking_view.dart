@@ -38,8 +38,6 @@ abstract class TrackingViews {
       TrackingView._("dialog_confirm_delete_all_audio");
   static const TrackingView dialogSwitchToWiFi =
       TrackingView._("dialog_switch_to_wi_fi");
-  static const TrackingView dialogRandomTale =
-      TrackingView._("dialog_random_tale");
   static const TrackingView dialogTaleMoreMenu =
       TrackingView._("dialog_tale_more_menu");
   static const TrackingView dialogTaleReportIssue =
