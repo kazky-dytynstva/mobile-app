@@ -9,6 +9,7 @@ import 'package:mobile_app/domain/model/rating/rating_data.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
+import 'package:mobile_app/domain/model/user_action/user_action_request.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/data/use_case/tale/change_tale_fav.dart';
@@ -33,6 +34,7 @@ class HomePageManager extends Cubit<HomePageState> {
   final UseCase<TaleId, GetTaleOutput> _getTaleUseCase;
   final UseCase<GetHomePageTalesInput, GetHomePageTalesOutput>
       _getHomePageTales;
+  final UseCase<Dry, UserActionRequest?> _getUserActionRequestUseCase;
   final Tracker _tracker;
   final _allListsTogether = <List<TalesPageItemData>>[];
   final _talesRandom = <TalesPageItemData>[];
@@ -46,6 +48,7 @@ class HomePageManager extends Cubit<HomePageState> {
     this._listenAllTalesUseCase,
     this._getTaleUseCase,
     this._changeTaleFavUseCase,
+    this._getUserActionRequestUseCase,
     this._getHomePageTales,
     this._tracker,
   ) : super(const HomePageState.initial()) {
@@ -54,6 +57,7 @@ class HomePageManager extends Cubit<HomePageState> {
 
   final _updateStateController = StreamController<Dry>();
   final _subscriptionGroup = UseCaseSubscriptionGroup();
+  UserActionRequest? _userActionRequest;
 
   @override
   Future<void> close() async {
@@ -66,6 +70,7 @@ class HomePageManager extends Cubit<HomePageState> {
     _updateState(dry);
     _addListeners();
     _prepareTales();
+    _prepareUserActionRequest();
   }
 
   void onTalePressed(TalesPageItemData item) async {
@@ -168,11 +173,24 @@ class HomePageManager extends Cubit<HomePageState> {
     ));
   }
 
-  List<HomeListItemData> _createDataItems() => [
-        HomeListItemData.random(tales: _talesRandom),
-        HomeListItemData.bestRating(tales: _talesRating),
-        HomeListItemData.latest(tales: _talesLatest),
-      ];
+  void _prepareUserActionRequest() async {
+    final actionRequest = await _getUserActionRequestUseCase.call(dry);
+    if (actionRequest == null) return;
+    _userActionRequest = actionRequest;
+    _stateUpdateTimestamp = DateTime.now();
+    _updateStateController.add(dry);
+  }
+
+  List<HomeListItemData> _createDataItems() {
+    final actionRequest = _userActionRequest;
+    return [
+      HomeListItemData.random(tales: _talesRandom),
+      if (actionRequest != null)
+        HomeListItemData.userActionRequest(actionRequest: actionRequest),
+      HomeListItemData.bestRating(tales: _talesRating),
+      HomeListItemData.latest(tales: _talesLatest),
+    ];
+  }
 
   void _addTaleIfItIsNewest(TalesPageItemData taleToAdd) {
     final listToCheck = _talesLatest;
