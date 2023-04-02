@@ -61,7 +61,7 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
     return AnimatedSizeAndFade.showHide(
       show: showItem,
       fadeDuration: R.durations.animLong,
-      sizeDuration: R.durations.animLong,
+      sizeDuration: R.durations.animMiddle,
       child: withPadding,
     );
   }
