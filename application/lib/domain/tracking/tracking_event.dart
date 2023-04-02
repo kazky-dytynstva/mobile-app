@@ -99,6 +99,14 @@ abstract class TrackingEvents {
       TrackingEvent._("home_page_tale_rating_pressed");
   static const TrackingEvent homePageFavTalePressed =
       TrackingEvent._("home_page_fav_tale_pressed");
+  static const TrackingEvent homePageUserRatePressed =
+      TrackingEvent._("home_page_user_rate_pressed");
+  static const TrackingEvent homePageUserSharePressed =
+      TrackingEvent._("home_page_user_share_pressed");
+  static const TrackingEvent homePageUserSupportPressed =
+      TrackingEvent._("home_page_user_support_pressed");
+  static const TrackingEvent homePageUserDynamicPressed =
+      TrackingEvent._("home_page_user_dynamic_pressed");
 
   //endregion homePage
 
