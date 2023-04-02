@@ -87,6 +87,18 @@ class HomePageManager extends Cubit<HomePageState> {
     );
   }
 
+  void onUserCtaPressed(UserActionRequest actionRequest) {
+    final event = actionRequest.map(
+      rate: (_) => TrackingEvents.homePageUserRatePressed,
+      share: (_) => TrackingEvents.homePageUserSharePressed,
+      support: (_) => TrackingEvents.homePageUserSupportPressed,
+      dynamic: (_) => TrackingEvents.homePageUserDynamicPressed,
+    );
+
+    _tracker.event(event);
+    // do something
+  }
+
   void onTaleFavPressed(TalesPageItemData item) {
     _tracker.event(TrackingEvents.homePageFavTalePressed);
     final input = ChangeTaleFavInput(item.id, !item.isFav);
