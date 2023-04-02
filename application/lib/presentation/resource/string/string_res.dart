@@ -96,6 +96,30 @@ class _StringResMain {
   String get homeItemsLatest => '🎊 Останні додані казки';
 
   String get homeItemsBestRating => '😍 Казки з найкращим рейтингом';
+
+  String get homeItemsUserActionRequest => '👋 Комунікація з Вами';
+
+  String get userActionRequestTitleShare => 'Поділіться застосунком';
+
+  String get userActionRequestMessageShare =>
+      'Допоможіть Вашим друзям, в яких туж є малюки!\n'
+      'Розкажіть їм про цей застосунок 😉';
+
+  String get userActionRequestCtaShare => 'Поділитись';
+
+  String get userActionRequestTitleRate => 'Подобається застосунок? 😊';
+
+  String get userActionRequestMessageRate => 'Оцініть його!\n'
+      'Розкажіть іншим батькам про свій позитивний доствід і поставте 5 зірочок 🙏';
+
+  String get userActionRequestCtaRate => 'Оцінити';
+
+  String get userActionRequestTitleSupport => 'Подобається застосунок? 😊';
+
+  String get userActionRequestMessageSupport => 'Підтримайте нас фінансофо 🙏\n'
+      'Застосунок є, був і буде безкоштовним! Проте на його розробку і підтримку йде чимало людино-годин...';
+
+  String get userActionRequestCtaSupport => 'Підтримати';
 }
 
 class _StringResSearchTale {
