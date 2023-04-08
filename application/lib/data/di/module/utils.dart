@@ -2,6 +2,7 @@ import 'package:audio_session/audio_session.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/services.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -26,6 +27,9 @@ abstract class ModuleUtils {
 
   @lazySingleton
   AssetBundle get assetBundle => rootBundle;
+
+  @lazySingleton
+  InAppReview get inAppReview => InAppReview.instance;
 
   @preResolve
   @singleton
