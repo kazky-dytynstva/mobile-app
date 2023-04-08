@@ -28,7 +28,9 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
   @override
   void initState() {
     postFrame(() {
-      showItem = true;
+      setState(() {
+        showItem = true;
+      });
     });
     super.initState();
   }
