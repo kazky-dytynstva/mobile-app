@@ -33,6 +33,7 @@ class MenuPageManager extends Cubit<MenuPageState> {
   final UseCase<ShowDotType, bool> _listenShowDotTypeUseCase;
   final UseCase<Dry, Option<MenuDynamicItemData>> _getMenuDynamicItemUseCase;
   final RemoteConfigs _remoteConfigs;
+  final UseCase<MenuDynamicItemData, Dry> _onDynamicItemClickedUseCase;
   final Tracker _tracker;
 
   MenuPageManager(
@@ -46,6 +47,7 @@ class MenuPageManager extends Cubit<MenuPageState> {
     this._listenShowDotTypeUseCase,
     this._setShowDotTypeWatchedUseCase,
     this._getMenuDynamicItemUseCase,
+    this._onDynamicItemClickedUseCase,
     this._tracker,
   ) : super(const MenuPageState.initial()) {
     _init();
@@ -126,11 +128,7 @@ class MenuPageManager extends Cubit<MenuPageState> {
     final data =
         (_stateReady.dynamicItemDataOption as Some<MenuDynamicItemData>).value;
 
-    if (data.needToOpenScreen) {
-      _screenController.openDynamicItem(data);
-    } else {
-      _openUrlUseCase.call(data.url);
-    }
+    _onDynamicItemClickedUseCase.call(data);
   }
 
   void _donatePressed() {
