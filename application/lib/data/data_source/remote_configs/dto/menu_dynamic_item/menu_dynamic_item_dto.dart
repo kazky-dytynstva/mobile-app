@@ -9,6 +9,7 @@ class MenuDynamicItemDto {
   final List<String>? points;
   final String cta;
   final String url;
+  final String? id;
 
   MenuDynamicItemDto({
     required this.title,
@@ -16,6 +17,7 @@ class MenuDynamicItemDto {
     required this.points,
     required this.cta,
     required this.url,
+    required this.id,
   });
 
   factory MenuDynamicItemDto.fromJson(Map<String, dynamic> json) =>
