@@ -104,7 +104,7 @@ class HomePageManager extends Cubit<HomePageState> {
 
   void onUserRequestHidePressed() {}
 
-  void onUserCtaPressed(UserActionRequest actionRequest) {
+  void onUserRequestCtaPressed(UserActionRequest actionRequest) {
     final event = actionRequest.map(
       appUpdate: (_) => TrackingEvents.homePageUserRatePressed,
       rate: (_) => TrackingEvents.homePageUserRatePressed,
