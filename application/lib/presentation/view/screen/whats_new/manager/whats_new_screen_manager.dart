@@ -30,6 +30,7 @@ class WhatsNewScreenManager extends Cubit<WhatsNewScreenState> {
 
   void init() {
     final changes = [
+      _get5_7_0(),
       _get5_6_1(),
       _get5_6_0(),
       _get5_5_4(),

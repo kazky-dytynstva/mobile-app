@@ -433,6 +433,11 @@ class _StringResEmail {
 }
 
 class _StringResWhatsNew {
+  String get homePageCommunication => 'Коммунікація з Вами';
+
+  String get homePageCommunicationDesc =>
+      'На головному екрані періодично будуть зʼявлятись повідомлення від нас 😊';
+
   String get bugfixAudioPlayer =>
       'Виправили критичну помилку з програванням аудіо';
 
