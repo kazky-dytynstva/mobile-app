@@ -103,6 +103,7 @@ class HomePageManager extends Cubit<HomePageState> {
   }
 
   void onUserRequestHidePressed() {
+    _tracker.event(TrackingEvents.homePageUserRequestHidePressed);
     _userActionRequest = null;
     _resetUpdateTimestamp();
     _updateStateController.add(dry);
