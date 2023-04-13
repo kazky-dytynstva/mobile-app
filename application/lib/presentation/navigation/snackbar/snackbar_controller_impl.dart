@@ -28,12 +28,14 @@ class SnackbarControllerImpl implements SnackbarController {
     String? title,
     VoidCallback? onDismiss,
     bool? blurBackground,
+    Duration? duration,
   }) =>
       _show(InfoSnackbar(
         message: message,
         title: title,
         onDismiss: onDismiss,
         blurBackground: blurBackground,
+        showDuration: duration,
       ));
 
   @override

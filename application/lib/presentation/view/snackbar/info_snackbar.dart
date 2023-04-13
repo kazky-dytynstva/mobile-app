@@ -8,12 +8,14 @@ class InfoSnackbar extends BaseSnackbar {
   final String _msg;
   final bool? blurBackground;
   final VoidCallback? onDismiss;
+  final Duration? showDuration;
 
   InfoSnackbar({
     required String message,
     String? title,
-    this.onDismiss,
-    this.blurBackground,
+    required this.onDismiss,
+    required this.blurBackground,
+    required this.showDuration,
   })  : _title = title,
         _msg = message;
 
@@ -31,4 +33,7 @@ class InfoSnackbar extends BaseSnackbar {
 
   @override
   bool get routeBlur => blurBackground ?? false;
+
+  @override
+  Duration? get duration => showDuration;
 }

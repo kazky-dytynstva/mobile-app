@@ -8,6 +8,7 @@ abstract class SnackbarController {
     String? title,
     VoidCallback? onDismiss,
     bool? blurBackground,
+    Duration? duration,
   });
 
   void showError({
