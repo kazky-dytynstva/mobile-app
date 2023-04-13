@@ -37,7 +37,7 @@ class GetUserActionRequestUseCase extends UseCase<Dry, UserActionRequest?> {
 
     final showWhatsNew =
         await _stateStorage.showDotForType(ShowDotType.whatsNew);
-    if (true) {
+    if (showWhatsNew) {
       yield const UserActionRequest.whatsNew();
       return;
     }
