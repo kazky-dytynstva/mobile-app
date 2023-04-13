@@ -99,6 +99,8 @@ abstract class TrackingEvents {
       TrackingEvent._("home_page_tale_rating_pressed");
   static const TrackingEvent homePageFavTalePressed =
       TrackingEvent._("home_page_fav_tale_pressed");
+  static const TrackingEvent homePageUserAppUpdatePressed =
+      TrackingEvent._("home_page_user_app_update_pressed");
   static const TrackingEvent homePageUserRatePressed =
       TrackingEvent._("home_page_user_rate_pressed");
   static const TrackingEvent homePageUserSharePressed =
