@@ -46,9 +46,9 @@ class GetUserActionRequestUseCase extends UseCase<Dry, UserActionRequest?> {
       return;
     }
 
-    final userRequest = (await _getRateApp()) ??
-        (await _getShareApp()) ??
-        (await _getSupportApp());
+    final userRequest = (await _getRandomRequest(_RandomRequestType.rate)) ??
+        (await _getRandomRequest(_RandomRequestType.share)) ??
+        (await _getRandomRequest(_RandomRequestType.support));
 
     yield userRequest;
   }
@@ -76,4 +76,21 @@ class GetUserActionRequestUseCase extends UseCase<Dry, UserActionRequest?> {
 
     return const UserActionRequest.support();
   }
+
+  Future<UserActionRequest?> _getRandomRequest(_RandomRequestType type) {
+    switch (type) {
+      case _RandomRequestType.support:
+        return _getSupportApp();
+      case _RandomRequestType.share:
+        return _getShareApp();
+      case _RandomRequestType.rate:
+        return _getRateApp();
+    }
+  }
+}
+
+enum _RandomRequestType {
+  support,
+  share,
+  rate,
 }
