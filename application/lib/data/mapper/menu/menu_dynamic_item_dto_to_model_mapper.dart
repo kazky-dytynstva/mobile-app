@@ -24,7 +24,7 @@ class MenuDynamicItemDtoToModelMapper
         : Some(points.map((e) => StringNonEmpty(e)).toList());
 
     return MenuDynamicItemData(
-      id: MenuDynamicItemId(input.id ?? 'id'),
+      id: MenuDynamicItemId(input.id),
       title: StringSingleLine(input.title),
       subTitleOption: subTitleOption,
       pointsOption: pointsOption,

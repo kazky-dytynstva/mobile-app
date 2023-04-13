@@ -9,7 +9,10 @@ class MenuDynamicItemDto {
   final List<String>? points;
   final String cta;
   final String url;
-  final String? id;
+  /// Seconds since epoch
+  ///
+  /// Take from https://www.unixtimestamp.com/
+  final String id;
 
   MenuDynamicItemDto({
     required this.title,
