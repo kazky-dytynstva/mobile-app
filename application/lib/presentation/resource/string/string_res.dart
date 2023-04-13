@@ -120,6 +120,8 @@ class _StringResMain {
       'Застосунок є, був і буде безкоштовним! Проте на його розробку і підтримку йде чимало людино-годин...';
 
   String get userActionRequestCtaSupport => 'Підтримати';
+
+  String get userActionRequestCtaAppUpdate => 'Оновити';
 }
 
 class _StringResSearchTale {
