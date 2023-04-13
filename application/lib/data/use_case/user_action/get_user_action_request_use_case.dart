@@ -41,7 +41,7 @@ class GetUserActionRequestUseCase extends UseCase<Dry, UserActionRequest?> {
     }
 
     final appStartsCount = await _stateStorage.getAppStartsCount();
-    if (appStartsCount < _minAppStartsCount || appStartsCount.get() % 2 != 0) {
+    if (appStartsCount < _minAppStartsCount || appStartsCount.get() % 3 != 0) {
       yield null;
       return;
     }
