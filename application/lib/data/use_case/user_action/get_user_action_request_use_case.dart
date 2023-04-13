@@ -46,24 +46,34 @@ class GetUserActionRequestUseCase extends UseCase<Dry, UserActionRequest?> {
       return;
     }
 
+    final userRequest = (await _getRateApp()) ??
+        (await _getShareApp()) ??
+        (await _getSupportApp());
+
+    yield userRequest;
+  }
+
+  Future<UserActionRequest?> _getRateApp() async {
     final rateAppClicked = await _stateStorage.isRateAppClicked();
-    if (!rateAppClicked) {
-      yield const UserActionRequest.rate();
-      return;
-    }
 
+    if (rateAppClicked) return null;
+
+    return const UserActionRequest.rate();
+  }
+
+  Future<UserActionRequest?> _getShareApp() async {
     final shareAppClicked = await _stateStorage.isShareAppClicked();
-    if (!shareAppClicked) {
-      yield const UserActionRequest.share();
-      return;
-    }
 
+    if (shareAppClicked) return null;
+
+    return const UserActionRequest.share();
+  }
+
+  Future<UserActionRequest?> _getSupportApp() async {
     final supportAppClicked = await _stateStorage.isSupportAppClicked();
-    if (!supportAppClicked) {
-      yield const UserActionRequest.support();
-      return;
-    }
 
-    yield null;
+    if (supportAppClicked) return null;
+
+    return const UserActionRequest.support();
   }
 }
