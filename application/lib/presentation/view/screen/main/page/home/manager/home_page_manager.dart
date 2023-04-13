@@ -112,7 +112,10 @@ class HomePageManager extends Cubit<HomePageState> {
     _userActionRequest?.maybeWhen(
       whatsNew: () {
         _setShowDotTypeWatchedUseCase.call(ShowDotType.whatsNew);
-        _snackbarController.showInfo(message: R.strings.main.whatsNewReviewLater);
+        _snackbarController.showInfo(
+          message: R.strings.main.whatsNewReviewLater,
+          blurBackground: true,
+        );
       },
       orElse: () {},
     );
