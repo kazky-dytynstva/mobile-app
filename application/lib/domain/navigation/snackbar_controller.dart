@@ -7,6 +7,7 @@ abstract class SnackbarController {
     required String message,
     String? title,
     VoidCallback? onDismiss,
+    bool? blurBackground,
   });
 
   void showError({
@@ -30,6 +31,7 @@ abstract class SnackbarController {
     required TaleName name,
     required VoidCallback onBringBackPressed,
   });
+
   void showBringBackFavPerson({
     required PersonName name,
     required VoidCallback onBringBackPressed,
