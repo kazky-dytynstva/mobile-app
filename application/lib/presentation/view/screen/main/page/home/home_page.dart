@@ -64,7 +64,8 @@ class _HomePageState extends State<HomePage>
           onFavPressed: _manager.onTaleFavPressed,
           onTalePressed: _manager.onTalePressed,
           onRatingPressed: _manager.onRatingPressed,
-          onUserCtaPressed: _manager.onUserCtaPressed,
+          onUserRequestCtaPressed: _manager.onUserCtaPressed,
+          onUserRequestHidePressed: _manager.onUserRequestHidePressed,
         ),
         itemCount: state.dataItems.length,
       );

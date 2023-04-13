@@ -10,10 +10,12 @@ import 'package:mobile_app/presentation/widget/button/button_secondary.dart';
 class HomeUserActionRequestItem extends StatefulWidget {
   final UserActionRequest actionRequest;
   final VoidCallback onCtaPressed;
+  final VoidCallback onHidePressed;
 
   const HomeUserActionRequestItem({
     required this.actionRequest,
     required this.onCtaPressed,
+    required this.onHidePressed,
     Key? key,
   }) : super(key: key);
 
@@ -39,7 +41,7 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
   Widget build(BuildContext context) {
     final row = Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [_buildCta()],
+      children: [_buildHideButton(), R.spaces.horizontalUnit2, _buildCta()],
     );
 
     final column = Column(
@@ -48,7 +50,10 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
       children: [
         _buildTitle(),
         _buildMsg(),
-        row,
+        Padding(
+          padding: EdgeInsets.only(top: R.dimen.unit),
+          child: row,
+        ),
       ],
     );
 
@@ -68,6 +73,11 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
     );
   }
 
+  Widget _buildHideButton() => ButtonSecondary.text(
+        R.strings.general.hide,
+        onPressed: widget.onHidePressed,
+      );
+
   Widget _buildCta() {
     final text = getCtaText();
     final icon = getCtaIcon();
@@ -76,10 +86,7 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
         : ButtonPrimary.textWithIcon(text, icon,
             onPressed: widget.onCtaPressed);
 
-    return Padding(
-      padding: EdgeInsets.only(top: R.dimen.unit),
-      child: btn,
-    );
+    return btn;
   }
 
   Widget _buildTitle() => Text(getTitleText(), style: R.styles.textHeadline);

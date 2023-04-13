@@ -30,6 +30,8 @@ class _StringResGeneral {
 
   String get close => 'Закрити';
 
+  String get hide => 'Приховати';
+
   String get cancel => 'Скасувати';
 
   String get iItMightTakeFewSecPleaseWait =>

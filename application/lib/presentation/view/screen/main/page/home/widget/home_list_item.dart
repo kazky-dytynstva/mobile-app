@@ -16,7 +16,8 @@ class HomeListItem extends StatelessWidget {
   final OnTalePressed onTalePressed;
   final OnTalePressed onFavPressed;
   final OnRatingPressed onRatingPressed;
-  final OnUserCtaPressed onUserCtaPressed;
+  final OnUserCtaPressed onUserRequestCtaPressed;
+  final VoidCallback onUserRequestHidePressed;
 
   const HomeListItem({
     required this.data,
@@ -24,7 +25,8 @@ class HomeListItem extends StatelessWidget {
     required this.onTalePressed,
     required this.onFavPressed,
     required this.onRatingPressed,
-    required this.onUserCtaPressed,
+    required this.onUserRequestCtaPressed,
+    required this.onUserRequestHidePressed,
     Key? key,
   }) : super(key: key);
 
@@ -69,7 +71,8 @@ class HomeListItem extends StatelessWidget {
   Widget _buildUserActionRequest(UserActionRequest request) =>
       HomeUserActionRequestItem(
         actionRequest: request,
-        onCtaPressed: () => onUserCtaPressed(request),
+        onCtaPressed: () => onUserRequestCtaPressed(request),
+        onHidePressed: onUserRequestHidePressed,
       );
 
   Widget _buildTaleItem(List<TalesPageItemData> tales, int index) {
