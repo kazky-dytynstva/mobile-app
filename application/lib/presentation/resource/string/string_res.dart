@@ -123,7 +123,17 @@ class _StringResMain {
 
   String get userActionRequestCtaSupport => 'Підтримати';
 
+  String get userActionRequestTitleWhatsNew => 'Застосунок було оновлено';
+
+  String get userActionRequestMessageWhatsNew =>
+      'Хочете дізнатись що змінилось? 😜';
+
+  String get userActionRequestCtaWhatsNew => 'Дізнатись';
+
   String get userActionRequestCtaAppUpdate => 'Оновити';
+
+  String get whatsNewReviewLater =>
+      'Ви завжди можете ознайомитись з останніми змінами в меню застосунку 😉';
 }
 
 class _StringResSearchTale {
@@ -138,6 +148,7 @@ class _StringResSearchTale {
 
   String get searchNoResults => 'Нажаль, за Вашим запитом\n'
       'ми нічого не знайшли...';
+
 }
 
 class _StringResScreenSortAndFilter {

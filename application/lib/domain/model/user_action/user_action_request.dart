@@ -19,4 +19,6 @@ abstract class UserActionRequest with _$UserActionRequest {
   const factory UserActionRequest.dynamic({
     required MenuDynamicItemData itemData,
   }) = _Dynamic;
+
+  const factory UserActionRequest.whatsNew() = _WhatsNew;
 }

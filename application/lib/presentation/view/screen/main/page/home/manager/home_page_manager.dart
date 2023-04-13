@@ -11,10 +11,12 @@ import 'package:mobile_app/domain/model/changed_data/changed_data.dart';
 import 'package:mobile_app/domain/model/home_list_item_data/home_list_item_data.dart';
 import 'package:mobile_app/domain/model/menu_dynamic_item/menu_dynamic_item_data.dart';
 import 'package:mobile_app/domain/model/rating/rating_data.dart';
+import 'package:mobile_app/domain/model/show_dot/show_dot_type.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
 import 'package:mobile_app/domain/model/user_action/user_action_request.dart';
+import 'package:mobile_app/domain/navigation/snackbar_controller.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/data/use_case/tale/change_tale_fav.dart';
@@ -32,6 +34,7 @@ part 'home_page_state.dart';
 @injectable
 class HomePageManager extends Cubit<HomePageState> {
   final ScreenController _screenController;
+  final SnackbarController _snackbarController;
   final DialogController _dialogController;
   final UseCase<ChangeTaleFavInput, Dry> _changeTaleFavUseCase;
   final UseCase<Dry, ChangedData<TalesPageItemData, TaleId>>
@@ -44,6 +47,7 @@ class HomePageManager extends Cubit<HomePageState> {
   final UseCase<MenuDynamicItemData, Dry> _onDynamicItemClickedUseCase;
   final UseCase<Dry, OnSupportAppClickedOutput> _onAppSupportClickedUseCase;
   final UseCase<Dry, OnRateAppClickedOutput> _onAppRateClickUseCase;
+  final UseCase<ShowDotType, Dry> _setShowDotTypeWatchedUseCase;
   final AppUpdateHelper _appUpdateHelper;
   final Tracker _tracker;
   final _allListsTogether = <List<TalesPageItemData>>[];
@@ -54,6 +58,7 @@ class HomePageManager extends Cubit<HomePageState> {
 
   HomePageManager(
     this._screenController,
+    this._snackbarController,
     this._dialogController,
     this._listenAllTalesUseCase,
     this._getTaleUseCase,
@@ -63,6 +68,7 @@ class HomePageManager extends Cubit<HomePageState> {
     this._shareAppUseClickedCase,
     this._onAppRateClickUseCase,
     this._onAppSupportClickedUseCase,
+    this._setShowDotTypeWatchedUseCase,
     this._getHomePageTales,
     this._appUpdateHelper,
     this._tracker,
@@ -103,6 +109,14 @@ class HomePageManager extends Cubit<HomePageState> {
   }
 
   void onUserRequestHidePressed() {
+    _userActionRequest?.maybeWhen(
+      whatsNew: () {
+        _setShowDotTypeWatchedUseCase.call(ShowDotType.whatsNew);
+        _snackbarController.showInfo(message: R.strings.main.whatsNewReviewLater);
+      },
+      orElse: () {},
+    );
+
     _tracker.event(TrackingEvents.homePageUserRequestHidePressed);
     _userActionRequest = null;
     _resetUpdateTimestamp();
@@ -116,6 +130,7 @@ class HomePageManager extends Cubit<HomePageState> {
       share: (_) => TrackingEvents.homePageUserSharePressed,
       support: (_) => TrackingEvents.homePageUserSupportPressed,
       dynamic: (_) => TrackingEvents.homePageUserDynamicPressed,
+      whatsNew: (_) => TrackingEvents.homePageUserWhatsNewPressed,
     );
 
     _tracker.event(event);
@@ -126,6 +141,7 @@ class HomePageManager extends Cubit<HomePageState> {
       share: () => _shareAppUseClickedCase.call(dry),
       support: () => _onAppSupportClickedUseCase.call(dry),
       dynamic: (dynamicItem) => _onDynamicItemClickedUseCase.call(dynamicItem),
+      whatsNew: () => _screenController.openWhatsNew(),
     );
 
     final removeItemFromList = actionRequest.maybeMap(

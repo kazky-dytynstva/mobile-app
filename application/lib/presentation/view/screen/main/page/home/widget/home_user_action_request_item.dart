@@ -104,6 +104,7 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
         rate: () => R.strings.main.userActionRequestTitleRate,
         share: () => R.strings.main.userActionRequestTitleShare,
         support: () => R.strings.main.userActionRequestTitleSupport,
+        whatsNew: () => R.strings.main.userActionRequestTitleWhatsNew,
         appUpdate: (info) => info.title.get(),
         dynamic: (item) => item.title.get(),
       );
@@ -112,6 +113,7 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
         rate: () => R.strings.main.userActionRequestMessageRate,
         share: () => R.strings.main.userActionRequestMessageShare,
         support: () => R.strings.main.userActionRequestMessageSupport,
+        whatsNew: () => R.strings.main.userActionRequestMessageWhatsNew,
         appUpdate: (info) => '',
         dynamic: (item) => item.subTitleOption.fold(
           () => '',
@@ -124,6 +126,7 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
         share: () => R.strings.main.userActionRequestCtaShare,
         support: () => R.strings.main.userActionRequestCtaSupport,
         appUpdate: (_) => R.strings.main.userActionRequestCtaAppUpdate,
+        whatsNew: () => R.strings.main.userActionRequestCtaWhatsNew,
         dynamic: (item) => item.cta.get(),
       );
 
@@ -131,6 +134,7 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
         rate: () => R.assets.icons.star,
         share: () => R.assets.icons.share,
         support: () => R.assets.icons.support,
+        whatsNew: () => R.assets.icons.info,
         appUpdate: (info) => null,
         dynamic: (item) => null,
       );

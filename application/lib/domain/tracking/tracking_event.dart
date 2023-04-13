@@ -109,6 +109,8 @@ abstract class TrackingEvents {
       TrackingEvent._("home_page_user_support_pressed");
   static const TrackingEvent homePageUserDynamicPressed =
       TrackingEvent._("home_page_user_dynamic_pressed");
+  static const TrackingEvent homePageUserWhatsNewPressed =
+      TrackingEvent._("home_page_user_whats_new_pressed");
   static const TrackingEvent homePageUserRequestHidePressed =
       TrackingEvent._("home_page_user_request_hide_pressed");
 

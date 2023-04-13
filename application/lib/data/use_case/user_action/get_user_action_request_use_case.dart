@@ -7,6 +7,7 @@ import 'package:mobile_app/domain/data_source/storage_local/app_state_storage.da
 import 'package:mobile_app/domain/mapper/mapper.dart';
 import 'package:mobile_app/domain/model/forced_update_info/forced_update_info.dart';
 import 'package:mobile_app/domain/model/menu_dynamic_item/menu_dynamic_item_data.dart';
+import 'package:mobile_app/domain/model/show_dot/show_dot_type.dart';
 import 'package:mobile_app/domain/model/user_action/user_action_request.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 
@@ -31,6 +32,13 @@ class GetUserActionRequestUseCase extends UseCase<Dry, UserActionRequest?> {
     final appUpdateInfo = await _getForcedUpdateInfoUseCase.call(dry);
     if (appUpdateInfo != null) {
       yield UserActionRequest.appUpdate(updateInfo: appUpdateInfo);
+      return;
+    }
+
+    final showWhatsNew =
+        await _stateStorage.showDotForType(ShowDotType.whatsNew);
+    if (true) {
+      yield const UserActionRequest.whatsNew();
       return;
     }
 
