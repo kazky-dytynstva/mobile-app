@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:injectable/injectable.dart';
 import 'package:mobile_app/data/data_source/remote_configs/dto/menu_dynamic_item/menu_dynamic_item_dto.dart';
 import 'package:mobile_app/domain/data_source/remote_configs.dart';
@@ -46,9 +48,7 @@ class GetUserActionRequestUseCase extends UseCase<Dry, UserActionRequest?> {
       return;
     }
 
-    final userRequest = (await _getRandomRequest(_RandomRequestType.rate)) ??
-        (await _getRandomRequest(_RandomRequestType.share)) ??
-        (await _getRandomRequest(_RandomRequestType.support));
+    final userRequest = await _getRandom();
 
     yield userRequest;
   }
@@ -77,7 +77,7 @@ class GetUserActionRequestUseCase extends UseCase<Dry, UserActionRequest?> {
     return const UserActionRequest.support();
   }
 
-  Future<UserActionRequest?> _getRandomRequest(_RandomRequestType type) {
+  Future<UserActionRequest?> _getByRandomType(_RandomRequestType type) {
     switch (type) {
       case _RandomRequestType.support:
         return _getSupportApp();
@@ -86,6 +86,23 @@ class GetUserActionRequestUseCase extends UseCase<Dry, UserActionRequest?> {
       case _RandomRequestType.rate:
         return _getRateApp();
     }
+  }
+
+  Future<UserActionRequest?> _getRandom() async {
+    final list = List.from(_RandomRequestType.values);
+    final random = Random();
+
+    while (list.isNotEmpty) {
+      final index = random.nextInt(list.length);
+      final type = list[index];
+      final userRequest = await _getByRandomType(type);
+
+      if (userRequest != null) return userRequest;
+
+      list.remove(type);
+    }
+
+    return null;
   }
 }
 
