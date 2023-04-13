@@ -114,6 +114,7 @@ class HomePageManager extends Cubit<HomePageState> {
         _setShowDotTypeWatchedUseCase.call(ShowDotType.whatsNew);
         _snackbarController.showInfo(
           message: R.strings.main.whatsNewReviewLater,
+          duration: const Duration(seconds: 5),
           blurBackground: true,
         );
       },
