@@ -93,34 +93,38 @@ class _HomeUserActionRequestItemState extends State<HomeUserActionRequestItem> {
     );
   }
 
-  String getTitleText() => widget.actionRequest.map(
-        rate: (_) => R.strings.main.userActionRequestTitleRate,
-        share: (_) => R.strings.main.userActionRequestTitleShare,
-        support: (_) => R.strings.main.userActionRequestTitleSupport,
-        dynamic: (_) => _.itemData.title.get(),
+  String getTitleText() => widget.actionRequest.when(
+        rate: () => R.strings.main.userActionRequestTitleRate,
+        share: () => R.strings.main.userActionRequestTitleShare,
+        support: () => R.strings.main.userActionRequestTitleSupport,
+        appUpdate: (info) => info.title.get(),
+        dynamic: (item) => item.title.get(),
       );
 
-  String getMsgText() => widget.actionRequest.map(
-        rate: (_) => R.strings.main.userActionRequestMessageRate,
-        share: (_) => R.strings.main.userActionRequestMessageShare,
-        support: (_) => R.strings.main.userActionRequestMessageSupport,
-        dynamic: (_) => _.itemData.subTitleOption.fold(
+  String getMsgText() => widget.actionRequest.when(
+        rate: () => R.strings.main.userActionRequestMessageRate,
+        share: () => R.strings.main.userActionRequestMessageShare,
+        support: () => R.strings.main.userActionRequestMessageSupport,
+        appUpdate: (info) => '',
+        dynamic: (item) => item.subTitleOption.fold(
           () => '',
           (stringSingleLine) => stringSingleLine.get(),
         ),
       );
 
-  String getCtaText() => widget.actionRequest.map(
-        rate: (_) => R.strings.main.userActionRequestCtaRate,
-        share: (_) => R.strings.main.userActionRequestCtaShare,
-        support: (_) => R.strings.main.userActionRequestCtaSupport,
-        dynamic: (_) => _.itemData.cta.get(),
+  String getCtaText() => widget.actionRequest.when(
+        rate: () => R.strings.main.userActionRequestCtaRate,
+        share: () => R.strings.main.userActionRequestCtaShare,
+        support: () => R.strings.main.userActionRequestCtaSupport,
+        appUpdate: (_) => R.strings.main.userActionRequestCtaAppUpdate,
+        dynamic: (item) => item.cta.get(),
       );
 
-  SvgAssetIcon? getCtaIcon() => widget.actionRequest.map(
-        rate: (_) => R.assets.icons.star,
-        share: (_) => R.assets.icons.share,
-        support: (_) => R.assets.icons.support,
-        dynamic: (_) => null,
+  SvgAssetIcon? getCtaIcon() => widget.actionRequest.when(
+        rate: () => R.assets.icons.star,
+        share: () => R.assets.icons.share,
+        support: () => R.assets.icons.support,
+        appUpdate: (info) => null,
+        dynamic: (item) => null,
       );
 }
