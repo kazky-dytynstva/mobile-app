@@ -148,7 +148,6 @@ class _StringResSearchTale {
 
   String get searchNoResults => 'Нажаль, за Вашим запитом\n'
       'ми нічого не знайшли...';
-
 }
 
 class _StringResScreenSortAndFilter {
