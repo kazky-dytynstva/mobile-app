@@ -112,8 +112,8 @@ class MockSetCrashLoggingEnabledUseCase extends Mock
 class MockGetTrackingEnabledUseCase extends Mock
     implements UseCase<Dry, GetTrackingEnabledOutput> {}
 
-class MockSortPeopleUseCase extends Mock implements UseCase<List<Person>, Dry> {
-}
+class MockSortPeopleUseCase extends Mock
+    implements UseCase<List<Person>, Dry> {}
 
 class MockSetTrackingEnabledUseCase extends Mock
     implements UseCase<bool, SetTrackingEnabledOutput> {}
