@@ -6,12 +6,16 @@ import 'package:mobile_app/presentation/view/snackbar/base_snackbar.dart';
 class InfoSnackbar extends BaseSnackbar {
   final String? _title;
   final String _msg;
+  final bool? blurBackground;
   final VoidCallback? onDismiss;
+  final Duration? showDuration;
 
   InfoSnackbar({
     required String message,
     String? title,
-    this.onDismiss,
+    required this.onDismiss,
+    required this.blurBackground,
+    required this.showDuration,
   })  : _title = title,
         _msg = message;
 
@@ -26,4 +30,10 @@ class InfoSnackbar extends BaseSnackbar {
 
   @override
   SvgAssetIcon get icon => R.assets.icons.info;
+
+  @override
+  bool get routeBlur => blurBackground ?? false;
+
+  @override
+  Duration? get duration => showDuration;
 }

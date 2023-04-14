@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:mobile_app/domain/model/app_version/app_version.dart';
+import 'package:mobile_app/domain/model/menu_dynamic_item/menu_dynamic_item_id.dart';
 import 'package:mobile_app/domain/model/player/loop_mode.dart';
 import 'package:mobile_app/domain/model/show_dot/show_dot_type.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
@@ -73,5 +74,33 @@ abstract class AppStateStorage {
   Future<Unit> setShowDotType(ShowDotType type, {required bool show});
 
   Stream<bool> watchShowDotForType(ShowDotType type);
+
 //endregion showDotType
+
+  //region shareAppClicked
+  Future<bool> isShareAppClicked();
+
+  Future<Unit> setShareAppClicked();
+
+//endregion shareAppClicked
+
+  //region rateAppClicked
+  Future<bool> isRateAppClicked();
+
+  Future<Unit> setRateAppClicked();
+
+//endregion rateAppClicked
+
+  //region supportAppClicked
+  Future<bool> isSupportAppClicked();
+
+  Future<Unit> setSupportAppClicked();
+
+//endregion supportAppClicked
+
+  //region lastSeenMenuDynamicDataId
+  Future<MenuDynamicItemId> getLastSeenMenuDynamicDataId();
+
+  Future<Unit> setLastSeenMenuDynamicDataId(MenuDynamicItemId itemId);
+//endregion lastSeenMenuDynamicDataId
 }

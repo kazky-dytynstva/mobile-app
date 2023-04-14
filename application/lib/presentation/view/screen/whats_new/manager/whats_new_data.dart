@@ -1,5 +1,15 @@
 part of 'whats_new_screen_manager.dart';
 
+VersionChanges _get5_7_0() => VersionChanges(
+      _version('5.7.0'),
+      [
+        _item(
+          '👋 ${R.strings.whatsNew.homePageCommunication}',
+          desc: R.strings.whatsNew.homePageCommunicationDesc,
+        ),
+      ],
+    );
+
 VersionChanges _get5_6_1() => VersionChanges(
       _version('5.6.1'),
       [

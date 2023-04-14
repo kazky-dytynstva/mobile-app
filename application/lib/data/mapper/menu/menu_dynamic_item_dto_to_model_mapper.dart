@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobile_app/domain/mapper/mapper.dart';
 import 'package:mobile_app/domain/model/menu_dynamic_item/menu_dynamic_item_data.dart';
+import 'package:mobile_app/domain/model/menu_dynamic_item/menu_dynamic_item_id.dart';
 import 'package:mobile_app/domain/value_objects/string_not_empty.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
 import 'package:mobile_app/domain/value_objects/url_string.dart';
@@ -23,6 +24,7 @@ class MenuDynamicItemDtoToModelMapper
         : Some(points.map((e) => StringNonEmpty(e)).toList());
 
     return MenuDynamicItemData(
+      id: MenuDynamicItemId(input.id),
       title: StringSingleLine(input.title),
       subTitleOption: subTitleOption,
       pointsOption: pointsOption,

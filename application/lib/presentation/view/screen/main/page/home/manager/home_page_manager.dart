@@ -3,12 +3,20 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mobile_app/data/use_case/menu/on_rate_app_clicked_use_case.dart';
+import 'package:mobile_app/data/use_case/menu/on_support_app_clicked_use_case.dart';
+import 'package:mobile_app/data/use_case/share/share_app_use_case.dart';
+import 'package:mobile_app/domain/helper/app_update_helper.dart';
 import 'package:mobile_app/domain/model/changed_data/changed_data.dart';
 import 'package:mobile_app/domain/model/home_list_item_data/home_list_item_data.dart';
+import 'package:mobile_app/domain/model/menu_dynamic_item/menu_dynamic_item_data.dart';
 import 'package:mobile_app/domain/model/rating/rating_data.dart';
+import 'package:mobile_app/domain/model/show_dot/show_dot_type.dart';
 import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_id.dart';
 import 'package:mobile_app/domain/model/tale/value_object/tale_name.dart';
+import 'package:mobile_app/domain/model/user_action/user_action_request.dart';
+import 'package:mobile_app/domain/navigation/snackbar_controller.dart';
 import 'package:mobile_app/domain/tracking/tracker.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/data/use_case/tale/change_tale_fav.dart';
@@ -26,13 +34,21 @@ part 'home_page_state.dart';
 @injectable
 class HomePageManager extends Cubit<HomePageState> {
   final ScreenController _screenController;
+  final SnackbarController _snackbarController;
   final DialogController _dialogController;
   final UseCase<ChangeTaleFavInput, Dry> _changeTaleFavUseCase;
   final UseCase<Dry, ChangedData<TalesPageItemData, TaleId>>
       _listenAllTalesUseCase;
   final UseCase<TaleId, GetTaleOutput> _getTaleUseCase;
+  final UseCase<Dry, ShareAppOutput> _shareAppUseClickedCase;
   final UseCase<GetHomePageTalesInput, GetHomePageTalesOutput>
       _getHomePageTales;
+  final UseCase<Dry, UserActionRequest?> _getUserActionRequestUseCase;
+  final UseCase<MenuDynamicItemData, Dry> _onDynamicItemClickedUseCase;
+  final UseCase<Dry, OnSupportAppClickedOutput> _onAppSupportClickedUseCase;
+  final UseCase<Dry, OnRateAppClickedOutput> _onAppRateClickUseCase;
+  final UseCase<ShowDotType, Dry> _setShowDotTypeWatchedUseCase;
+  final AppUpdateHelper _appUpdateHelper;
   final Tracker _tracker;
   final _allListsTogether = <List<TalesPageItemData>>[];
   final _talesRandom = <TalesPageItemData>[];
@@ -42,11 +58,19 @@ class HomePageManager extends Cubit<HomePageState> {
 
   HomePageManager(
     this._screenController,
+    this._snackbarController,
     this._dialogController,
     this._listenAllTalesUseCase,
     this._getTaleUseCase,
     this._changeTaleFavUseCase,
+    this._getUserActionRequestUseCase,
+    this._onDynamicItemClickedUseCase,
+    this._shareAppUseClickedCase,
+    this._onAppRateClickUseCase,
+    this._onAppSupportClickedUseCase,
+    this._setShowDotTypeWatchedUseCase,
     this._getHomePageTales,
+    this._appUpdateHelper,
     this._tracker,
   ) : super(const HomePageState.initial()) {
     _init();
@@ -54,6 +78,7 @@ class HomePageManager extends Cubit<HomePageState> {
 
   final _updateStateController = StreamController<Dry>();
   final _subscriptionGroup = UseCaseSubscriptionGroup();
+  UserActionRequest? _userActionRequest;
 
   @override
   Future<void> close() async {
@@ -66,6 +91,7 @@ class HomePageManager extends Cubit<HomePageState> {
     _updateState(dry);
     _addListeners();
     _prepareTales();
+    _prepareUserActionRequest();
   }
 
   void onTalePressed(TalesPageItemData item) async {
@@ -80,6 +106,57 @@ class HomePageManager extends Cubit<HomePageState> {
       name: name,
       data: data,
     );
+  }
+
+  void onUserRequestHidePressed() {
+    _userActionRequest?.maybeWhen(
+      whatsNew: () {
+        _setShowDotTypeWatchedUseCase.call(ShowDotType.whatsNew);
+        _snackbarController.showInfo(
+          message: R.strings.main.whatsNewReviewLater,
+          duration: const Duration(seconds: 5),
+          blurBackground: true,
+        );
+      },
+      orElse: () {},
+    );
+
+    _tracker.event(TrackingEvents.homePageUserRequestHidePressed);
+    _userActionRequest = null;
+    _resetUpdateTimestamp();
+    _updateStateController.add(dry);
+  }
+
+  void onUserRequestCtaPressed(UserActionRequest actionRequest) {
+    final event = actionRequest.map(
+      appUpdate: (_) => TrackingEvents.homePageUserRatePressed,
+      rate: (_) => TrackingEvents.homePageUserRatePressed,
+      share: (_) => TrackingEvents.homePageUserSharePressed,
+      support: (_) => TrackingEvents.homePageUserSupportPressed,
+      dynamic: (_) => TrackingEvents.homePageUserDynamicPressed,
+      whatsNew: (_) => TrackingEvents.homePageUserWhatsNewPressed,
+    );
+
+    _tracker.event(event);
+
+    actionRequest.when(
+      appUpdate: (_) => _appUpdateHelper.openStore(),
+      rate: () => _onAppRateClickUseCase.call(dry),
+      share: () => _shareAppUseClickedCase.call(dry),
+      support: () => _onAppSupportClickedUseCase.call(dry),
+      dynamic: (dynamicItem) => _onDynamicItemClickedUseCase.call(dynamicItem),
+      whatsNew: () => _screenController.openWhatsNew(),
+    );
+
+    final removeItemFromList = actionRequest.maybeMap(
+      orElse: () => false,
+      rate: (_) => true,
+    );
+
+    if (!removeItemFromList) return;
+    _userActionRequest = null;
+    _resetUpdateTimestamp();
+    _updateStateController.add(dry);
   }
 
   void onTaleFavPressed(TalesPageItemData item) {
@@ -168,11 +245,24 @@ class HomePageManager extends Cubit<HomePageState> {
     ));
   }
 
-  List<HomeListItemData> _createDataItems() => [
-        HomeListItemData.random(tales: _talesRandom),
-        HomeListItemData.bestRating(tales: _talesRating),
-        HomeListItemData.latest(tales: _talesLatest),
-      ];
+  void _prepareUserActionRequest() async {
+    final actionRequest = await _getUserActionRequestUseCase.call(dry);
+    if (actionRequest == null) return;
+    _userActionRequest = actionRequest;
+    _resetUpdateTimestamp();
+    _updateStateController.add(dry);
+  }
+
+  List<HomeListItemData> _createDataItems() {
+    final actionRequest = _userActionRequest;
+    return [
+      HomeListItemData.random(tales: _talesRandom),
+      if (actionRequest != null)
+        HomeListItemData.userActionRequest(actionRequest: actionRequest),
+      HomeListItemData.bestRating(tales: _talesRating),
+      HomeListItemData.latest(tales: _talesLatest),
+    ];
+  }
 
   void _addTaleIfItIsNewest(TalesPageItemData taleToAdd) {
     final listToCheck = _talesLatest;

@@ -26,7 +26,7 @@ abstract class BaseSnackbar {
 
   Color get iconColor => R.palette.iconColorInverse;
 
-  Duration get duration => const Duration(seconds: 4);
+  Duration? get duration => null;
 
   Duration get animationDuration => R.durations.animMiddle;
 
@@ -60,7 +60,7 @@ abstract class BaseSnackbar {
       progressIndicatorBackgroundColor: progressColor,
       icon: _buildIcon(),
       backgroundColor: backgroundColor,
-      duration: duration,
+      duration: duration ?? const Duration(seconds: 4),
       flushbarStyle: floating ? FlushbarStyle.FLOATING : FlushbarStyle.GROUNDED,
       routeBlur: routeBlur ? 1.0 : 0.0,
       animationDuration: animationDuration,

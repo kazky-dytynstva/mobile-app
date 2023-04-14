@@ -30,6 +30,8 @@ class _StringResGeneral {
 
   String get close => 'Закрити';
 
+  String get hide => 'Приховати';
+
   String get cancel => 'Скасувати';
 
   String get iItMightTakeFewSecPleaseWait =>
@@ -96,6 +98,42 @@ class _StringResMain {
   String get homeItemsLatest => '🎊 Останні додані казки';
 
   String get homeItemsBestRating => '😍 Казки з найкращим рейтингом';
+
+  String get homeItemsUserActionRequest => '👋 Комунікація з Вами';
+
+  String get userActionRequestTitleShare => 'Поділіться застосунком';
+
+  String get userActionRequestMessageShare =>
+      'Допоможіть Вашим друзям, в яких туж є малюки!\n'
+      'Розкажіть їм про цей застосунок 😉';
+
+  String get userActionRequestCtaShare => 'Поділитись';
+
+  String get userActionRequestTitleRate => 'Подобається застосунок? 😊';
+
+  String get userActionRequestMessageRate => 'Оцініть його!\n'
+      'Розкажіть іншим батькам про свій позитивний доствід і поставте 5 зірочок 🙏';
+
+  String get userActionRequestCtaRate => 'Оцінити';
+
+  String get userActionRequestTitleSupport => 'Подобається застосунок? 😊';
+
+  String get userActionRequestMessageSupport => 'Підтримайте нас фінансофо 🙏\n'
+      'Застосунок є, був і буде безкоштовним! Проте на його розробку і підтримку йде чимало людино-годин...';
+
+  String get userActionRequestCtaSupport => 'Підтримати';
+
+  String get userActionRequestTitleWhatsNew => 'Застосунок було оновлено';
+
+  String get userActionRequestMessageWhatsNew =>
+      'Хочете дізнатись що змінилось? 😜';
+
+  String get userActionRequestCtaWhatsNew => 'Дізнатись';
+
+  String get userActionRequestCtaAppUpdate => 'Оновити';
+
+  String get whatsNewReviewLater =>
+      'Ви завжди можете ознайомитись з останніми змінами в меню застосунку 😉';
 }
 
 class _StringResSearchTale {
@@ -407,6 +445,11 @@ class _StringResEmail {
 }
 
 class _StringResWhatsNew {
+  String get homePageCommunication => 'Коммунікація з Вами';
+
+  String get homePageCommunicationDesc =>
+      'На головному екрані періодично будуть зʼявлятись повідомлення від нас 😊';
+
   String get bugfixAudioPlayer =>
       'Виправили критичну помилку з програванням аудіо';
 

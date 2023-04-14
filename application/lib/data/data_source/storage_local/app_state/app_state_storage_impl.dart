@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 import 'package:mobile_app/domain/data_source/storage_local/app_state_storage.dart';
 import 'package:mobile_app/domain/mapper/mapper.dart';
 import 'package:mobile_app/domain/model/app_version/app_version.dart';
+import 'package:mobile_app/domain/model/menu_dynamic_item/menu_dynamic_item_id.dart';
 import 'package:mobile_app/domain/model/player/loop_mode.dart';
 import 'package:mobile_app/domain/model/show_dot/show_dot_type.dart';
 import 'package:mobile_app/domain/value_objects/int_positive.dart';
@@ -19,6 +20,10 @@ const String _keyLastKnownAppVersion = "_appVersion";
 const String _keyNumberOfRatedTales = "_numberOfRatedTales";
 const String _keyCrashLoggingEnabled = "_crashLoggingEnabled";
 const String _keyTrackingEnabled = "_crashTrackingEnabled";
+const String _keyShareAppClicked = "_crashShareAppClicked";
+const String _keyRateAppClicked = "_crashRateAppClicked";
+const String _keySupportAppClicked = "_crashSupportAppClicked";
+const String _keyLastSeenDynamicItemId = "_lastSeenDynamicItemId";
 
 class AppStateStorageImpl implements AppStateStorage {
   final Box<dynamic> _box;
@@ -200,5 +205,63 @@ class AppStateStorageImpl implements AppStateStorage {
     final key = _showDotTypeToKeyMapper.map(type);
     yield* _box.watch(key: key).distinct().transform(streamTransformer);
   }
-//endregion showDotType
+
+  //endregion showDotType
+
+  //region shareAppClicked
+  @override
+  Future<bool> isShareAppClicked() async {
+    final value = _box.get(_keyShareAppClicked, defaultValue: false);
+    return value;
+  }
+
+  @override
+  Future<Unit> setShareAppClicked() async {
+    await _box.put(_keyShareAppClicked, true);
+    return unit;
+  }
+
+  //endregion shareAppClicked
+
+  //region rateAppClicked
+  @override
+  Future<bool> isRateAppClicked() async {
+    final value = _box.get(_keyRateAppClicked, defaultValue: false);
+    return value;
+  }
+
+  @override
+  Future<Unit> setRateAppClicked() async {
+    await _box.put(_keyRateAppClicked, true);
+    return unit;
+  }
+
+  //endregion rateAppClicked
+
+  //region supportAppClicked
+
+  @override
+  Future<bool> isSupportAppClicked() async {
+    final value = _box.get(_keySupportAppClicked, defaultValue: false);
+    return value;
+  }
+
+  @override
+  Future<Unit> setSupportAppClicked() async {
+    await _box.put(_keySupportAppClicked, true);
+    return unit;
+  }
+
+  @override
+  Future<MenuDynamicItemId> getLastSeenMenuDynamicDataId() async {
+    final value = _box.get(_keyLastSeenDynamicItemId, defaultValue: null);
+    return MenuDynamicItemId(value ?? 'id');
+  }
+
+  @override
+  Future<Unit> setLastSeenMenuDynamicDataId(MenuDynamicItemId itemId) async {
+    await _box.put(_keyLastSeenDynamicItemId, itemId.get());
+    return unit;
+  }
+//endregion supportAppClicked
 }
