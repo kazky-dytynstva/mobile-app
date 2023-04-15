@@ -122,9 +122,7 @@ class HomePageManager extends Cubit<HomePageState> {
     );
 
     _tracker.event(TrackingEvents.homePageUserRequestHidePressed);
-    _userActionRequest = null;
-    _resetUpdateTimestamp();
-    _updateStateController.add(dry);
+    _removeUserActionRequestFromList();
   }
 
   void onUserRequestCtaPressed(UserActionRequest actionRequest) {
@@ -283,4 +281,10 @@ class HomePageManager extends Cubit<HomePageState> {
   }
 
   void _resetUpdateTimestamp() => _stateUpdateTimestamp = DateTime.now();
+
+  void _removeUserActionRequestFromList() {
+    _userActionRequest = null;
+    _resetUpdateTimestamp();
+    _updateStateController.add(dry);
+  }
 }
