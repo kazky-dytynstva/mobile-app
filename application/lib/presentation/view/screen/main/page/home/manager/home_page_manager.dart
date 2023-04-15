@@ -152,9 +152,7 @@ class HomePageManager extends Cubit<HomePageState> {
     );
 
     if (!removeItemFromList) return;
-    _userActionRequest = null;
-    _resetUpdateTimestamp();
-    _updateStateController.add(dry);
+    _removeUserActionRequestFromList();
   }
 
   void onTaleFavPressed(TalesPageItemData item) {
