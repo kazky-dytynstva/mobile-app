@@ -149,6 +149,7 @@ class HomePageManager extends Cubit<HomePageState> {
     final removeItemFromList = actionRequest.maybeMap(
       orElse: () => false,
       rate: (_) => true,
+      whatsNew: (_) => true,
     );
 
     if (!removeItemFromList) return;
