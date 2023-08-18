@@ -15,7 +15,8 @@ import 'package:mobile_app/data/helper/tracking/tracker_firebase.dart';
 import 'package:mobile_app/data/helper/tracking/tracker_group.dart';
 import 'package:mobile_app/presentation/navigation/screen/router/router.gr.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+
 
 @module
 abstract class ModuleUtils {

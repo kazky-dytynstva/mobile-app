@@ -23,8 +23,11 @@ void main() async {
         initialTheme: initialTheme,
         app: const Application(),
       );
-      final mediaData =
-          MediaQueryData.fromWindow(WidgetsBinding.instance.window);
+      //ignore: deprecated_member_use
+      final mediaData = MediaQueryData.fromWindow(
+        //ignore: deprecated_member_use
+        WidgetsBinding.instance.window,
+      );
       final mediaQuery = MediaQuery(data: mediaData, child: themed);
       R.setData(mediaData);
       runApp(mediaQuery);
