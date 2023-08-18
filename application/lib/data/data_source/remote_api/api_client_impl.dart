@@ -78,7 +78,7 @@ class ApiClientImpl extends BaseApiClient implements ApiClient {
       url.get(),
       filePath.get(),
       deleteOnError: false,
-      options: Options(receiveTimeout: 60 * 1000),
+      options: Options(receiveTimeout: const Duration(seconds: 60)),
     );
     final NetworkCallResponse networkResponse = await call(future);
     return networkResponse.when(

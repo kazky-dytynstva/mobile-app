@@ -6,7 +6,7 @@ import 'active_screen_notifier.dart';
 
 @LazySingleton(as: ActiveScreenNotifier)
 class ActiveScreenNotifierImpl
-    with NavigatorObserver
+    extends NavigatorObserver
     implements ActiveScreenNotifier {
   final observer = NavigatorObserver();
   final _requests = List<_Request>.empty();

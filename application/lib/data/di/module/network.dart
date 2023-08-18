@@ -14,7 +14,7 @@ abstract class NetworkModule {
     List<Interceptor> interceptors,
     UrlCreator urlCreator,
   ) {
-    const timeOut = 15 * 1000;
+    const timeOut = Duration(milliseconds: 15 * 1000);
 
     final baseOptions = BaseOptions(
       baseUrl: urlCreator.baseUrl,

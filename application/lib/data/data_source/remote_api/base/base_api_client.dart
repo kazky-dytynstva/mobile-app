@@ -20,7 +20,7 @@ abstract class BaseApiClient {
     try {
       final data = (await request).data as T;
       return NetworkCallResponse.successful(data: data);
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       final response = error.response;
       if (response != null) {
         return _mapErrorResponse(response);
@@ -38,18 +38,20 @@ abstract class BaseApiClient {
     }
   }
 
-  NetworkCallResponse<T> _mapError<T>(DioError error) {
+  NetworkCallResponse<T> _mapError<T>(DioException error) {
     switch (error.type) {
-      case DioErrorType.connectTimeout:
-      case DioErrorType.sendTimeout:
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.connectionError:
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.sendTimeout:
+      case DioExceptionType.receiveTimeout:
         const failure = NetworkRequestFailure.noInternet();
         return const NetworkCallResponse.failed(failure: failure);
-      case DioErrorType.response:
+      case DioExceptionType.badResponse:
         throw Exception("CANCELING API CALL SHOULD NOT HAPPENED");
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         throw Exception("CANCELING API CALL SHOULD NOT HAPPENED");
-      case DioErrorType.other:
+      case DioExceptionType.unknown:
+      case DioExceptionType.badCertificate:
         if (error.error is TimeoutException ||
             error.error is SocketException ||
             error.error is HttpException ||
@@ -110,7 +112,7 @@ class _ResponseException implements Exception {
 }
 
 class _DefaultApiException implements Exception {
-  final DioError _error;
+  final DioException _error;
 
   const _DefaultApiException(this._error);
 

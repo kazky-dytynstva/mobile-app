@@ -9,12 +9,16 @@ class AppUpdateHelperImpl implements AppUpdateHelper {
   @override
   Future<bool> hasUpdates() async {
     try {
-      final updateAvailability = await getUpdateAvailability();
-      return updateAvailability.fold(
-        available: () => true,
-        notAvailable: () => false,
-        unknown: () => false,
-      );
+      final availability = await getUpdateAvailability();
+      switch (availability.runtimeType) {
+        case UpdateAvailable:
+          return true;
+        case NoUpdateAvailable:
+        case UnknownAvailability:
+          return false;
+        default:
+          return false;
+      }
     } catch (e) {
       return false;
     }

@@ -131,7 +131,7 @@ class LoggingInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     _log(" ╔══════ API Request failed ═══════");
     _log(" ║ method: ${err.requestOptions.method}");
     _log(" ║ baseUrl: ${err.requestOptions.baseUrl}");
