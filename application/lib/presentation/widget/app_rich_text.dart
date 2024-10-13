@@ -59,7 +59,7 @@ class AppRichText extends StatelessWidget {
     final markedTextList = RichMarker.values.map(_getMarkedText).toList();
 
     if (_clickableMarker != null) {
-      final markedText = _getMarkedText(_clickableMarker!);
+      final markedText = _getMarkedText(_clickableMarker);
       markedTextList.add(
         MarkerText.withFunction(
           marker: markedText.marker,

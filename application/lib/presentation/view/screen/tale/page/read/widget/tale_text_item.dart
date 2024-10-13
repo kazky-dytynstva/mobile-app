@@ -74,7 +74,7 @@ class ReadTalePageItem extends StatelessWidget {
       return Text(
         paragraph + text,
         style: style,
-        textScaleFactor: scaleFactor.size,
+        textScaler: scaleFactor.value,
       );
     }
     final prefix = TextSpan(
@@ -94,7 +94,7 @@ class ReadTalePageItem extends StatelessWidget {
     );
 
     return RichText(
-        textScaleFactor: scaleFactor.size,
+        textScaler: scaleFactor.value,
         text: TextSpan(
           children: [
             prefix,

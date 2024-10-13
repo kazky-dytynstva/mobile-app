@@ -46,7 +46,7 @@ class SettingsPageText extends StatelessWidget {
       R.strings.settings.textScaleFactorExample,
       style: R.styles.taleText,
       textAlign: TextAlign.center,
-      textScaleFactor: data.textScaleFactor.size,
+      textScaler: data.textScaleFactor.value,
     );
     final animated = FadeAnimatedSwitcher.long(child: text);
 

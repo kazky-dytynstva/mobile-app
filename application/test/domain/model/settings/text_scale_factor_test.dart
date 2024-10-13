@@ -7,7 +7,7 @@ void main() {
   });
   test('GIVEN enum list THEN verify size list is correct', () {
     expect(
-      TextScaleFactor.values.map((e) => e.size),
+      TextScaleFactor.values.map((e) => e.value.scale(1)),
       equals([0.7, 1.0, 1.5, 2.0]),
     );
   });
