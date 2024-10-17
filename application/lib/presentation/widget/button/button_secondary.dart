@@ -23,7 +23,7 @@ class ButtonSecondary extends StatelessWidget with ButtonMixin {
     EdgeInsets? contentPadding,
     Color? bgColor,
     Color? outlineColor,
-    Key? key,
+    super.key,
   })  : _child = child,
         _text = null,
         _assetIcon = null,
@@ -33,8 +33,7 @@ class ButtonSecondary extends StatelessWidget with ButtonMixin {
         _iconColor = null,
         _allCaps = false,
         _positionIconAtEdge = false,
-        _fixedMaxHeight = fixedMaxHeight,
-        super(key: key);
+        _fixedMaxHeight = fixedMaxHeight;
 
   const ButtonSecondary.text(
     String text, {
@@ -44,7 +43,7 @@ class ButtonSecondary extends StatelessWidget with ButtonMixin {
     EdgeInsets? contentPadding,
     Color? bgColor,
     Color? outlineColor,
-    Key? key,
+    super.key,
   })  : _child = null,
         _text = text,
         _allCaps = allCaps,
@@ -54,8 +53,7 @@ class ButtonSecondary extends StatelessWidget with ButtonMixin {
         _assetIcon = null,
         _iconColor = null,
         _positionIconAtEdge = false,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   const ButtonSecondary.textWithIcon(
     String text,
@@ -68,7 +66,7 @@ class ButtonSecondary extends StatelessWidget with ButtonMixin {
     EdgeInsets? contentPadding,
     Color? bgColor,
     Color? outlineColor,
-    Key? key,
+    super.key,
   })  : _child = null,
         _text = text,
         _assetIcon = icon,
@@ -78,8 +76,7 @@ class ButtonSecondary extends StatelessWidget with ButtonMixin {
         _bgColor = bgColor,
         _fixedMaxHeight = fixedMaxHeight,
         _positionIconAtEdge = positionIconAtEdge,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   const ButtonSecondary.icon(
     SvgAssetIcon icon, {
@@ -90,7 +87,7 @@ class ButtonSecondary extends StatelessWidget with ButtonMixin {
     EdgeInsets? contentPadding,
     Color? bgColor,
     Color? outlineColor,
-    Key? key,
+    super.key,
   })  : _child = null,
         _text = null,
         _assetIcon = icon,
@@ -100,8 +97,7 @@ class ButtonSecondary extends StatelessWidget with ButtonMixin {
         _allCaps = allCaps,
         _fixedMaxHeight = fixedMaxHeight,
         _positionIconAtEdge = false,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   @override
   ButtonStyle get buttonStyle => TextButton.styleFrom(

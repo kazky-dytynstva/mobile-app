@@ -1,6 +1,3 @@
-import 'package:dartz/dartz.dart';
-
-import 'utils/value_failure.dart';
 import 'utils/value_object.dart';
 import 'utils/value_validators.dart';
 
@@ -9,7 +6,7 @@ class IntPositive extends ValueObject<int> {
 
   factory IntPositive(int input) => IntPositive._(validateIntPositive(input));
 
-  const IntPositive._(Either<ValueFailure<int>, int> value) : super(value);
+  const IntPositive._(super.value);
 
   bool operator >(dynamic other) {
     if (other is num) {

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/domain/model/settings/text_scale_factor.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/widget/custom_theme.dart';
 
 class MadeWithLove extends StatelessWidget with CustomThemeStatelessMixin {
-  final double scaleFactor;
+  final TextScaleFactor scaleFactor;
 
   const MadeWithLove({
-    this.scaleFactor = 2,
+    this.scaleFactor = TextScaleFactor.xl,
   }) : super(key: null);
 
   @override
@@ -16,7 +17,7 @@ class MadeWithLove extends StatelessWidget with CustomThemeStatelessMixin {
       R.strings.general.madeWithLove,
       textAlign: TextAlign.center,
       style: R.styles.textCaption.withNiceFont,
-      textScaleFactor: scaleFactor,
+      textScaler: scaleFactor.value,
     );
   }
 }

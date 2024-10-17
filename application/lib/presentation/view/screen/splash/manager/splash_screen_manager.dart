@@ -74,8 +74,8 @@ class SplashScreenManager extends Cubit<SplashScreenState> {
       _incrementAppStartCountUseCase.call(dry);
       _openNextScreen();
       return const SplashScreenState.initial();
-    }, failure: (_) {
-      return SplashScreenState.failed(errorMsg: _.error);
+    }, failure: (e) {
+      return SplashScreenState.failed(errorMsg: e.error);
     });
   }
 

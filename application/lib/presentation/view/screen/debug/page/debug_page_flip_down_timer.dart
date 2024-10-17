@@ -4,7 +4,7 @@ import 'package:mobile_app/presentation/view/screen/debug/page/base_debug_page.d
 import 'package:mobile_app/presentation/widget/flip_down_timer.dart';
 
 class DebugPageFlipDownTimer extends BaseDebugPage {
-  const DebugPageFlipDownTimer({Key? key}) : super(key: key);
+  const DebugPageFlipDownTimer({super.key});
 
   @override
   BaseDebugPageState createState() => _DebugPageState();

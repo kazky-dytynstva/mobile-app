@@ -13,8 +13,8 @@ class ConfettiContainer extends StatelessWidget {
     required this.controller,
     required this.blastDirection,
     this.numberOfParticles = 10,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final _confettiColors = const [
     Colors.green,

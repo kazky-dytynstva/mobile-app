@@ -14,8 +14,8 @@ class TaleFilterPage extends StatelessWidget {
     required this.filterItems,
     required this.selected,
     required this.onItemPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

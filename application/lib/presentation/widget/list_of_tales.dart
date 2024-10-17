@@ -27,8 +27,8 @@ class ListOfTales extends StatelessWidget {
     this.padding,
     this.searchPhraseOption = const None(),
     this.isFavList = false,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

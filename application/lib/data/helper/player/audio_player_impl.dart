@@ -69,7 +69,7 @@ class AudioPlayerImpl implements AudioPlayer {
       play: (_) => _player.play(),
       pause: (_) => _player.pause(),
       stop: (_) => _player.stop(),
-      seekTo: (_) => _player.seek(_.position),
+      seekTo: (e) => _player.seek(e.position),
       toggleLoopMode: (_) => _player.setLoopMode(_player.loopMode.next),
       next: (_) => _player.seekToNext(),
       prev: (_) => _player.seekToPrevious(),

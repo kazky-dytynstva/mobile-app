@@ -21,13 +21,13 @@ class HomePageTaleItem extends StatelessWidget {
   final EdgeInsets? margin;
 
   const HomePageTaleItem({
-    Key? key,
+    super.key,
     required this.data,
     required this.onTalePressed,
     required this.onFavPressed,
     required this.onRatingPressed,
     this.margin,
-  }) : super(key: key);
+  });
 
   double get _imageSize => R.dimen.taleListImageSize * 2;
 

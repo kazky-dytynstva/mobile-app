@@ -3,7 +3,7 @@ import 'package:mobile_app/presentation/view/screen/debug/page/base_debug_page.d
 import 'package:mobile_app/presentation/widget/loading_bar.dart';
 
 class DebugPageProgress extends BaseDebugPage {
-  const DebugPageProgress({Key? key}) : super(key: key);
+  const DebugPageProgress({super.key});
 
   @override
   BaseDebugPageState createState() => _DebugPageState();

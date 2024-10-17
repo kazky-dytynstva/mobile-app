@@ -1,6 +1,3 @@
-import 'package:dartz/dartz.dart';
-
-import 'utils/value_failure.dart';
 import 'utils/value_object.dart';
 import 'utils/value_validators.dart';
 
@@ -12,8 +9,7 @@ class StringSingleLine extends ValueObject<String> {
         : StringSingleLine._(validateStringNotEmpty(input));
   }
 
-  const StringSingleLine._(Either<ValueFailure<String>, String> value)
-      : super(value);
+  const StringSingleLine._(super.value);
 
   StringSingleLine operator +(dynamic other) {
     if (other is String) {

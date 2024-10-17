@@ -12,12 +12,12 @@ class AppCheckBox extends StatelessWidget {
     required this.onChanged,
     this.fillColor,
     this.checkColor,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Checkbox(
-        fillColor: MaterialStateProperty.all(fillColor ?? R.palette.accent),
+        fillColor: WidgetStateProperty.all(fillColor ?? R.palette.accent),
         checkColor: checkColor ?? R.palette.checkBoxCheck,
         value: value,
         shape: RoundedRectangleBorder(borderRadius: R.styles.roundBorder0_5),

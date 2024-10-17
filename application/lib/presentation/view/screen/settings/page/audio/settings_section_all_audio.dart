@@ -18,8 +18,8 @@ class SettingsSectionAllAudio extends StatelessWidget {
     required this.onDeleteAllPressed,
     required this.onCacheAllPressed,
     required this.onStopCacheAllPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => LabeledChildren(

@@ -14,8 +14,8 @@ class SearchTaleExample extends StatelessWidget {
     this.taleName,
     this.authorName, {
     required this.onTextPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   TextStyle get style => R.styles.textSubTitleSecondary;
 

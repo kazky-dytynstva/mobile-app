@@ -13,7 +13,7 @@ import 'package:mobile_app/presentation/widget/rate_the_tale.dart';
 import 'package:mobile_app/presentation/widget/tale_sort_and_filter_info.dart';
 
 class ListenTalePage extends StatefulWidget {
-  const ListenTalePage({Key? key}) : super(key: key);
+  const ListenTalePage({super.key});
 
   @override
   State<ListenTalePage> createState() => _ListenTalePageState();

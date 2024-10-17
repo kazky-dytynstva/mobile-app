@@ -23,26 +23,24 @@ class SvgWidget extends StatelessWidget {
     this.width,
     this.height,
     this.disabled = false,
-    Key? key,
+    super.key,
   })  : _svgString = string,
         _svgIcon = null,
         _svgGraphic = null,
         _assetPath = null,
-        color = null,
-        super(key: key);
+        color = null;
 
   const SvgWidget.asset(
     AssetFilePath assetPath, {
     this.width,
     this.height,
     this.disabled = false,
-    Key? key,
+    super.key,
   })  : _svgString = null,
         _svgIcon = null,
         _svgGraphic = null,
         color = null,
-        _assetPath = assetPath,
-        super(key: key);
+        _assetPath = assetPath;
 
   const SvgWidget.icon(
     SvgAssetIcon icon, {
@@ -50,12 +48,11 @@ class SvgWidget extends StatelessWidget {
     this.height,
     this.color,
     this.disabled = false,
-    Key? key,
+    super.key,
   })  : _svgString = null,
         _assetPath = null,
         _svgGraphic = null,
-        _svgIcon = icon,
-        super(key: key);
+        _svgIcon = icon;
 
   const SvgWidget.graphic(
     SvgAssetGraphic graphic, {
@@ -63,12 +60,11 @@ class SvgWidget extends StatelessWidget {
     this.height,
     this.color,
     this.disabled = false,
-    Key? key,
+    super.key,
   })  : _svgString = null,
         _assetPath = null,
         _svgGraphic = graphic,
-        _svgIcon = null,
-        super(key: key);
+        _svgIcon = null;
 
   @override
   Widget build(BuildContext context) =>

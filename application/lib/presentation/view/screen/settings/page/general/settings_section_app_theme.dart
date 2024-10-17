@@ -13,8 +13,8 @@ class SettingsSectionAppTheme extends StatelessWidget {
   const SettingsSectionAppTheme({
     required this.currentTheme,
     required this.onThemeChanged,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ const _minNameLength = 4;
 class PersonName extends ValueObject<String> {
   factory PersonName(String input) => PersonName._(_validate(input));
 
-  const PersonName._(Either<ValueFailure<String>, String> value) : super(value);
+  const PersonName._(super.value);
 }
 
 Either<ValueFailure<String>, String> _validate(

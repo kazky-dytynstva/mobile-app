@@ -41,7 +41,7 @@ class HomePageManager extends Cubit<HomePageState> {
       _listenAllTalesUseCase;
   final UseCase<TaleId, GetTaleOutput> _getTaleUseCase;
   final UseCase<Dry, ShareAppOutput> _shareAppUseClickedCase;
-  final UseCase<GetHomePageTalesInput, GetHomePageTalesOutput>
+  final UseCase<GetHomePageTalesInput, List<TalesPageItemData>>
       _getHomePageTales;
   final UseCase<Dry, UserActionRequest?> _getUserActionRequestUseCase;
   final UseCase<MenuDynamicItemData, Dry> _onDynamicItemClickedUseCase;

@@ -14,8 +14,8 @@ class TaleToolbar extends StatelessWidget {
     required this.name,
     required this.forceShowNotifier,
     required this.forceHideNotifier,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   double get _height => R.dimen.taleToolbarHeight;
 

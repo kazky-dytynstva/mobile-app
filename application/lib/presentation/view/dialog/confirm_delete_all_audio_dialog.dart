@@ -9,9 +9,8 @@ class ConfirmDeleteAllAudioDialog extends BaseDialog {
   const ConfirmDeleteAllAudioDialog({
     required this.onConfirmPressed,
     required VoidCallback onClosePressed,
-    Key? key,
-  })  : _onClosePressed = onClosePressed,
-        super(key: key);
+    super.key,
+  }) : _onClosePressed = onClosePressed;
 
   @override
   BaseDialogState<BaseDialog> createState() => _State();

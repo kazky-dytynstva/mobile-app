@@ -22,8 +22,8 @@ class ListenAudioControls extends StatelessWidget {
     required this.onActionPressed,
     required this.countdownActive,
     required this.loopMode,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   double get _sizeL => R.dimen.unit4;
 

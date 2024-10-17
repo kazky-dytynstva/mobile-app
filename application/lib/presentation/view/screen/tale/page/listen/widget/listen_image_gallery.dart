@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/value_objects/image_url.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/widget/tale_image.dart';
-import 'package:page_indicator/page_indicator.dart';
 
 class ListenImageGallery extends StatefulWidget {
   final List<ImageUrl> images;
   final int currentIndex;
 
   const ListenImageGallery({
-    Key? key,
+    super.key,
     required this.images,
     required this.currentIndex,
-  }) : super(key: key);
+  });
 
   @override
   State<ListenImageGallery> createState() => _ListenImageGalleryState();
@@ -53,13 +52,7 @@ class _ListenImageGalleryState extends State<ListenImageGallery> {
     );
   }
 
-  Widget _buildPagesWithIndicator() => PageIndicatorContainer(
-        length: widget.images.length,
-        padding: EdgeInsets.all(R.dimen.unit2),
-        indicatorColor: R.palette.iconColor,
-        indicatorSelectorColor: R.palette.accent,
-        child: _buildPages(),
-      );
+  Widget _buildPagesWithIndicator() => _buildPages();
 
   Widget _buildPages() => PageView.builder(
         controller: controller,

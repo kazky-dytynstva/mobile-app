@@ -10,11 +10,11 @@ class TalesPageBottomButtons extends StatelessWidget {
   final VoidCallback onSearchPressed;
 
   const TalesPageBottomButtons({
-    Key? key,
+    super.key,
     required this.onFilterPressed,
     required this.onSortPressed,
     required this.onSearchPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

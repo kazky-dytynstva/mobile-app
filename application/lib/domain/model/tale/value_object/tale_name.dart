@@ -8,7 +8,7 @@ import 'package:mobile_app/domain/extensions/string.dart';
 class TaleName extends ValueObject<String> {
   factory TaleName(String input) => TaleName._(_validate(input));
 
-  const TaleName._(Either<ValueFailure<String>, String> value) : super(value);
+  const TaleName._(super.value);
 }
 
 Either<ValueFailure<String>, String> _validate(String input) => (input.isEmpty)

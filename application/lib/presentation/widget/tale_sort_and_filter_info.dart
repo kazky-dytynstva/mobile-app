@@ -11,8 +11,8 @@ class TaleSortAndFilterInfo extends StatelessWidget {
   const TaleSortAndFilterInfo({
     required this.filterData,
     required this.sortData,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

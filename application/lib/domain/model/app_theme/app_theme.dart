@@ -34,6 +34,7 @@ extension AppThemeX on AppTheme {
         return Brightness.dark;
       case AppTheme.system:
       default:
+        //ignore: deprecated_member_use
         return WidgetsBinding.instance.window.platformBrightness;
     }
   }

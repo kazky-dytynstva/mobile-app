@@ -10,11 +10,11 @@ class TaleSortPageItem extends StatelessWidget {
   final TaleSortType selectedType;
 
   const TaleSortPageItem({
-    Key? key,
+    super.key,
     required this.item,
     required this.selectedType,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => SelectableItem(

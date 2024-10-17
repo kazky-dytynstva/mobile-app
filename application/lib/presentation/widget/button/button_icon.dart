@@ -17,8 +17,8 @@ class ButtonIcon extends StatelessWidget with ButtonMixin {
     this.color,
     this.size,
     this.iconPadding,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   EdgeInsets get _padding => iconPadding ?? EdgeInsets.all(R.dimen.unit);
 

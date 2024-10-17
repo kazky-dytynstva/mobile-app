@@ -1,6 +1,3 @@
-import 'package:dartz/dartz.dart';
-
-import 'utils/value_failure.dart';
 import 'utils/value_object.dart';
 import 'utils/value_validators.dart';
 
@@ -12,7 +9,7 @@ class UrlString extends ValueObject<String> {
         : UrlString._(validateStringNotEmpty(input));
   }
 
-  const UrlString._(Either<ValueFailure<String>, String> value) : super(value);
+  const UrlString._(super.value);
 
   Uri get asUri => Uri.parse(get());
 

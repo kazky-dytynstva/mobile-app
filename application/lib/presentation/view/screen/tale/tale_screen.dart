@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/domain/model/sort_and_filter/filter_type.dart';
@@ -14,6 +15,7 @@ import 'package:mobile_app/presentation/view/screen/tale/widget/tale_screen_tool
 import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
+@RoutePage()
 class TaleScreen extends StatefulWidget {
   final Tale initialTale;
   final bool openAudio;
@@ -23,8 +25,8 @@ class TaleScreen extends StatefulWidget {
     required this.initialTale,
     required this.openAudio,
     required this.filterType,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<TaleScreen> createState() => _TaleScreenState();

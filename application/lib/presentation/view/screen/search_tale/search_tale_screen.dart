@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,8 +15,9 @@ import 'package:mobile_app/presentation/widget/list_of_tales.dart';
 
 import 'widget/search_tale_example.dart';
 
+@RoutePage()
 class SearchTaleScreen extends StatefulWidget {
-  const SearchTaleScreen({Key? key}) : super(key: key);
+  const SearchTaleScreen({super.key});
 
   @override
   State<SearchTaleScreen> createState() => _SearchTaleScreenState();

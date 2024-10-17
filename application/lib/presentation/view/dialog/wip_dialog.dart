@@ -8,8 +8,8 @@ class WipDialog extends BaseDialog {
 
   const WipDialog(
     this._onClosePressed, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   BaseDialogState<BaseDialog> createState() => _State();

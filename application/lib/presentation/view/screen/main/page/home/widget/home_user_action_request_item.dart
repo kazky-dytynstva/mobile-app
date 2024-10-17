@@ -16,8 +16,8 @@ class HomeUserActionRequestItem extends StatefulWidget {
     required this.actionRequest,
     required this.onCtaPressed,
     required this.onHidePressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<HomeUserActionRequestItem> createState() =>

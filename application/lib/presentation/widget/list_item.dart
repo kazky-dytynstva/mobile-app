@@ -25,8 +25,8 @@ class ListItem extends StatelessWidget {
     this.withScreenSidePadding = false,
     this.centerLeadingVertically = true,
     this.leadingIconColor,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => ListTile(

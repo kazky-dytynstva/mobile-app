@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/model/forced_update_info/forced_update_info.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
@@ -7,13 +8,14 @@ import 'package:mobile_app/presentation/widget/button/button_ghost.dart';
 import 'package:mobile_app/presentation/widget/button/button_primary.dart';
 import 'package:mobile_app/presentation/widget/divider.dart';
 
+@RoutePage()
 class ForcedUpdateScreen extends StatefulWidget {
   final ForcedUpdateInfo info;
 
   const ForcedUpdateScreen({
-    Key? key,
+    super.key,
     required this.info,
-  }) : super(key: key);
+  });
 
   @override
   State<ForcedUpdateScreen> createState() => _ForcedUpdateScreenState();

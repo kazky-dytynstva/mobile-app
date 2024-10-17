@@ -21,7 +21,6 @@ import 'package:mobile_app/data/use_case/people/listen_people_changes_use_case.d
 import 'package:mobile_app/data/use_case/person/change_person_fav_use_case.dart';
 import 'package:mobile_app/data/use_case/tale/change_tale_fav.dart';
 import 'package:mobile_app/data/use_case/tale/get_tale_use_case.dart';
-import 'package:mobile_app/data/use_case/tale_list/get_all_tales.dart';
 import 'package:mobile_app/data/use_case/tale_sort_and_filter/filter_and_sort_tales_use_case.dart';
 import 'package:mobile_app/presentation/navigation/dialog/dialog_controller.dart';
 import 'package:mobile_app/presentation/navigation/screen/screen_controller.dart';
@@ -39,9 +38,9 @@ class FavPageManager extends Cubit<FavPageState> {
   final SnackbarController _snackbarController;
   final UseCase<ChangeTaleFavInput, Dry> _changeTaleFavUseCase;
   final UseCase<ChangePersonFavInput, Dry> _changePersonFavUseCase;
-  final UseCase<Dry, GetAllTalesOutput> _getAllTalesUseCase;
+  final UseCase<Dry, Iterable<TalesPageItemData>> _getAllTalesUseCase;
   final UseCase<Dry, GetAllFavPeopleOutput> _getAllFavPeopleUseCase;
-  final UseCase<FilterAndSortTalesInput, FilterAndSortTalesOutput>
+  final UseCase<FilterAndSortTalesInput, List<TalesPageItemData>>
       _filterAndSortTalesUseCase;
   final UseCase<List<Person>, Dry> _sortPeopleUseCase;
   final UseCase<Dry, ChangedData<TalesPageItemData, TaleId>>

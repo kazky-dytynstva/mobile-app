@@ -46,37 +46,37 @@ class ScreenControllerImpl implements ScreenController {
   RouteInformationProvider get routerProvider => _appRouter.routeInfoProvider();
 
   @override
-  void pop() => _appRouter.pop();
+  void pop() => _appRouter.maybePop();
 
   //region openScreen
   @override
   void openMain() {
     _tracker.view(TrackingViews.screenMain);
-    _appRouter.replace(const MainScreenRoute());
+    _appRouter.replace(const MainRoute());
   }
 
   @override
   void openDynamicItem(MenuDynamicItemData data) {
     _tracker.view(TrackingViews.screenDynamicItem);
-    _appRouter.push(DynamicItemScreenRoute(data: data));
+    _appRouter.push(DynamicItemRoute(data: data));
   }
 
   @override
   void openWhatsNew() {
     _tracker.view(TrackingViews.screenWhatsNew);
-    _appRouter.push(const WhatsNewScreenRoute());
+    _appRouter.push(const WhatsNewRoute());
   }
 
   @override
   void openDebug() {
     if (EnvConfig.isProd) return;
-    _appRouter.push(const DebugScreenRoute());
+    _appRouter.push(const DebugRoute());
   }
 
   @override
   void openFeatureFlags() {
     if (EnvConfig.isProd) return;
-    _appRouter.push(const FeatureFlagsScreenRoute());
+    _appRouter.push(const FeatureFlagsRoute());
   }
 
   @override
@@ -84,7 +84,7 @@ class ScreenControllerImpl implements ScreenController {
     SettingsPageType openType = SettingsPageType.general,
   }) {
     _tracker.view(TrackingViews.screenSettings);
-    _appRouter.push(SettingsScreenRoute(openType: openType));
+    _appRouter.push(SettingsRoute(openType: openType));
   }
 
   @override
@@ -92,7 +92,7 @@ class ScreenControllerImpl implements ScreenController {
     required ForcedUpdateInfo info,
   }) {
     _tracker.view(TrackingViews.screenForcedUpdate);
-    _appRouter.replace(ForcedUpdateScreenRoute(info: info));
+    _appRouter.replace(ForcedUpdateRoute(info: info));
   }
 
   @override
@@ -101,7 +101,7 @@ class ScreenControllerImpl implements ScreenController {
     required TaleCrew crew,
   }) {
     _tracker.view(TrackingViews.screenTaleCrew);
-    final route = TaleCrewScreenRoute(taleName: name, crew: crew);
+    final route = TaleCrewRoute(taleName: name, crew: crew);
     _closeSimilar(route);
     _appRouter.push(route);
   }
@@ -114,7 +114,7 @@ class ScreenControllerImpl implements ScreenController {
   }) {
     _tracker.view(TrackingViews.screenTaleSortAndFilter);
 
-    final route = TaleSortAndFilterScreenRoute(
+    final route = TaleSortAndFilterRoute(
       openType: openType,
       initialFilterType: filterType,
       initialSortType: sortType,
@@ -129,7 +129,7 @@ class ScreenControllerImpl implements ScreenController {
     TaleFilterType? filterType,
   }) {
     _tracker.view(TrackingViews.screenTale);
-    final taleRoute = TaleScreenRoute(
+    final taleRoute = TaleRoute(
       initialTale: tale,
       openAudio: openAudio,
       filterType: filterType,
@@ -143,7 +143,7 @@ class ScreenControllerImpl implements ScreenController {
     required Person person,
   }) {
     _tracker.view(TrackingViews.screenPerson);
-    final route = PersonScreenRoute(person: person);
+    final route = PersonRoute(person: person);
     _closeSimilar(route);
     _appRouter.push(route);
   }
@@ -151,7 +151,7 @@ class ScreenControllerImpl implements ScreenController {
   @override
   void openSearchTale() {
     _tracker.view(TrackingViews.screenSearchTale);
-    const route = SearchTaleScreenRoute();
+    const route = SearchTaleRoute();
     _appRouter.push(route);
   }
 
@@ -159,5 +159,5 @@ class ScreenControllerImpl implements ScreenController {
 
   /// this prevents showing 2 similar screen
   void _closeSimilar(PageRouteInfo screenRoute) =>
-      _appRouter.removeWhere((route) => route.path == screenRoute.path);
+      _appRouter.removeWhere((route) => route.name == screenRoute.routeName);
 }

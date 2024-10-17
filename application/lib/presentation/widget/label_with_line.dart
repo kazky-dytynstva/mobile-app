@@ -6,10 +6,10 @@ class LabelWithLine extends StatelessWidget {
   final TextStyle? labelStyle;
 
   const LabelWithLine({
-    Key? key,
+    super.key,
     required this.label,
     this.labelStyle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/view/screen/debug/page/base_debug_page.dart';
 import 'package:mobile_app/presentation/widget/app_check_box.dart';
 
 class DebugPageCheckbox extends BaseDebugPage {
-  const DebugPageCheckbox({Key? key}) : super(key: key);
+  const DebugPageCheckbox({super.key});
 
   @override
   BaseDebugPageState createState() => _DebugPageState();

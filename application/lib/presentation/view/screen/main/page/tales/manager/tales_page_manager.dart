@@ -29,7 +29,6 @@ import 'package:mobile_app/domain/model/tale/data/tales_page_item_data.dart';
 import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/domain/value_objects/string_single_line.dart';
 import 'package:mobile_app/data/use_case/tale/change_tale_fav.dart';
-import 'package:mobile_app/data/use_case/tale_list/get_all_tales.dart';
 
 part 'tales_page_manager.freezed.dart';
 
@@ -40,7 +39,7 @@ class TalesPageManager extends Cubit<TalesPageState> {
   final ScreenController _screenController;
   final DialogController _dialogController;
   final SnackbarController _snackbarController;
-  final UseCase<Dry, GetAllTalesOutput> _getAllTalesUseCase;
+  final UseCase<Dry, Iterable<TalesPageItemData>> _getAllTalesUseCase;
   final UseCase<Dry, GetTaleSortAndFilterTypesOutput>
       _getFilterAndSortTypesUseCase;
   final UseCase<Dry, ChangedData<TalesPageItemData, TaleId>>
@@ -49,7 +48,7 @@ class TalesPageManager extends Cubit<TalesPageState> {
   final UseCase<Dry, TaleSortType> _listenSortTypeChangeOutput;
   final UseCase<Dry, TaleFilterType> _listenFilterTypeChangeOutput;
   final UseCase<TaleId, GetTaleOutput> _getTaleUseCase;
-  final UseCase<FilterAndSortTalesInput, FilterAndSortTalesOutput>
+  final UseCase<FilterAndSortTalesInput, List<TalesPageItemData>>
       _filterAndSortTalesUseCase;
   final Mapper<TaleFilterType, StringSingleLine> _filterTypeToNameMapper;
   final Mapper<TaleFilterType, SvgAssetGraphic> _filterTypeToIconMapper;

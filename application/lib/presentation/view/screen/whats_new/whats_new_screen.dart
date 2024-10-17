@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
@@ -7,8 +8,9 @@ import 'package:mobile_app/presentation/view/screen/whats_new/widget/whats_new_c
 import 'package:mobile_app/presentation/widget/bottom_bar_with_actions.dart';
 import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 
+@RoutePage()
 class WhatsNewScreen extends StatefulWidget {
-  const WhatsNewScreen({Key? key}) : super(key: key);
+  const WhatsNewScreen({super.key});
 
   @override
   State<WhatsNewScreen> createState() => _WhatsNewScreenState();
@@ -52,7 +54,7 @@ class _WhatsNewScreenState
 
   Widget _buildReadyState(WhatsNewScreenStateReady state) {
     final changes = <Widget>[
-      ...state.changes.map((e) => WhatsNewsChanges(changes: e)).toList(),
+      ...state.changes.map((e) => WhatsNewsChanges(changes: e)),
       SizedBox(height: R.dimen.bottomBarWithActionsHeight)
     ];
     final content = SingleChildScrollView(child: Column(children: changes));

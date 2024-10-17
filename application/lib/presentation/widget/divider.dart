@@ -10,8 +10,8 @@ class AppDivider extends StatelessWidget {
     this.axis = Axis.horizontal,
     this.padding,
     this.thickness = 1,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) =>

@@ -8,8 +8,8 @@ class WhatsNewsChanges extends StatelessWidget {
 
   const WhatsNewsChanges({
     required this.changes,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Column(

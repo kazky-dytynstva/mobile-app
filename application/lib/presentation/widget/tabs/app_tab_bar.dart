@@ -18,12 +18,11 @@ class AppTabBar extends StatefulWidget implements PreferredSizeWidget {
     this.isScrollable = false,
     this.respectTopPadding = false,
     this.padding,
-    Key? key,
-  })  : assert(
+    super.key,
+  }) : assert(
           tabDataList.length > 0,
           'There should be at least 1 $AppTabData',
-        ),
-        super(key: key);
+        );
 
   @override
   Size get preferredSize => Size.fromHeight(R.dimen.toolbarHeight);

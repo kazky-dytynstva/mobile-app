@@ -13,10 +13,9 @@ class Blurred extends StatelessWidget {
     required this.blur,
     this.blurColor,
     this.colorOpacity,
-    Key? key,
+    super.key,
   })  : assert(blur >= 0),
-        assert(blur <= 10),
-        super(key: key);
+        assert(blur <= 10);
 
   @override
   Widget build(BuildContext context) => Blur(

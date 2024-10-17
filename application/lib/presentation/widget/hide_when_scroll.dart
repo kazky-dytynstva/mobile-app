@@ -26,8 +26,8 @@ class HideWhenScroll extends StatefulWidget {
     this.hideDirection = HideDirection.bottom,
     this.forceShowNotifier,
     this.forceHideNotifier,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<HideWhenScroll> createState() => _HideWhenScrollState();

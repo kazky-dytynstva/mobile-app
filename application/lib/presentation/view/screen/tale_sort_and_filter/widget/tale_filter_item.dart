@@ -13,8 +13,8 @@ class TaleFilterPageItem extends StatelessWidget {
     required this.item,
     required this.onPressed,
     required this.selectedType,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   TextStyle get style => R.styles.textSubTitle;
 

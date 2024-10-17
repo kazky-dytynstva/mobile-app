@@ -4,7 +4,7 @@ import 'package:mobile_app/presentation/widget/label_with_line.dart';
 import 'package:mobile_app/presentation/widget/custom_theme.dart';
 
 abstract class BaseDebugPage extends StatefulWidget {
-  const BaseDebugPage({Key? key}) : super(key: key);
+  const BaseDebugPage({super.key});
 
   @override
   BaseDebugPageState createState();
@@ -38,8 +38,8 @@ class DebugPageSection extends StatelessWidget {
   const DebugPageSection({
     required this.title,
     required this.children,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Column(

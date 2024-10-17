@@ -6,10 +6,8 @@ import 'package:mobile_app/data/data_source/storage_local/tale/entity/tale_entit
 import 'package:mobile_app/domain/data_source/storage_local/tale_storage.dart';
 import 'package:mobile_app/data/helper/logger/logger.dart';
 
-typedef GetAllTalesOutput = Iterable<TalesPageItemData>;
-
 @Injectable(as: UseCase)
-class GetAllTalesUseCase extends UseCase<Dry, GetAllTalesOutput> {
+class GetAllTalesUseCase extends UseCase<Dry, Iterable<TalesPageItemData>> {
   final TaleStorage _storage;
   final Mapper<TaleEntity, TalesPageItemData> _mapper;
   final Logger _logger;
@@ -21,7 +19,7 @@ class GetAllTalesUseCase extends UseCase<Dry, GetAllTalesOutput> {
   );
 
   @override
-  Stream<GetAllTalesOutput> transaction(Dry input) async* {
+  Stream<Iterable<TalesPageItemData>> transaction(Dry input) async* {
     _logger.log(
       () => 'getAllTales useCase called',
       tag: logTag,

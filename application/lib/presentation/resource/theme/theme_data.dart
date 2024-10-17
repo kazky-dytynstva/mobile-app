@@ -9,7 +9,6 @@ ThemeData _createThemeData(
       ? const ColorScheme.light()
       : const ColorScheme.dark().copyWith(
           onSurface: palette.background,
-          onBackground: palette.background,
         );
   return ThemeData(
     // fontFamily: 'NotoSans',
@@ -17,7 +16,7 @@ ThemeData _createThemeData(
     colorScheme: colorScheme.copyWith(
         primary: palette.primary,
         secondary: palette.accent,
-        background: palette.background),
+        surface: palette.background),
     splashColor: palette.splashColor,
     highlightColor: palette.highlightColor,
     dialogBackgroundColor: palette.background,

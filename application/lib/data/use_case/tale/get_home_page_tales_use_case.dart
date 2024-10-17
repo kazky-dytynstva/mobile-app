@@ -9,11 +9,9 @@ import 'package:mobile_app/domain/use_case/usecase.dart';
 import 'package:mobile_app/data/data_source/storage_local/tale/entity/tale_entity.dart';
 import 'package:mobile_app/data/helper/logger/logger.dart';
 
-typedef GetHomePageTalesOutput = List<TalesPageItemData>;
-
 @Injectable(as: UseCase)
 class GetHomePageTalesUseCase
-    extends UseCase<GetHomePageTalesInput, GetHomePageTalesOutput> {
+    extends UseCase<GetHomePageTalesInput, List<TalesPageItemData>> {
   final TaleStorage _storage;
   final Mapper<TaleEntity, TalesPageItemData> _mapper;
   final Logger _logger;
@@ -27,7 +25,7 @@ class GetHomePageTalesUseCase
   );
 
   @override
-  Stream<GetHomePageTalesOutput> transaction(
+  Stream<List<TalesPageItemData>> transaction(
     GetHomePageTalesInput input,
   ) async* {
     _logger.log(

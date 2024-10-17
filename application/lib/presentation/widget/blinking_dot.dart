@@ -12,8 +12,8 @@ class BlinkingDot extends StatefulWidget {
     this.size,
     this.dotColor,
     this.borderColor,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<BlinkingDot> createState() => _BlinkingDotState();

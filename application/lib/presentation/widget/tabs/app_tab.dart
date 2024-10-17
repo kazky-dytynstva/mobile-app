@@ -15,8 +15,8 @@ class AppTab extends StatelessWidget {
   const AppTab({
     required this.data,
     required this.selectPercent,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Tab(

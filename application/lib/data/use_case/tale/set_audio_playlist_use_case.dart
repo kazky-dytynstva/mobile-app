@@ -28,7 +28,7 @@ class SetAudioPlaylistUseCase extends UseCase<SetAudioPlaylistInput, Dry> {
   final AudioPlayer _audioPlayer;
   final Mapper<String, TaleTag> _taleTagMapper;
   final Mapper<TaleEntity, TalesPageItemData> _taleEntityMapper;
-  final UseCase<FilterAndSortTalesInput, FilterAndSortTalesOutput>
+  final UseCase<FilterAndSortTalesInput, List<TalesPageItemData>>
       _filterAndSortTalesUseCase;
   final UseCase<Dry, GetTaleSortAndFilterTypesOutput>
       _getFilterAndSortTypesUseCase;

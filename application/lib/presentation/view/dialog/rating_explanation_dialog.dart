@@ -11,8 +11,8 @@ class RatingExplanationDialog extends BaseDialog {
 
   const RatingExplanationDialog({
     required this.onClosePressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   BaseDialogState<BaseDialog> createState() => _State();

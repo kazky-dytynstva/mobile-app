@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/domain/model/person/person.dart';
@@ -13,6 +14,7 @@ import 'package:mobile_app/presentation/view/screen/tale_crew/manager/tale_crew_
 import 'package:mobile_app/presentation/widget/bottom_bar_with_actions.dart';
 import 'package:mobile_app/presentation/widget/person_list_item.dart';
 
+@RoutePage()
 class TaleCrewScreen extends StatefulWidget {
   final TaleName taleName;
   final TaleCrew crew;
@@ -20,8 +22,8 @@ class TaleCrewScreen extends StatefulWidget {
   const TaleCrewScreen({
     required this.taleName,
     required this.crew,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<TaleCrewScreen> createState() => _State();

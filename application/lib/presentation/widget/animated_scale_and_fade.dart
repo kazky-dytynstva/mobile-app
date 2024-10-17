@@ -59,7 +59,7 @@ class AnimatedSizeAndFade extends StatelessWidget {
   final bool show;
 
   const AnimatedSizeAndFade({
-    Key? key,
+    super.key,
     this.child,
     this.fadeDuration = const Duration(milliseconds: 500),
     this.sizeDuration = const Duration(milliseconds: 500),
@@ -67,15 +67,14 @@ class AnimatedSizeAndFade extends StatelessWidget {
     this.fadeOutCurve = Curves.easeInOut,
     this.sizeCurve = Curves.easeInOut,
     this.alignment = Alignment.center,
-  })  : show = true,
-        super(key: key);
+  }) : show = true;
 
   /// Use this constructor when you want to show/hide the child, by doing a
   /// vertical size/fade. To that end, instead of changing the child,
   /// simply change [show]. Note this widget will try to have its width as
   /// big as possible, so put it in a parent with limited width constraints.
   const AnimatedSizeAndFade.showHide({
-    Key? key,
+    super.key,
     this.child,
     required this.show,
     this.fadeDuration = const Duration(milliseconds: 500),
@@ -84,7 +83,7 @@ class AnimatedSizeAndFade extends StatelessWidget {
     this.fadeOutCurve = Curves.easeInOut,
     this.sizeCurve = Curves.easeInOut,
     this.alignment = Alignment.center,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

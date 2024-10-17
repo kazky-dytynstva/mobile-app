@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Tales",
+            "cwd": "application",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define",
+                "DF_APP_ID=ua.andriyantonov.tales.dev",
+                "--dart-define",
+                "DF_APP_NAME=Казки[d]",
+                "--dart-define",
+                "DF_STAGE_NAME=dev"
+            ]
+        }
+    ]
+}

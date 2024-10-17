@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
 enum TextScaleFactor {
-  s(0.7),
-  m(1),
-  l(1.5),
-  xl(2.0);
+  s(TextScaler.linear(0.7)),
+  m(TextScaler.linear(1)),
+  l(TextScaler.linear(1.5)),
+  xl(TextScaler.linear(2.0));
 
-  final double size;
+  final TextScaler value;
 
-  const TextScaleFactor(this.size);
+  const TextScaleFactor(this.value);
 }

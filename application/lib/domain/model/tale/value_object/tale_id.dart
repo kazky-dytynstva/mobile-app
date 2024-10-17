@@ -7,7 +7,7 @@ import 'package:mobile_app/domain/value_objects/utils/value_object.dart';
 class TaleId extends ValueObject<int> {
   factory TaleId(int input) => TaleId._(_validate(input));
 
-  const TaleId._(Either<ValueFailure<int>, int> value) : super(value);
+  const TaleId._(super.value);
 }
 
 Either<ValueFailure<int>, int> _validate(int input) => (input < 0)

@@ -1,6 +1,3 @@
-import 'package:dartz/dartz.dart';
-
-import 'utils/value_failure.dart';
 import 'utils/value_object.dart';
 import 'utils/value_validators.dart';
 
@@ -14,6 +11,5 @@ class AssetFilePath extends ValueObject<String> {
     return AssetFilePath._(validateStringNotEmpty(input));
   }
 
-  const AssetFilePath._(Either<ValueFailure<String>, String> value)
-      : super(value);
+  const AssetFilePath._(super.value);
 }

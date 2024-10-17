@@ -9,11 +9,11 @@ class ThemeSwitchItem extends StatelessWidget {
   final AppTheme selectedTheme;
 
   const ThemeSwitchItem({
-    Key? key,
+    super.key,
     required this.item,
     required this.onPressed,
     required this.selectedTheme,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => ListItem(

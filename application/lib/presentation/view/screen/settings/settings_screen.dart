@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/domain/model/app_tab/app_tab_data.dart';
@@ -14,13 +15,14 @@ import 'package:mobile_app/presentation/widget/bottom_bar_with_actions.dart';
 import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 import 'package:mobile_app/presentation/widget/tabs/app_tab_bar.dart';
 
+@RoutePage()
 class SettingsScreen extends StatefulWidget {
   final SettingsPageType openType;
 
   const SettingsScreen({
     required this.openType,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();

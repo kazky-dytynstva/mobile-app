@@ -9,9 +9,8 @@ class SwitchToWiFiDialog extends BaseDialog {
   const SwitchToWiFiDialog({
     required this.onContinuePressed,
     required VoidCallback onClosePressed,
-    Key? key,
-  })  : _onClosePressed = onClosePressed,
-        super(key: key);
+    super.key,
+  }) : _onClosePressed = onClosePressed;
 
   @override
   BaseDialogState<BaseDialog> createState() => _State();

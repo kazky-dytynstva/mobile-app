@@ -8,8 +8,8 @@ class DevDialog extends BaseDialog {
   const DevDialog(
     this.msg,
     this._onClosePressed, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   BaseDialogState<BaseDialog> createState() => _State();

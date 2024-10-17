@@ -23,14 +23,14 @@ class TalesListItem extends StatelessWidget {
   final Option<StringSingleLine> searchPhraseOption;
 
   const TalesListItem({
-    Key? key,
+    super.key,
     required this.data,
     required this.onTalePressed,
     required this.onFavPressed,
     required this.onRatingPressed,
     this.margin,
     this.searchPhraseOption = const None(),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -207,8 +207,7 @@ class _SearchableText extends StatelessWidget {
     required this.style,
     required this.maxLines,
     required this.searchPhraseOption,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => searchPhraseOption.fold(

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:mobile_app/domain/value_objects/url_string.dart';
 import 'package:mobile_app/data/di/dependency_injection.dart';
 import 'package:mobile_app/presentation/navigation/dialog/dialog_controller.dart';
@@ -6,7 +5,7 @@ import 'package:mobile_app/presentation/view/screen/debug/page/base_debug_page.d
 import 'package:mobile_app/presentation/widget/url_preview.dart';
 
 class DebugPageUrlPreview extends BaseDebugPage {
-  const DebugPageUrlPreview({Key? key}) : super(key: key);
+  const DebugPageUrlPreview({super.key});
 
   @override
   BaseDebugPageState createState() => _DebugPageState();
