@@ -108,7 +108,7 @@ class PrepareContentUseCase
         await Future.wait([
       _apiClient.getPeople(),
       _apiClient.getTales(),
-      _apiClient.getRatings(),
+      // _apiClient.getRatings(),
     ]);
     final failure = result.firstWhereOrNull((it) => it.isLeft());
     if (failure != null) {

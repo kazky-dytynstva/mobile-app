@@ -7,7 +7,7 @@ class FirebaseTracker implements Tracker {
   FirebaseTracker(this._firebaseAnalytics);
 
   @override
-  void event(TrackingEvent event, [Map<String, dynamic>? params]) {
+  void event(TrackingEvent event, [Map<String, Object>? params]) {
     if (event.platforms.contains(TrackingPlatform.firebase)) {
       _firebaseAnalytics.logEvent(name: event.name, parameters: params);
     }

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/model/app_tab/app_tab_data.dart';
 import 'package:mobile_app/domain/model/app_theme/app_theme.dart';
@@ -22,6 +23,7 @@ import 'package:mobile_app/presentation/widget/button/button_icon.dart';
 import 'package:mobile_app/presentation/widget/custom_theme.dart';
 import 'package:mobile_app/presentation/widget/tabs/app_tab_bar.dart';
 
+@RoutePage()
 class DebugScreen extends StatefulWidget {
   const DebugScreen({Key? key}) : super(key: key);
 

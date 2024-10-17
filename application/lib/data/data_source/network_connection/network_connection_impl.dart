@@ -24,7 +24,8 @@ class NetworkConnectionImpl implements NetworkConnection {
   @override
   Future<ConnectionType> getType() async {
     final result = await _connectivity.checkConnectivity();
-    return _mapper.map(result);
+    final filtered = _filter(result);
+    return _mapper.map(filtered);
   }
 
   @override
@@ -41,11 +42,12 @@ class NetworkConnectionImpl implements NetworkConnection {
       return;
     }
     _subscription = _connectivity.onConnectivityChanged.listen((event) {
-      if (!_mapper.map(event).isNone) {
-        _notifyAllWaiters();
-        _subscription!.cancel();
-        _subscription = null;
-      }
+      final filtered = _filter(event);
+      final type = _mapper.map(filtered);
+      if (type.isNone == true) return;
+      _notifyAllWaiters();
+      _subscription!.cancel();
+      _subscription = null;
     });
   }
 
@@ -54,5 +56,13 @@ class NetworkConnectionImpl implements NetworkConnection {
       callback();
     }
     _listOfWaiters.clear();
+  }
+
+  ConnectivityResult _filter(List<ConnectivityResult> results) {
+    if (results.length == 1) {
+      return results.first;
+    }
+    final hasWiFi = results.contains(ConnectivityResult.wifi);
+    return hasWiFi ? ConnectivityResult.wifi : ConnectivityResult.mobile;
   }
 }

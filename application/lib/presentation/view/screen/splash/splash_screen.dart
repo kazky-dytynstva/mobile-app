@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
@@ -8,6 +9,7 @@ import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 import 'package:mobile_app/presentation/widget/loading_bar.dart';
 import 'package:mobile_app/presentation/widget/made_with_love.dart';
 
+@RoutePage()
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 

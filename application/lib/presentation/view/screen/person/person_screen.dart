@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,7 @@ import 'package:mobile_app/presentation/widget/list_of_tales.dart';
 import 'package:mobile_app/presentation/widget/person_avatar.dart';
 import 'package:mobile_app/presentation/widget/url_preview.dart';
 
+@RoutePage()
 class PersonScreen extends StatefulWidget {
   final Person person;
 

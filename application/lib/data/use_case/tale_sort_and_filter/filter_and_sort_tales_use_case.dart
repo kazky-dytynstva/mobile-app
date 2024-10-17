@@ -9,7 +9,7 @@ import 'package:mobile_app/domain/use_case/usecase.dart';
 
 @Injectable(as: UseCase)
 class FilterAndSortTalesUseCase
-    extends UseCase<FilterAndSortTalesInput, FilterAndSortTalesOutput> {
+    extends UseCase<FilterAndSortTalesInput, List<TalesPageItemData>> {
   final TaleFilter _filter;
   final TaleSorter _sorter;
 
@@ -19,7 +19,7 @@ class FilterAndSortTalesUseCase
   );
 
   @override
-  Stream<FilterAndSortTalesOutput> transaction(
+  Stream<List<TalesPageItemData>> transaction(
     FilterAndSortTalesInput input,
   ) async* {
     final filtered = _filter.filter(
@@ -48,5 +48,3 @@ class FilterAndSortTalesInput {
     this.tales,
   );
 }
-
-typedef FilterAndSortTalesOutput = List<TalesPageItemData>;

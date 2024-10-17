@@ -1,50 +1,39 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:mobile_app/presentation/view/screen/dynamic_item/dynamic_item_screen.dart';
-import 'package:mobile_app/presentation/view/screen/feature_flags/feature_flags_screen.dart';
-import 'package:mobile_app/presentation/view/screen/forced_update/forced_update_screen.dart';
-import 'package:mobile_app/presentation/view/screen/main/main_screen.dart';
-import 'package:mobile_app/presentation/view/screen/main/page/fav/fav_page.dart';
-import 'package:mobile_app/presentation/view/screen/main/page/home/home_page.dart';
-import 'package:mobile_app/presentation/view/screen/main/page/menu/menu_page.dart';
-import 'package:mobile_app/presentation/view/screen/main/page/people/people_page.dart';
-import 'package:mobile_app/presentation/view/screen/main/page/tales/tales_page.dart';
-import 'package:mobile_app/presentation/view/screen/debug/debug_screen.dart';
-import 'package:mobile_app/presentation/view/screen/person/person_screen.dart';
-import 'package:mobile_app/presentation/view/screen/search_tale/search_tale_screen.dart';
-import 'package:mobile_app/presentation/view/screen/settings/settings_screen.dart';
-import 'package:mobile_app/presentation/view/screen/splash/splash_screen.dart';
-import 'package:mobile_app/presentation/view/screen/tale/tale_screen.dart';
-import 'package:mobile_app/presentation/view/screen/tale_crew/tale_crew_screen.dart';
-import 'package:mobile_app/presentation/view/screen/tale_sort_and_filter/tale_sort_and_filter_screen.dart';
-import 'package:mobile_app/presentation/view/screen/whats_new/whats_new_screen.dart';
+import 'package:mobile_app/presentation/navigation/screen/router/router.gr.dart';
 
-@CupertinoAutoRouter(
-  routes: [
-    CupertinoRoute(
-      page: SplashScreen,
-      initial: true,
-    ),
-    CupertinoRoute(page: DebugScreen),
-    CupertinoRoute(page: TaleSortAndFilterScreen),
-    CupertinoRoute(page: TaleScreen),
-    CupertinoRoute(
-      page: MainScreen,
-      children: [
-        MaterialRoute(page: HomePage),
-        MaterialRoute(page: TalesPage),
-        MaterialRoute(page: FavPage),
-        MaterialRoute(page: PeoplePage),
-        MaterialRoute(page: MenuPage),
-      ],
-    ),
-    CupertinoRoute(page: SettingsScreen),
-    CupertinoRoute(page: PersonScreen),
-    CupertinoRoute(page: SearchTaleScreen),
-    CupertinoRoute(page: TaleCrewScreen),
-    CupertinoRoute(page: ForcedUpdateScreen),
-    CupertinoRoute(page: FeatureFlagsScreen),
-    CupertinoRoute(page: WhatsNewScreen),
-    CupertinoRoute(page: DynamicItemScreen),
-  ],
+@AutoRouterConfig(
+  generateForDir: ['lib/presentation/view/screen'],
 )
-class $AppRouter {}
+class AppRouter extends RootStackRouter {
+  @override
+  RouteType get defaultRouteType => RouteType.cupertino();
+
+  @override
+  List<AutoRoute> get routes => [
+        CupertinoRoute(
+          page: SplashRoute.page,
+          initial: true,
+        ),
+        CupertinoRoute(page: DebugRoute.page),
+        CupertinoRoute(page: TaleSortAndFilterRoute.page),
+        CupertinoRoute(page: TaleRoute.page),
+        CupertinoRoute(
+          page: MainRoute.page,
+          children: [
+            MaterialRoute(page: HomeRoute.page),
+            MaterialRoute(page: TalesRoute.page),
+            MaterialRoute(page: FavRoute.page),
+            MaterialRoute(page: PeopleRoute.page),
+            MaterialRoute(page: MenuRoute.page),
+          ],
+        ),
+        CupertinoRoute(page: SettingsRoute.page),
+        CupertinoRoute(page: PersonRoute.page),
+        CupertinoRoute(page: SearchTaleRoute.page),
+        CupertinoRoute(page: TaleCrewRoute.page),
+        CupertinoRoute(page: ForcedUpdateRoute.page),
+        CupertinoRoute(page: FeatureFlagsRoute.page),
+        CupertinoRoute(page: WhatsNewRoute.page),
+        CupertinoRoute(page: DynamicItemRoute.page),
+      ];
+}

@@ -188,7 +188,7 @@ class DialogControllerImpl implements DialogController {
     final context = _contextKeeper.topScreenContext;
     if (context == null) return;
     final router = AutoRouter.of(context);
-    router.pop();
+    router.maybePop();
   }
 
   Future<void> _showBottomDialog(

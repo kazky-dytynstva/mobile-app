@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/domain/feature_flag/feature.dart';
@@ -10,6 +11,7 @@ import 'package:mobile_app/presentation/widget/divider.dart';
 import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 import 'package:mobile_app/presentation/widget/list_item.dart';
 
+@RoutePage()
 class FeatureFlagsScreen extends StatefulWidget {
   const FeatureFlagsScreen({Key? key}) : super(key: key);
 

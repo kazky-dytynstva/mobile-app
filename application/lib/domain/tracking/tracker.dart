@@ -9,7 +9,7 @@ part 'tracking_event.dart';
 part 'tracking_view.dart';
 
 abstract class Tracker {
-  void event(TrackingEvent event, [Map<String, dynamic>? params]);
+  void event(TrackingEvent event, [Map<String, Object>? params]);
 
   void view(TrackingView view);
 }

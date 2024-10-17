@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dartz/dartz.dart' hide State;
 import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/model/menu_dynamic_item/menu_dynamic_item_data.dart';
@@ -9,6 +10,7 @@ import 'package:mobile_app/presentation/widget/app_rich_text.dart';
 import 'package:mobile_app/presentation/widget/bottom_bar_with_actions.dart';
 import 'package:mobile_app/presentation/widget/button/button_primary.dart';
 
+@RoutePage()
 class DynamicItemScreen extends StatefulWidget {
   final MenuDynamicItemData data;
 

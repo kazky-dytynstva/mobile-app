@@ -8,7 +8,7 @@ class TrackerGroupImpl implements Tracker {
   const TrackerGroupImpl(this._trackers);
 
   @override
-  void event(TrackingEvent event, [Map<String, dynamic>? params]) {
+  void event(TrackingEvent event, [Map<String, Object>? params]) {
     for (final Tracker tracker in _trackers) {
       tracker.event(event, params);
     }

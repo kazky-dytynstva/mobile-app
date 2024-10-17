@@ -27,8 +27,6 @@ class RemoteConfigsImpl implements RemoteConfigs {
 
   @override
   Future<bool> init({required Duration expiration}) async {
-    final hasData = _config.lastFetchTime.isAfter(DateTime(1971, 1, 1));
-
     final settings = RemoteConfigSettings(
       fetchTimeout: const Duration(seconds: 10),
       minimumFetchInterval:
@@ -36,6 +34,16 @@ class RemoteConfigsImpl implements RemoteConfigs {
     );
 
     await _config.setConfigSettings(settings);
+
+    final hasData = _config.lastFetchTime.isAfter(DateTime(1971, 1, 1));
+
+    if (hasData) {
+      await _config.activate();
+      _config.fetch();
+      return true;
+    }
+
+    var fetched = true;
     await _config.fetch().catchError((error) {
       _logger.log(
         () => 'Failed to init: $error',
@@ -47,17 +55,13 @@ class RemoteConfigsImpl implements RemoteConfigs {
         final exception = _InitRemoteConfigsException(error);
         _crashAnalytic.exception(exception, StackTrace.current);
       }
+      fetched = false;
     });
 
-    final activated = await _config.activate();
-    if (activated) {
-      _logger.log(
-        () => 'New remote configs were activated',
-        tag: 'REMOTE_CONFIGS',
-      );
+    if (fetched) {
+      await _config.activate();
     }
-
-    return activated || hasData;
+    return fetched;
   }
 
   @override

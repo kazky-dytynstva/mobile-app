@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/domain/model/sort_and_filter/filter_type.dart';
@@ -13,6 +14,7 @@ import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 import 'package:mobile_app/presentation/widget/hide_when_scroll.dart';
 import 'package:mobile_app/presentation/widget/list_of_tales.dart';
 
+@RoutePage()
 class TalesPage extends StatefulWidget {
   const TalesPage({Key? key}) : super(key: key);
 

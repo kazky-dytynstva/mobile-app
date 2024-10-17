@@ -15,6 +15,7 @@ import 'package:mobile_app/presentation/widget/blinking_dot.dart';
 import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 import 'package:mobile_app/presentation/widget/svg_widget.dart';
 
+@RoutePage()
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -133,11 +134,11 @@ class _MainScreenState extends ScreenWidgetState<MainScreen, MainScreenManager>
   }
 
   PageRouteInfo _getPageRoute(MainScreenPage type) => type.map(
-        home: () => const HomePageRoute(),
-        tales: () => const TalesPageRoute(),
-        fav: () => const FavPageRoute(),
-        people: () => const PeoplePageRoute(),
-        menu: () => const MenuPageRoute(),
+        home: () => const HomeRoute(),
+        tales: () => const TalesRoute(),
+        fav: () => const FavRoute(),
+        people: () => const PeopleRoute(),
+        menu: () => const MenuRoute(),
       );
 
   String _getPageLabel(MainScreenPage type) => type.map(

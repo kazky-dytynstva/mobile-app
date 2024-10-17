@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app/domain/model/app_tab/app_tab_data.dart';
@@ -11,6 +12,7 @@ import 'package:mobile_app/presentation/widget/custom_theme.dart';
 import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 import 'package:mobile_app/presentation/widget/tabs/app_tab_bar.dart';
 
+@RoutePage()
 class PeoplePage extends StatefulWidget {
   const PeoplePage({Key? key}) : super(key: key);
 
