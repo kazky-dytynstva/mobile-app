@@ -17,7 +17,7 @@ import 'widget/search_tale_example.dart';
 
 @RoutePage()
 class SearchTaleScreen extends StatefulWidget {
-  const SearchTaleScreen({Key? key}) : super(key: key);
+  const SearchTaleScreen({super.key});
 
   @override
   State<SearchTaleScreen> createState() => _SearchTaleScreenState();

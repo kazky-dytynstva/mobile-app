@@ -30,8 +30,8 @@ class TaleSortAndFilterScreen extends StatefulWidget {
     this.openType,
     this.initialFilterType,
     this.initialSortType, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<StatefulWidget> createState() => _TaleSortAndFilterScreenState();

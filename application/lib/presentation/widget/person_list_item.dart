@@ -14,8 +14,8 @@ class PersonListItem extends StatelessWidget {
     required this.person,
     required this.onPressed,
     required this.onFavPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

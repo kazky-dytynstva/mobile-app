@@ -6,7 +6,7 @@ import 'package:mobile_app/presentation/view/screen/debug/page/base_debug_page.d
 import 'package:mobile_app/presentation/widget/svg_widget.dart';
 
 class DebugPageAssets extends BaseDebugPage {
-  const DebugPageAssets({Key? key}) : super(key: key);
+  const DebugPageAssets({super.key});
 
   @override
   BaseDebugPageState createState() => _DebugPageState();

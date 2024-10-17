@@ -17,30 +17,28 @@ class ButtonPrimary extends StatelessWidget with ButtonMixin {
     required this.onPressed,
     required Widget child,
     EdgeInsets? contentPadding,
-    Key? key,
+    super.key,
   })  : _child = child,
         _text = null,
         _assetIcon = null,
         _iconColor = null,
         _allCaps = false,
         _positionIconAtEdge = false,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   const ButtonPrimary.text(
     String text, {
     required this.onPressed,
     bool allCaps = true,
     EdgeInsets? contentPadding,
-    Key? key,
+    super.key,
   })  : _child = null,
         _text = text,
         _allCaps = allCaps,
         _assetIcon = null,
         _iconColor = null,
         _positionIconAtEdge = false,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   const ButtonPrimary.textWithIcon(
     String text,
@@ -50,15 +48,14 @@ class ButtonPrimary extends StatelessWidget with ButtonMixin {
     bool allCaps = true,
     bool positionIconAtEdge = false,
     EdgeInsets? contentPadding,
-    Key? key,
+    super.key,
   })  : _child = null,
         _text = text,
         _assetIcon = icon,
         _allCaps = allCaps,
         _iconColor = iconColor,
         _positionIconAtEdge = positionIconAtEdge,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   const ButtonPrimary.icon(
     SvgAssetIcon icon, {
@@ -66,15 +63,14 @@ class ButtonPrimary extends StatelessWidget with ButtonMixin {
     Color? iconColor,
     bool allCaps = true,
     EdgeInsets? contentPadding,
-    Key? key,
+    super.key,
   })  : _child = null,
         _text = null,
         _assetIcon = icon,
         _iconColor = iconColor,
         _allCaps = allCaps,
         _positionIconAtEdge = false,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   @override
   ButtonStyle get buttonStyle => ElevatedButton.styleFrom(

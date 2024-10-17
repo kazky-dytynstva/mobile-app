@@ -25,7 +25,7 @@ import 'package:mobile_app/presentation/widget/tabs/app_tab_bar.dart';
 
 @RoutePage()
 class DebugScreen extends StatefulWidget {
-  const DebugScreen({Key? key}) : super(key: key);
+  const DebugScreen({super.key});
 
   @override
   State<DebugScreen> createState() => _DebugScreenState();

@@ -10,19 +10,17 @@ class EmptyListView extends StatelessWidget {
   const EmptyListView.filter({
     bool isFavTales = false,
     bool isFavPeople = false,
-    Key? key,
+    super.key,
   })  : assert(isFavTales || isFavPeople),
         _isFavTales = isFavTales,
         _isFavPeople = isFavPeople,
-        _isSearchList = false,
-        super(key: key);
+        _isSearchList = false;
 
   const EmptyListView.search({
-    Key? key,
+    super.key,
   })  : _isSearchList = true,
         _isFavTales = false,
-        _isFavPeople = false,
-        super(key: key);
+        _isFavPeople = false;
 
   @override
   Widget build(BuildContext context) {

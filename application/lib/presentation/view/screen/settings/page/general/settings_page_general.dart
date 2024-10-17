@@ -14,7 +14,7 @@ class SettingsPageGeneral extends StatelessWidget {
   final VoidCallback onTermsAndConditionsPressed;
 
   const SettingsPageGeneral({
-    Key? key,
+    super.key,
     required this.data,
     required this.onThemeChanged,
     required this.onTrackingEnabledPressed,
@@ -22,7 +22,7 @@ class SettingsPageGeneral extends StatelessWidget {
     required this.onDeleteUserDataPressed,
     required this.onPrivacyPolityPressed,
     required this.onTermsAndConditionsPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

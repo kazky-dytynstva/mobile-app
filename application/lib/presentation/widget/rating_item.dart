@@ -12,8 +12,8 @@ class RatingItem extends StatelessWidget {
   const RatingItem({
     required this.type,
     this.size,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   SvgAssetGraphic get graphic {
     switch (type) {
@@ -49,8 +49,8 @@ class RatingItemButton extends StatelessWidget {
     required this.type,
     required this.onPressed,
     this.asFab = true,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   double get _iconSize => R.dimen.iconSize;
 

@@ -9,10 +9,10 @@ class TalesPageToolbar extends StatelessWidget {
   final TaleSortItemData sortData;
 
   const TalesPageToolbar({
-    Key? key,
+    super.key,
     required this.filterData,
     required this.sortData,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

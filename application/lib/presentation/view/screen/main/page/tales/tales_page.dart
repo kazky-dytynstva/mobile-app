@@ -16,7 +16,7 @@ import 'package:mobile_app/presentation/widget/list_of_tales.dart';
 
 @RoutePage()
 class TalesPage extends StatefulWidget {
-  const TalesPage({Key? key}) : super(key: key);
+  const TalesPage({super.key});
 
   @override
   State<TalesPage> createState() => _TalesPageState();

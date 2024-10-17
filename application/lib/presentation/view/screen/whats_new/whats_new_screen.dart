@@ -10,7 +10,7 @@ import 'package:mobile_app/presentation/widget/fade_animated_switcher.dart';
 
 @RoutePage()
 class WhatsNewScreen extends StatefulWidget {
-  const WhatsNewScreen({Key? key}) : super(key: key);
+  const WhatsNewScreen({super.key});
 
   @override
   State<WhatsNewScreen> createState() => _WhatsNewScreenState();
@@ -54,7 +54,7 @@ class _WhatsNewScreenState
 
   Widget _buildReadyState(WhatsNewScreenStateReady state) {
     final changes = <Widget>[
-      ...state.changes.map((e) => WhatsNewsChanges(changes: e)).toList(),
+      ...state.changes.map((e) => WhatsNewsChanges(changes: e)),
       SizedBox(height: R.dimen.bottomBarWithActionsHeight)
     ];
     final content = SingleChildScrollView(child: Column(children: changes));

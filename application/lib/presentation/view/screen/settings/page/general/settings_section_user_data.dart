@@ -22,8 +22,8 @@ class SettingsSectionUserData extends StatelessWidget {
     required this.onDeleteUserDataPressed,
     required this.onTermsAndConditionsPressed,
     required this.onPrivacyPolityPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => LabeledChildren(

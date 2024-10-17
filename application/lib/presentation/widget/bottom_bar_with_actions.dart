@@ -12,9 +12,8 @@ class BottomBarWithActions extends StatelessWidget {
     this.items = const [],
     this.onBackPressed,
     this.itemsAlignment = MainAxisAlignment.spaceEvenly,
-    Key? key,
-  })  : assert(onBackPressed != null || items.length > 0),
-        super(key: key);
+    super.key,
+  }) : assert(onBackPressed != null || items.length > 0);
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ import 'package:mobile_app/presentation/widget/list_item.dart';
 
 @RoutePage()
 class FeatureFlagsScreen extends StatefulWidget {
-  const FeatureFlagsScreen({Key? key}) : super(key: key);
+  const FeatureFlagsScreen({super.key});
 
   @override
   State<FeatureFlagsScreen> createState() => _FeatureFlagsScreenState();

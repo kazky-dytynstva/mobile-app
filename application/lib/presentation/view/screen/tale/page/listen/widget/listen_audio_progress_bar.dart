@@ -12,12 +12,12 @@ class ListenAudioProgressBar extends StatefulWidget {
   final OnPositionChanged onPositionChanged;
 
   const ListenAudioProgressBar({
-    Key? key,
+    super.key,
     required this.duration,
     required this.position,
     required this.isCached,
     required this.onPositionChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<ListenAudioProgressBar> createState() => _ListenAudioProgressBarState();

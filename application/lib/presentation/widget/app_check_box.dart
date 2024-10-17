@@ -12,8 +12,8 @@ class AppCheckBox extends StatelessWidget {
     required this.onChanged,
     this.fillColor,
     this.checkColor,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Checkbox(

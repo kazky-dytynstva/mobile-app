@@ -7,8 +7,8 @@ import 'package:mobile_app/presentation/widget/custom_theme.dart';
 
 class Application extends StatefulWidget {
   const Application({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<Application> createState() => _ApplicationState();

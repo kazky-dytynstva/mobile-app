@@ -19,20 +19,20 @@ class ReadTalePageItem extends StatelessWidget {
   final VisibilityCallback onInVisible;
 
   const ReadTalePageItem({
-    Key? key,
+    super.key,
     required this.item,
     required this.controller,
     required this.index,
     required this.scaleFactor,
     required this.onVisible,
     required this.onInVisible,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final content = item.map(
-      text: (_) => _buildParagraph(_.text, isFirst: index == 1),
-      image: (_) => _buildImage(_.url),
+      text: (e) => _buildParagraph(e.text, isFirst: index == 1),
+      image: (e) => _buildImage(e.url),
     );
     final withPadding = Padding(
       padding: EdgeInsets.symmetric(

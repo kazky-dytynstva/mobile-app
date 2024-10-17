@@ -27,8 +27,8 @@ class HomeListItem extends StatelessWidget {
     required this.onRatingPressed,
     required this.onUserRequestCtaPressed,
     required this.onUserRequestHidePressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -50,10 +50,10 @@ class HomeListItem extends StatelessWidget {
       );
 
   Widget _buildItem() => data.map(
-        random: (_) => _createListView(_.tales),
-        latest: (_) => _createListView(_.tales),
-        bestRating: (_) => _createListView(_.tales),
-        userActionRequest: (_) => _buildUserActionRequest(_.actionRequest),
+        random: (e) => _createListView(e.tales),
+        latest: (e) => _createListView(e.tales),
+        bestRating: (e) => _createListView(e.tales),
+        userActionRequest: (e) => _buildUserActionRequest(e.actionRequest),
       );
 
   Widget _createListView(List<TalesPageItemData> tales) {

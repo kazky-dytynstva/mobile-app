@@ -10,10 +10,10 @@ class LoadingFailedWidget extends StatelessWidget {
   final VoidCallback onRetryPressed;
 
   const LoadingFailedWidget({
-    Key? key,
+    super.key,
     required this.errorMsg,
     required this.onRetryPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

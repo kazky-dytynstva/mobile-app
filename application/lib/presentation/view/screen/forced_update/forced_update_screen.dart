@@ -13,9 +13,9 @@ class ForcedUpdateScreen extends StatefulWidget {
   final ForcedUpdateInfo info;
 
   const ForcedUpdateScreen({
-    Key? key,
+    super.key,
     required this.info,
-  }) : super(key: key);
+  });
 
   @override
   State<ForcedUpdateScreen> createState() => _ForcedUpdateScreenState();

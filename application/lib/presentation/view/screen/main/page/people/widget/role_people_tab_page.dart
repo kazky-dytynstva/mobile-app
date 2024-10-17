@@ -15,8 +15,8 @@ class RolePeopleTabPage extends StatefulWidget {
     required this.onPersonPressed,
     required this.onPersonFavPressed,
     required this.onScrollPositionChanged,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<RolePeopleTabPage> createState() => _State();

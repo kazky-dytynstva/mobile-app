@@ -12,10 +12,10 @@ class CustomTheme extends StatefulWidget {
   final AppTheme initialTheme;
 
   const CustomTheme({
-    Key? key,
+    super.key,
     required this.initialTheme,
     required this.app,
-  }) : super(key: key);
+  });
 
   @override
   State<CustomTheme> createState() => _CustomThemeState();
@@ -70,9 +70,8 @@ class _CustomTheme extends InheritedWidget {
 
   const _CustomTheme({
     required this.data,
-    Key? key,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   @override
   bool updateShouldNotify(_CustomTheme oldWidget) {

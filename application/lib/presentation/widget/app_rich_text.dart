@@ -23,12 +23,11 @@ class AppRichText extends StatelessWidget {
     this._text, {
     TextStyle? style,
     TextAlign align = TextAlign.start,
-    Key? key,
+    super.key,
   })  : _style = style,
         _align = align,
         _clickableMarker = null,
-        _callbacks = [],
-        super(key: key);
+        _callbacks = [];
 
   AppRichText.clickable(
     this._text, {
@@ -36,13 +35,12 @@ class AppRichText extends StatelessWidget {
     RichMarker clickableMarker = RichMarker.accent,
     TextStyle? style,
     TextAlign align = TextAlign.start,
-    Key? key,
+    super.key,
   })  : assert(callbacks.isNotEmpty),
         _style = style,
         _align = align,
         _clickableMarker = clickableMarker,
-        _callbacks = callbacks,
-        super(key: key);
+        _callbacks = callbacks;
 
   TextStyle get _textStyle => _style ?? R.styles.textBody;
 

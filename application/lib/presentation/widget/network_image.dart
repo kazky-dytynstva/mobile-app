@@ -24,8 +24,8 @@ class NetworkImage extends StatefulWidget {
     this.fit = BoxFit.cover,
     this.createPlaceholder,
     this.createError,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<NetworkImage> createState() => _NetworkImageState();
@@ -54,14 +54,14 @@ class _NetworkImageState extends State<NetworkImage> {
         fit: widget.fit,
       );
 
-  Widget _createPlaceholder(BuildContext _, String __) {
+  Widget _createPlaceholder(BuildContext c, String __) {
     if (widget.createPlaceholder != null) {
-      return widget.createPlaceholder!.call(_);
+      return widget.createPlaceholder!.call(c);
     }
     return Container(color: R.palette.background);
   }
 
-  Widget _createError(BuildContext _, String __, ___) {
+  Widget _createError(BuildContext e, String __, ___) {
     if (_imageKey != _keyFailed) {
       _wait();
       SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -71,7 +71,7 @@ class _NetworkImageState extends State<NetworkImage> {
       });
     }
     if (widget.createError != null) {
-      return widget.createError!.call(_);
+      return widget.createError!(e);
     }
     return SvgWidget.graphic(R.assets.graphics.error);
   }

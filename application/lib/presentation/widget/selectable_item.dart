@@ -17,8 +17,8 @@ class SelectableItem extends StatelessWidget {
     required this.onPressed,
     required this.isSelected,
     this.icon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

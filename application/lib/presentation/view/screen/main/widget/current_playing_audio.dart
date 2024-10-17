@@ -19,8 +19,8 @@ class CurrentPlayingAudio extends StatefulWidget {
     required this.playingTaleOption,
     required this.onStopPressed,
     required this.onTalePressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<CurrentPlayingAudio> createState() => _CurrentPlayingAudioState();

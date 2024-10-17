@@ -14,8 +14,8 @@ class TaleSortPage extends StatelessWidget {
     required this.sortItems,
     required this.selected,
     required this.onItemPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

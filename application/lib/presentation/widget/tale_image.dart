@@ -10,12 +10,12 @@ class TaleImage extends StatelessWidget {
   final BorderRadius? radius;
 
   const TaleImage({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.width,
     this.height,
     this.radius,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

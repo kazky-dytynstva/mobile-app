@@ -7,7 +7,7 @@ import 'package:mobile_app/presentation/widget/button/button_primary.dart';
 import 'package:mobile_app/presentation/widget/svg_widget.dart';
 
 abstract class BaseDialog extends StatefulWidget {
-  const BaseDialog({Key? key}) : super(key: key);
+  const BaseDialog({super.key});
 
   @override
   BaseDialogState createState();

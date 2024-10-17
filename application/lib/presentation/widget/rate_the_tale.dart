@@ -13,8 +13,8 @@ class RateTheTaleView extends StatelessWidget {
   const RateTheTaleView({
     required this.show,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

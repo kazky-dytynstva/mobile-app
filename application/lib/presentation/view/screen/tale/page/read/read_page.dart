@@ -23,8 +23,8 @@ class ReadTalePage extends StatefulWidget {
     required this.scrollController,
     required this.showToolbarNotifier,
     required this.hideToolbarNotifier,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<ReadTalePage> createState() => _ReadTalePageState();

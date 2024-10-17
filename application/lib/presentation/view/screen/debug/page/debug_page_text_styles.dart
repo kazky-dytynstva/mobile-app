@@ -3,7 +3,7 @@ import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/view/screen/debug/page/base_debug_page.dart';
 
 class DebugPageTextStyles extends BaseDebugPage {
-  const DebugPageTextStyles({Key? key}) : super(key: key);
+  const DebugPageTextStyles({super.key});
 
   @override
   BaseDebugPageState createState() => _DebugPageState();

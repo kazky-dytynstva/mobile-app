@@ -9,8 +9,8 @@ class ReportTaleDialog extends BaseDialog {
   const ReportTaleDialog({
     required this.onReportPressed,
     required this.onClosePressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   BaseDialogState<BaseDialog> createState() => _State();

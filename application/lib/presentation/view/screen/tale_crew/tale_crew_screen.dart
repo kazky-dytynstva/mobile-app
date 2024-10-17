@@ -22,8 +22,8 @@ class TaleCrewScreen extends StatefulWidget {
   const TaleCrewScreen({
     required this.taleName,
     required this.crew,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<TaleCrewScreen> createState() => _State();

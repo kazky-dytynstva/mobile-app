@@ -25,8 +25,8 @@ class TaleScreen extends StatefulWidget {
     required this.initialTale,
     required this.openAudio,
     required this.filterType,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<TaleScreen> createState() => _TaleScreenState();

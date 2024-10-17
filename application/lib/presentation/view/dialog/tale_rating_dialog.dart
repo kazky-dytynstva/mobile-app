@@ -21,8 +21,8 @@ class TaleRatingDialog extends BaseDialog {
     required this.data,
     required this.onInfoPressed,
     required this.onClosePressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   BaseDialogState<BaseDialog> createState() => _State();

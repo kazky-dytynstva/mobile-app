@@ -8,8 +8,8 @@ class BackgroundShadow extends StatelessWidget {
   const BackgroundShadow({
     required this.child,
     this.height,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

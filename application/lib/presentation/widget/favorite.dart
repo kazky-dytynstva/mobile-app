@@ -14,9 +14,8 @@ class Favorite extends StatelessWidget {
     required this.isFav,
     this.mini = false,
     this.asFab = true,
-    Key? key,
-  })  : _onPressed = onPressed,
-        super(key: key);
+    super.key,
+  }) : _onPressed = onPressed;
 
   double get _iconSize => R.dimen.iconSize;
 

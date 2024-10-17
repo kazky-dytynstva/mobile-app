@@ -20,7 +20,7 @@ class ButtonGhost extends StatelessWidget with ButtonMixin {
     required Widget child,
     bool fixedMaxHeight = false,
     EdgeInsets? contentPadding,
-    Key? key,
+    super.key,
   })  : _child = child,
         _text = null,
         _assetIcon = null,
@@ -29,8 +29,7 @@ class ButtonGhost extends StatelessWidget with ButtonMixin {
         _textColor = null,
         _positionIconAtEdge = false,
         _fixedMaxHeight = fixedMaxHeight,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   const ButtonGhost.text(
     String text, {
@@ -39,7 +38,7 @@ class ButtonGhost extends StatelessWidget with ButtonMixin {
     bool fixedMaxHeight = true,
     Color? textColor,
     EdgeInsets? contentPadding,
-    Key? key,
+    super.key,
   })  : _child = null,
         _text = text,
         _allCaps = allCaps,
@@ -48,8 +47,7 @@ class ButtonGhost extends StatelessWidget with ButtonMixin {
         _iconColor = null,
         _fixedMaxHeight = fixedMaxHeight,
         _positionIconAtEdge = false,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   const ButtonGhost.textWithIcon(
     String text,
@@ -61,7 +59,7 @@ class ButtonGhost extends StatelessWidget with ButtonMixin {
     bool positionIconAtEdge = false,
     Color? textColor,
     EdgeInsets? contentPadding,
-    Key? key,
+    super.key,
   })  : _child = null,
         _text = text,
         _assetIcon = icon,
@@ -70,8 +68,7 @@ class ButtonGhost extends StatelessWidget with ButtonMixin {
         _iconColor = iconColor,
         _fixedMaxHeight = fixedMaxHeight,
         _positionIconAtEdge = positionIconAtEdge,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   const ButtonGhost.icon(
     SvgAssetIcon icon, {
@@ -79,7 +76,7 @@ class ButtonGhost extends StatelessWidget with ButtonMixin {
     Color? iconColor,
     bool fixedMaxHeight = true,
     EdgeInsets? contentPadding,
-    Key? key,
+    super.key,
   })  : _child = null,
         _text = null,
         _assetIcon = icon,
@@ -88,8 +85,7 @@ class ButtonGhost extends StatelessWidget with ButtonMixin {
         _textColor = null,
         _fixedMaxHeight = fixedMaxHeight,
         _positionIconAtEdge = false,
-        _contentPadding = contentPadding,
-        super(key: key);
+        _contentPadding = contentPadding;
 
   @override
   ButtonStyle get buttonStyle => TextButton.styleFrom(

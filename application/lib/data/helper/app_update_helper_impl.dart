@@ -11,10 +11,10 @@ class AppUpdateHelperImpl implements AppUpdateHelper {
     try {
       final availability = await getUpdateAvailability();
       switch (availability.runtimeType) {
-        case UpdateAvailable:
+        case const (UpdateAvailable):
           return true;
-        case NoUpdateAvailable:
-        case UnknownAvailability:
+        case const (NoUpdateAvailable):
+        case const (UnknownAvailability):
           return false;
         default:
           return false;

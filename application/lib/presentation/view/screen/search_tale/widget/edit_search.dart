@@ -14,8 +14,8 @@ class EditSearch extends StatefulWidget {
   const EditSearch({
     required this.onSearchChanged,
     required this.searchOption,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<EditSearch> createState() => _EditSearchState();

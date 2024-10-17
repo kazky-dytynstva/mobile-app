@@ -12,8 +12,8 @@ class UrlPreview extends StatefulWidget {
   const UrlPreview({
     required this.url,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<UrlPreview> createState() => _UrlPreviewState();

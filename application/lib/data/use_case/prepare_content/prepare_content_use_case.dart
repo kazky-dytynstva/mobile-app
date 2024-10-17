@@ -121,13 +121,13 @@ class PrepareContentUseCase
       final rightValue = (either as Right).value as Iterable;
       final first = rightValue.first;
       switch (first.runtimeType) {
-        case TaleDto:
+        case TaleDto _:
           await _storeTales(rightValue as Iterable<TaleDto>);
           break;
-        case RatingDto:
+        case RatingDto _:
           await _storeRatings(rightValue as Iterable<RatingDto>);
           break;
-        case PersonDto:
+        case PersonDto _:
           await _storePeople(rightValue as Iterable<PersonDto>);
           break;
       }

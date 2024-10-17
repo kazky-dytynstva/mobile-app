@@ -16,8 +16,8 @@ class DynamicItemScreen extends StatefulWidget {
 
   const DynamicItemScreen({
     required this.data,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<DynamicItemScreen> createState() => _State();
@@ -89,7 +89,7 @@ class _State
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         R.spaces.verticalUnit2,
-        ...pointsData.map(buildPoint).toList(),
+        ...pointsData.map(buildPoint),
         SizedBox(height: R.dimen.bottomBarWithActionsHeight * 2),
       ],
     );

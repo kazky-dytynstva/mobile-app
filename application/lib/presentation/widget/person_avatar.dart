@@ -14,17 +14,16 @@ class PersonAvatar extends StatelessWidget {
     required this.width,
     required this.height,
     this.withRoundedCorners = true,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   PersonAvatar.squared({
     required this.photoUrl,
     this.withRoundedCorners = true,
     double? size,
-    Key? key,
+    super.key,
   })  : width = size ?? R.dimen.personAvatarList,
-        height = size ?? R.dimen.personAvatarList,
-        super(key: key);
+        height = size ?? R.dimen.personAvatarList;
 
   @override
   Widget build(BuildContext context) {

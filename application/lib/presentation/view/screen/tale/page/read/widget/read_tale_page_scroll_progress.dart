@@ -6,9 +6,9 @@ class ReadTalePageScrollProgress extends StatefulWidget {
   final ScrollController scrollController;
 
   const ReadTalePageScrollProgress({
-    Key? key,
+    super.key,
     required this.scrollController,
-  }) : super(key: key);
+  });
 
   @override
   State<ReadTalePageScrollProgress> createState() =>

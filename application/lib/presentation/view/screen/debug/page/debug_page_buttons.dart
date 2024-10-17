@@ -8,7 +8,7 @@ import 'package:mobile_app/presentation/widget/button/button_secondary.dart';
 import 'package:mobile_app/presentation/widget/svg_widget.dart';
 
 class DebugPageButtons extends BaseDebugPage {
-  const DebugPageButtons({Key? key}) : super(key: key);
+  const DebugPageButtons({super.key});
 
   @override
   BaseDebugPageState createState() => _DebugPageState();

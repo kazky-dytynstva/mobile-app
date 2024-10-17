@@ -15,8 +15,8 @@ class FlipDownTimer extends StatefulWidget {
     this.onDone,
     this.digitColor,
     this.cardColor,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<FlipDownTimer> createState() => _FlipDownTimerState();

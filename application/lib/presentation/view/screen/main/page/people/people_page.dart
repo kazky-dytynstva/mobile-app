@@ -14,7 +14,7 @@ import 'package:mobile_app/presentation/widget/tabs/app_tab_bar.dart';
 
 @RoutePage()
 class PeoplePage extends StatefulWidget {
-  const PeoplePage({Key? key}) : super(key: key);
+  const PeoplePage({super.key});
 
   @override
   State<PeoplePage> createState() => _PeoplePageState();

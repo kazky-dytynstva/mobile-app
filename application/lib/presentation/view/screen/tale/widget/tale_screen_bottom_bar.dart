@@ -31,8 +31,8 @@ class TaleScreenBottomBar extends StatelessWidget {
     required this.pageType,
     required this.hasCrew,
     required this.ratingOption,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

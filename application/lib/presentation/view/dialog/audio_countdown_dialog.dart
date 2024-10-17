@@ -19,8 +19,8 @@ class AudiCountdownDialog extends BaseDialog {
     this.remainingTime,
     this._onCountdownTimePressed,
     this._onClosePressed, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   BaseDialogState<BaseDialog> createState() => _State();

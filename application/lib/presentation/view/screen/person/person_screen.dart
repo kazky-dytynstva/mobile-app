@@ -24,8 +24,8 @@ class PersonScreen extends StatefulWidget {
 
   const PersonScreen({
     required this.person,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<PersonScreen> createState() => _PersonScreenState();

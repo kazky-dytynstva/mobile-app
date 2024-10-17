@@ -11,8 +11,8 @@ class SettingsPageText extends StatelessWidget {
   const SettingsPageText({
     required this.data,
     required this.onTextScaleFactorPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

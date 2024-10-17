@@ -9,11 +9,11 @@ class TextScaleFactorSwitchingItem extends StatelessWidget {
   final TextScaleFactor selected;
 
   const TextScaleFactorSwitchingItem({
-    Key? key,
+    super.key,
     required this.scaleFactor,
     required this.onPressed,
     required this.selected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => ListItem(

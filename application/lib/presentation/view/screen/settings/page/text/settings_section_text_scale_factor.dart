@@ -13,8 +13,8 @@ class SettingsSectionTextScaleFactor extends StatelessWidget {
   const SettingsSectionTextScaleFactor({
     required this.currentFactor,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => LabeledChildren(

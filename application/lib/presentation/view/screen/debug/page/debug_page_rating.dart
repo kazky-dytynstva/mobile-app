@@ -8,7 +8,7 @@ import 'package:mobile_app/presentation/widget/rate_the_tale.dart';
 import 'package:mobile_app/presentation/widget/rating_item.dart';
 
 class DebugPageRating extends BaseDebugPage {
-  const DebugPageRating({Key? key}) : super(key: key);
+  const DebugPageRating({super.key});
 
   @override
   BaseDebugPageState createState() => _DebugPageState();

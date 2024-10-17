@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:mobile_app/domain/model/tale/tale_more_item.dart';
 import 'package:mobile_app/presentation/resource/r.dart';
 import 'package:mobile_app/presentation/view/dialog/base/base_dialog.dart';
@@ -10,8 +9,8 @@ class TaleMoreDialog extends BaseDialog {
 
   const TaleMoreDialog({
     required this.onTaleMoreItemPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   BaseDialogState<BaseDialog> createState() => _State();

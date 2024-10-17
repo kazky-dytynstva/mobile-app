@@ -19,8 +19,8 @@ class MenuPageItem extends StatefulWidget {
     this.subTitle,
     this.showBlinkingDot = false,
     this.accentIcon = false,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<MenuPageItem> createState() => _MenuPageItemState();

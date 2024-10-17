@@ -17,8 +17,8 @@ class PeopleList extends StatelessWidget {
     required this.onPersonPressed,
     required this.onPersonFavPressed,
     this.controller,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

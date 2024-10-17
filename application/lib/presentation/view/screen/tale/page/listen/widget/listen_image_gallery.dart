@@ -8,10 +8,10 @@ class ListenImageGallery extends StatefulWidget {
   final int currentIndex;
 
   const ListenImageGallery({
-    Key? key,
+    super.key,
     required this.images,
     required this.currentIndex,
-  }) : super(key: key);
+  });
 
   @override
   State<ListenImageGallery> createState() => _ListenImageGalleryState();

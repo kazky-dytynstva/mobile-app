@@ -6,7 +6,7 @@ import 'package:mobile_app/presentation/view/screen/debug/page/base_debug_page.d
 import 'package:mobile_app/presentation/widget/button/button_secondary.dart';
 
 class DebugPageSnackbar extends BaseDebugPage {
-  const DebugPageSnackbar({Key? key}) : super(key: key);
+  const DebugPageSnackbar({super.key});
 
   @override
   BaseDebugPageState createState() => _DebugPageState();

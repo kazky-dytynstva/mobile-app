@@ -17,7 +17,7 @@ import 'package:mobile_app/presentation/widget/svg_widget.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();

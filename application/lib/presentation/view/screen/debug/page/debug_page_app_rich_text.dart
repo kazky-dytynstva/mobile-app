@@ -6,7 +6,7 @@ import 'package:mobile_app/presentation/view/screen/debug/page/base_debug_page.d
 import 'package:mobile_app/presentation/widget/app_rich_text.dart';
 
 class DebugPageAppRichText extends BaseDebugPage {
-  const DebugPageAppRichText({Key? key}) : super(key: key);
+  const DebugPageAppRichText({super.key});
 
   @override
   BaseDebugPageState createState() => _State();

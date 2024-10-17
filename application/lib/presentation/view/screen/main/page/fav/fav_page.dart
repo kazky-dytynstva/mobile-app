@@ -17,7 +17,7 @@ import 'package:mobile_app/presentation/widget/list_of_tales.dart';
 
 @RoutePage()
 class FavPage extends StatefulWidget {
-  const FavPage({Key? key}) : super(key: key);
+  const FavPage({super.key});
 
   @override
   State<FavPage> createState() => _FavPageState();
