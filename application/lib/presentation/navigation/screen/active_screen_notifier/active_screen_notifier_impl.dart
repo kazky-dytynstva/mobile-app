@@ -5,8 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'active_screen_notifier.dart';
 
 @LazySingleton(as: ActiveScreenNotifier)
-class ActiveScreenNotifierImpl
-    extends NavigatorObserver
+class ActiveScreenNotifierImpl extends NavigatorObserver
     implements ActiveScreenNotifier {
   final observer = NavigatorObserver();
   final _requests = List<_Request>.empty();
