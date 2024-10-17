@@ -1,0 +1,14 @@
+{
+    "dart.flutterSdkPath": ".fvm/flutter_sdk",
+    // Remove .fvm/flutter_sdk files from search
+    "search.exclude": {
+      "**/.fvm/flutter_sdk": true
+    },
+    // Remove from file watching
+    "files.watcherExclude": {
+      "**/.fvm": true
+    },
+    "editor.codeActionsOnSave": {
+      "quickfix.insertSemicolon": "explicit",
+    },
+  }
