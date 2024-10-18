@@ -35,7 +35,7 @@ jobs:
       - name: 👀 Read Flutter version from FVM config
         uses: kuhnroyal/flutter-fvm-config-action@v1
         with:
-          path: 'application/.fvm/fvm_config.json'
+          path: 'application/.fvmrc'
 
       - name: 🏪 Store Flutter version
         id: flutter_version
