@@ -30,10 +30,10 @@ jobs:
           echo "Build version code is $version_code"
           echo "version_code=$version_code" >> $GITHUB_OUTPUT
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: 👀 Read Flutter version from FVM config
-        uses: kuhnroyal/flutter-fvm-config-action@v1
+        uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
           path: 'application/.fvmrc'
 
