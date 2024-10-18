@@ -40,4 +40,4 @@ jobs:
 
       - name: 🛟 Run sanity checks
         working-directory: ./application
-        run: fastlane check clean:true
+        run: bundle exec fastlane check clean:true

@@ -95,9 +95,9 @@ lane :check do |options|
 
   flutter("analyze lib test")
   if is_ci
-    flutter("format ./ --set-exit-if-changed")
+    dart("format ./ --set-exit-if-changed")
   else
-    flutter("format ./")
+    dart("format ./")
   end
   if options[Options::COVERAGE] == true
     flutter("test --coverage")
@@ -430,6 +430,16 @@ def flutter(args)
       sh "flutter #{args}"
     else
       sh "fvm flutter #{args}"
+    end
+  end
+end
+
+def dart(args)
+  Dir.chdir("..") do
+    if is_ci
+      sh "dart #{args}"
+    else
+      sh "fvm dart #{args}"
     end
   end
 end

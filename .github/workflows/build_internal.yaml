@@ -76,7 +76,7 @@ jobs:
           APPSTORE_API_PRIVATE_KEY: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
           IOS_PROFILES: ${{ secrets.IOS_PROFILES }}
           GOOGLE_SERVICES_PLIST_INTERNAL: ${{ secrets.GOOGLE_SERVICES_PLIST_INTERNAL }}
-        run: fastlane build clean:true platform:ios staging:internal upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
+        run: bundle exec fastlane build clean:true platform:ios staging:internal upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
 
       - name: ⤵️ Archive artifacts
         uses: actions/upload-artifact@v3
@@ -136,7 +136,7 @@ jobs:
         env:
           GOOGLE_APP_CREDENTIALS_JSON_INTERNAL: ${{ secrets.GOOGLE_APP_CREDENTIALS_JSON_INTERNAL }}
           GOOGLE_SERVICES_JSON_INTERNAL: ${{ secrets.GOOGLE_SERVICES_JSON_INTERNAL }}
-        run: fastlane build clean:true platform:android staging:internal upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
+        run: bundle exec fastlane build clean:true platform:android staging:internal upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
 
       - name: ⤵️ Archive artifacts
         uses: actions/upload-artifact@v3
