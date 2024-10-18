@@ -55,7 +55,7 @@ jobs:
           cache: true
 
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -73,7 +73,7 @@ jobs:
           APPSTORE_API_PRIVATE_KEY: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
           IOS_PROFILES: ${{ secrets.IOS_PROFILES }}
           GOOGLE_SERVICES_PLIST_PROD: ${{ secrets.GOOGLE_SERVICES_PLIST_PROD }}
-        run: fastlane build clean:true platform:ios staging:prod upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
+        run: bundle exec fastlane build clean:true platform:ios staging:prod upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
 
       - name: ⤵️ Archive artifacts
         uses: actions/upload-artifact@v3
@@ -118,7 +118,7 @@ jobs:
           cache: true
 
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -137,7 +137,7 @@ jobs:
           ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
           GOOGLE_SERVICES_JSON_PROD: ${{ secrets.GOOGLE_SERVICES_JSON_PROD }}
           GOOGLE_APP_CREDENTIALS_JSON_PROD: ${{ secrets.GOOGLE_APP_CREDENTIALS_JSON_PROD }}
-        run: fastlane build clean:true platform:android staging:prod android_output:appbundle upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
+        run: bundle exec fastlane build clean:true platform:android staging:prod android_output:appbundle upload_to_store:true version_code:${{ needs.prepare_code.outputs.build_version_code }}
 
       - name: ⤵️ Archive artifacts
         uses: actions/upload-artifact@v3

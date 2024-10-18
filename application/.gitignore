@@ -135,3 +135,6 @@ key.properties
 
 # Flutter version management
 /.fvm/flutter_sdk
+
+# FVM Version Cache
+.fvm/
